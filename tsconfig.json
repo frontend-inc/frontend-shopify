@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": "./dist",
     "outDir": "dist/esm",
     "module": "esnext",
     "target": "es5",
