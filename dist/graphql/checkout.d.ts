@@ -1,0 +1,9 @@
+export declare const CheckoutFragment: any;
+export declare const CHECKOUT_FETCH: any;
+export declare const CHECKOUT_CREATE: any;
+export declare const CHECKOUT_LINE_ITEMS_ADD: any;
+export declare const CHECKOUT_LINE_ITEMS_UPDATE: any;
+export declare const CHECKOUT_LINE_ITEMS_REMOVE: any;
+export declare const CHECKOUT_CUSTOMER_ASSOCIATE: any;
+export declare const CHECKOUT_DISCOUNT_CODE_APPLY: any;
+export declare const CHECKOUT_DISCOUNT_CODE_REMOVE: any;
