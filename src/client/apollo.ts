@@ -5,7 +5,7 @@ import { setContext } from 'apollo-link-context'
 
 let apolloClient
 
-function createApolloClient(
+export function createApolloClient(
 	domain: string,
 	storefrontAccessToken: string,
 	apiVersion: string = '2023-10'

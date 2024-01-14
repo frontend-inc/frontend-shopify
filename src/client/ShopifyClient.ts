@@ -870,7 +870,7 @@ export class ShopifyClient {
 }
 
 // Create the ShopifyClient
-export const createShopifyClient = (
+export const createClient = (
 	domain: string,
 	storefrontAccessToken: string,
 	fetchAccessToken: () => string,

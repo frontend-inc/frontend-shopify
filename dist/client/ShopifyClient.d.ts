@@ -80,4 +80,4 @@ export declare class ShopifyClient {
     executeQuery(query: any, variables: any): Promise<QueryResponse>;
     executeMutation(mutation: any, variables: any): Promise<QueryResponse>;
 }
-export declare const createShopifyClient: (domain: string, storefrontAccessToken: string, fetchAccessToken: () => string, apiVersion?: string) => ShopifyClient;
+export declare const createClient: (domain: string, storefrontAccessToken: string, fetchAccessToken: () => string, apiVersion?: string) => ShopifyClient;

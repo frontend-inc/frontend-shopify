@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.useApollo = exports.initApollo = void 0;
+exports.useApollo = exports.initApollo = exports.createApolloClient = void 0;
 var react_1 = require("react");
 var client_1 = require("@apollo/client");
 var apollo_link_http_1 = require("apollo-link-http");
@@ -23,6 +23,7 @@ function createApolloClient(domain, storefrontAccessToken, apiVersion) {
         cache: new client_1.InMemoryCache(),
     });
 }
+exports.createApolloClient = createApolloClient;
 function initApollo(domain, storefrontAccessToken, apiVersion) {
     var _apolloClient = apolloClient !== null && apolloClient !== void 0 ? apolloClient : createApolloClient(domain, storefrontAccessToken, apiVersion);
     // If your page has Next.js data fetching methods that use Apollo Client, the initial state

@@ -1,1 +1,2 @@
-export { createShopifyClient } from './client/ShopifyClient'
+export * from './client'
+export * from './graphql'

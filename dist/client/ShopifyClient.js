@@ -56,7 +56,7 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     return to.concat(ar || Array.prototype.slice.call(from));
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createShopifyClient = exports.ShopifyClient = void 0;
+exports.createClient = exports.ShopifyClient = void 0;
 var apollo_1 = require("./apollo");
 var graphql_1 = require("../graphql");
 var ShopifyClient = /** @class */ (function () {
@@ -1215,7 +1215,7 @@ var ShopifyClient = /** @class */ (function () {
 }());
 exports.ShopifyClient = ShopifyClient;
 // Create the ShopifyClient
-var createShopifyClient = function (domain, storefrontAccessToken, fetchAccessToken, apiVersion) {
+var createClient = function (domain, storefrontAccessToken, fetchAccessToken, apiVersion) {
     return new ShopifyClient(domain, storefrontAccessToken, fetchAccessToken, apiVersion);
 };
-exports.createShopifyClient = createShopifyClient;
+exports.createClient = createClient;
