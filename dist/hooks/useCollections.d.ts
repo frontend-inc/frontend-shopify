@@ -1,0 +1,26 @@
+import { ProductCollectionFilter } from '../types';
+declare const useCollections: () => {
+    cursor: any;
+    hasNextPage: any;
+    setHasNextPage: any;
+    collection: any;
+    collections: any;
+    fetchCollection: (handle: any, query?: any) => Promise<void>;
+    fetchCollections: (perPage?: number) => Promise<void>;
+    filters: any;
+    setFilters: any;
+    addFilter: (filter: ProductCollectionFilter) => void;
+    removeFilter: (filter: ProductCollectionFilter) => void;
+    clearFilters: () => void;
+    filterInStock: () => void;
+    filterProductType: (productType: string) => void;
+    filterVendor: (productVendor: string) => void;
+    filterVariantOption: (name: string, value: string | number) => void;
+    filterTag: (tag: string) => void;
+    filterPrice: (min: number, max: number) => void;
+    image: any;
+    products: any;
+    loading: any;
+    errors: any;
+};
+export default useCollections;

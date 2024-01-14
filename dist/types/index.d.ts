@@ -153,7 +153,7 @@ export declare type ProductVariant = {
     id: string;
     title: string;
     price: MoneyV2;
-    image?: ProductImage;
+    image?: Image;
     compareAtPriceV2?: MoneyV2;
     availableForSale: boolean;
     sku?: string;
@@ -163,11 +163,6 @@ export declare type ProductVariant = {
     weight?: number;
     weightUnit?: string;
     presentmentPrices?: MoneyV2[];
-};
-export declare type ProductImage = {
-    id: string;
-    altText?: string;
-    url: string;
 };
 export declare type SEO = {
     title?: string;

@@ -1,4 +1,4 @@
-import { Address, Customer, QueryResponse, ShopifyQueryParams, ProductCollectionFilter, ProductCollectionSortKey } from './types';
+import { Address, Customer, QueryResponse, ShopifyQueryParams, ProductCollectionFilter, ProductCollectionSortKey } from '../types';
 export declare class ShopifyClient {
     private _first?;
     private _filters?;

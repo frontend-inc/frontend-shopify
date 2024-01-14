@@ -1,0 +1,21 @@
+import { CartLine } from '../types';
+declare const useCart: () => {
+    loading: any;
+    errors: any;
+    cart: any;
+    setCart: any;
+    cartApplyDiscountCode: (discountCode: any) => Promise<any>;
+    cartBuyerIdentityUpdate: (customerAccessToken: any, email: any) => Promise<any>;
+    cartRemoveDiscountCode: (code: any) => Promise<any>;
+    cartCreate: () => Promise<any>;
+    cartDiscountCodesUpdate: (discountCodes: any) => Promise<any>;
+    cartFindOrCreate: () => Promise<any>;
+    cartLineAdd: (line: CartLine) => Promise<any>;
+    cartLinesAdd: (lines: CartLine[]) => Promise<any>;
+    cartLineRemove: (lineId: any) => Promise<any>;
+    cartLinesRemove: (lineIds: any) => Promise<any>;
+    cartLineUpdate: (line: any) => Promise<any>;
+    cartLinesUpdate: (lines: any) => Promise<any>;
+    findCart: (cartId: any) => Promise<any>;
+};
+export default useCart;

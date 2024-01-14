@@ -6,7 +6,7 @@ import {
 	ShopifyQueryParams,
 	ProductCollectionFilter,
 	ProductCollectionSortKey,
-} from './types'
+} from '../types'
 import {
 	QUERY_PRODUCT_BY_HANDLE,
 	QUERY_PRODUCTS,

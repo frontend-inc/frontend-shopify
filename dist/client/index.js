@@ -1,15 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.COLLECTION_SORT_OPTIONS = exports.PRODUCT_SORT_OPTIONS = exports.getShopifyIdFromGid = exports.createApolloClient = exports.useApollo = exports.createClient = void 0;
+exports.createApolloClient = exports.useApollo = exports.createClient = void 0;
 var ShopifyClient_1 = require("./ShopifyClient");
 Object.defineProperty(exports, "createClient", { enumerable: true, get: function () { return ShopifyClient_1.createClient; } });
 var apollo_1 = require("./apollo");
 Object.defineProperty(exports, "useApollo", { enumerable: true, get: function () { return apollo_1.useApollo; } });
 var apollo_2 = require("./apollo");
 Object.defineProperty(exports, "createApolloClient", { enumerable: true, get: function () { return apollo_2.createApolloClient; } });
-var utils_1 = require("./utils");
-Object.defineProperty(exports, "getShopifyIdFromGid", { enumerable: true, get: function () { return utils_1.getShopifyIdFromGid; } });
-var constants_1 = require("./constants");
-Object.defineProperty(exports, "PRODUCT_SORT_OPTIONS", { enumerable: true, get: function () { return constants_1.PRODUCT_SORT_OPTIONS; } });
-var constants_2 = require("./constants");
-Object.defineProperty(exports, "COLLECTION_SORT_OPTIONS", { enumerable: true, get: function () { return constants_2.COLLECTION_SORT_OPTIONS; } });
