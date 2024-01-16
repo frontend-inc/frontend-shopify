@@ -14,6 +14,15 @@
         "apollo"        
     ],
     "main": "dist/index.js",
+    "exports": {
+      ".": "./dist/index.js",                
+      "./client": "./dist/client/index.js",
+      "./constants": "./dist/constants/index.js",
+      "./context": "./dist/context/index.js",
+      "./helpers": "./dist/helpers/index.js",
+      "./hooks": "./dist/hooks/index.js", 
+      "./graphql": "./dist/graphql/index.js" 
+    },
     "module": "dist/index.js",
     "types": "dist/index.d.ts",
     "files": [
@@ -28,8 +37,7 @@
     },
     "scripts": {
         "build": "npx rimraf dist && npm run build:cjs",
-        "build:cjs": "tsc --module commonjs --outDir dist",
-        "build_old": "NODE_ENV=production && npx rimraf dist && npx mkdirp dist && npx babel ./src --out-dir dist --copy-files"
+        "build:cjs": "tsc --module commonjs --outDir dist"
     },
     "eslintConfig": {
         "extends": "react-app"
