@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { ShopContext } from '../context'
-import { Product, Image } from '../types'
+import { Product } from '../types'
 import { useLoadingWrapper } from '../hooks'
 
 const useProducts = () => {
@@ -10,8 +10,7 @@ const useProducts = () => {
 
 	const [cursor, setCursor] = useState()
 	const [hasNextPage, setHasNextPage] = useState(false)
-	const [images, setImages] = useState<Image[]>()
-	const [product, setProduct] = useState<Product>()
+  const [product, setProduct] = useState<Product>()
 	const [products, setProducts] = useState<Product[]>()
 
 	const fetchProduct = async (handle) => {
@@ -85,15 +84,7 @@ const useProducts = () => {
 		setProducts(resp?.data)
 	}
 
-	useEffect(() => {
-		if (product) {
-			//@ts-ignore
-			setImages(product?.images?.edges.map((e) => e.node))
-		}
-	}, [product])
-
 	return {
-		images,
 		product,
 		products,
 		setProduct,

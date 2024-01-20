@@ -8,6 +8,7 @@ export { default as useCollections } from './useCollections';
 export { default as useFavorites } from './useFavorites';
 export { default as useLoadingWrapper } from './useLoadingWrapper';
 export { default as useProducts } from './useProducts';
+export { default as useProductVariants } from './useProductVariants';
 export { default as useMenus } from './useMenus';
 export { default as useMetaobjects } from './useMetaobjects';
 export { default as useOrders } from './useOrders';

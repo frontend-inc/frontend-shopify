@@ -53,9 +53,8 @@ var useProducts = function () {
     var _a = (0, hooks_1.useLoadingWrapper)(), loading = _a.loading, errors = _a.errors, loadingWrapper = _a.loadingWrapper;
     var _b = (0, react_1.useState)(), cursor = _b[0], setCursor = _b[1];
     var _c = (0, react_1.useState)(false), hasNextPage = _c[0], setHasNextPage = _c[1];
-    var _d = (0, react_1.useState)(), images = _d[0], setImages = _d[1];
-    var _e = (0, react_1.useState)(), product = _e[0], setProduct = _e[1];
-    var _f = (0, react_1.useState)(), products = _f[0], setProducts = _f[1];
+    var _d = (0, react_1.useState)(), product = _d[0], setProduct = _d[1];
+    var _e = (0, react_1.useState)(), products = _e[0], setProducts = _e[1];
     var fetchProduct = function (handle) { return __awaiter(void 0, void 0, void 0, function () {
         var resp;
         return __generator(this, function (_a) {
@@ -160,15 +159,7 @@ var useProducts = function () {
             }
         });
     }); };
-    (0, react_1.useEffect)(function () {
-        var _a;
-        if (product) {
-            //@ts-ignore
-            setImages((_a = product === null || product === void 0 ? void 0 : product.images) === null || _a === void 0 ? void 0 : _a.edges.map(function (e) { return e.node; }));
-        }
-    }, [product]);
     return {
-        images: images,
         product: product,
         products: products,
         setProduct: setProduct,

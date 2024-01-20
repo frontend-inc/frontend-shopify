@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.useAuth = exports.useShop = exports.useRecentlyViewed = exports.useProductContext = exports.useOrders = exports.useMetaobjects = exports.useMenus = exports.useProducts = exports.useLoadingWrapper = exports.useFavorites = exports.useCollections = exports.useCustomers = exports.useCheckout = exports.useCart = exports.useBlogs = exports.useArticles = exports.useAddresses = void 0;
+exports.useAuth = exports.useShop = exports.useRecentlyViewed = exports.useProductContext = exports.useOrders = exports.useMetaobjects = exports.useMenus = exports.useProductVariants = exports.useProducts = exports.useLoadingWrapper = exports.useFavorites = exports.useCollections = exports.useCustomers = exports.useCheckout = exports.useCart = exports.useBlogs = exports.useArticles = exports.useAddresses = void 0;
 var useAddresses_1 = require("./useAddresses");
 Object.defineProperty(exports, "useAddresses", { enumerable: true, get: function () { return __importDefault(useAddresses_1).default; } });
 var useArticles_1 = require("./useArticles");
@@ -24,6 +24,8 @@ var useLoadingWrapper_1 = require("./useLoadingWrapper");
 Object.defineProperty(exports, "useLoadingWrapper", { enumerable: true, get: function () { return __importDefault(useLoadingWrapper_1).default; } });
 var useProducts_1 = require("./useProducts");
 Object.defineProperty(exports, "useProducts", { enumerable: true, get: function () { return __importDefault(useProducts_1).default; } });
+var useProductVariants_1 = require("./useProductVariants");
+Object.defineProperty(exports, "useProductVariants", { enumerable: true, get: function () { return __importDefault(useProductVariants_1).default; } });
 var useMenus_1 = require("./useMenus");
 Object.defineProperty(exports, "useMenus", { enumerable: true, get: function () { return __importDefault(useMenus_1).default; } });
 var useMetaobjects_1 = require("./useMetaobjects");

@@ -1,5 +1,4 @@
 declare const useProducts: () => {
-    images: any;
     product: any;
     products: any;
     setProduct: any;
