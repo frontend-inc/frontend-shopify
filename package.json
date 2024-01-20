@@ -1,6 +1,6 @@
 {
     "name": "webstudio-shopify",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "license": "MIT",
     "description": "An Apollo GraphQL client for the Shopify Storefront API.",
     "homepage": "https://github.com/webstudio-co/webstudio-shopify",
@@ -37,7 +37,10 @@
     },
     "scripts": {
         "build": "npx rimraf dist && npm run build:cjs",
-        "build:cjs": "tsc --module commonjs --outDir dist"
+        "build:cjs": "tsc --module commonjs --outDir dist",
+        "bump": "./bump-version.sh",
+        "deploy": "git add . && git commit -m 'deploy' && git push",
+        "push": "yarn bump && yarn build && yarn deploy"
     },
     "eslintConfig": {
         "extends": "react-app"
