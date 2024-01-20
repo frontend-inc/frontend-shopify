@@ -12,7 +12,7 @@ var __assign = (this && this.__assign) || function () {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = require("react");
-var useProductVariants = function (props) {
+var useProductDetails = function (props) {
     var product = props.product;
     var _a = (0, react_1.useState)(null), variant = _a[0], setVariant = _a[1];
     var _b = (0, react_1.useState)(), images = _b[0], setImages = _b[1];
@@ -96,4 +96,4 @@ var useProductVariants = function (props) {
         selectVariant: selectVariant,
     };
 };
-exports.default = useProductVariants;
+exports.default = useProductDetails;

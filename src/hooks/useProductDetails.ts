@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { Product, ProductVariant, Image } from '../types'
 
-type ProductVariantsProps = {
+type useProductDetailsProps = {
   product: Product 
 }
 
-const useProductVariants = (props: ProductVariantsProps) => {
+const useProductDetails = (props: useProductDetailsProps) => {
 
   const { product } = props
 
@@ -96,4 +96,4 @@ const useProductVariants = (props: ProductVariantsProps) => {
 	}
 }
 
-export default useProductVariants
+export default useProductDetails

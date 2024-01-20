@@ -1,8 +1,8 @@
 import { Product } from '../types';
-declare type ProductVariantsProps = {
+declare type useProductDetailsProps = {
     product: Product;
 };
-declare const useProductVariants: (props: ProductVariantsProps) => {
+declare const useProductDetails: (props: useProductDetailsProps) => {
     image: any;
     images: any;
     price: any;
@@ -15,4 +15,4 @@ declare const useProductVariants: (props: ProductVariantsProps) => {
     variant: any;
     selectVariant: (product: any, selectedOptions?: {}) => void;
 };
-export default useProductVariants;
+export default useProductDetails;
