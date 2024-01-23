@@ -20,12 +20,12 @@ const ShopProvider = (props: ShopProviderProps) => {
 		children,
 		logo,
 		domain,
-		authCookie,
 		shopUrl,
 		storefrontAccessToken,
 		apiVersion = '2023-10',
 	} = props
 
+  let authCookie = `${domain}-shopify-access-token`
 	const fetchAccessToken = () => String(getCookie(authCookie))
 
 	const apolloClient = useApollo(domain, storefrontAccessToken, apiVersion)
@@ -59,6 +59,7 @@ const ShopProvider = (props: ShopProviderProps) => {
 	const toggleSearch = () => setSearchOpen(!searchOpen)
 
 	const value = {
+    domain,
 		shopifyClient,
 
 		accessToken,

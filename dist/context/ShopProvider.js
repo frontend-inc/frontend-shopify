@@ -28,7 +28,8 @@ var ShopContext_1 = __importDefault(require("./ShopContext"));
 var client_2 = require("../client");
 var cookies_next_1 = require("cookies-next");
 var ShopProvider = function (props) {
-    var children = props.children, logo = props.logo, domain = props.domain, authCookie = props.authCookie, shopUrl = props.shopUrl, storefrontAccessToken = props.storefrontAccessToken, _a = props.apiVersion, apiVersion = _a === void 0 ? '2023-10' : _a;
+    var children = props.children, logo = props.logo, domain = props.domain, shopUrl = props.shopUrl, storefrontAccessToken = props.storefrontAccessToken, _a = props.apiVersion, apiVersion = _a === void 0 ? '2023-10' : _a;
+    var authCookie = domain + "-shopify-access-token";
     var fetchAccessToken = function () { return String((0, cookies_next_1.getCookie)(authCookie)); };
     var apolloClient = (0, client_2.useApollo)(domain, storefrontAccessToken, apiVersion);
     var shopifyClient = (0, client_2.createClient)(domain, storefrontAccessToken, fetchAccessToken, apiVersion);
@@ -50,6 +51,7 @@ var ShopProvider = function (props) {
     var toggleMenu = function () { return setMenuOpen(!menuOpen); };
     var toggleSearch = function () { return setSearchOpen(!searchOpen); };
     var value = {
+        domain: domain,
         shopifyClient: shopifyClient,
         accessToken: accessToken,
         setAccessToken: setAccessToken,
