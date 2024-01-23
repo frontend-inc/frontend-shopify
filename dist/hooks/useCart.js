@@ -41,8 +41,9 @@ var context_1 = require("../context");
 var cookies_next_1 = require("cookies-next");
 var hooks_1 = require("../hooks");
 var useCart = function () {
-    var _a = (0, react_1.useContext)(context_1.ShopContext), shopifyClient = _a.shopifyClient, cart = _a.cart, setCart = _a.setCart;
+    var _a = (0, react_1.useContext)(context_1.ShopContext), domain = _a.domain, shopifyClient = _a.shopifyClient, cart = _a.cart, setCart = _a.setCart;
     var _b = (0, hooks_1.useLoadingWrapper)(), errors = _b.errors, loading = _b.loading, loadingWrapper = _b.loadingWrapper;
+    var cookie = domain + "-cart-id";
     var cartBuyerIdentityUpdate = function (customerAccessToken, email) { return __awaiter(void 0, void 0, void 0, function () {
         var response;
         return __generator(this, function (_a) {
@@ -176,7 +177,7 @@ var useCart = function () {
                     response = _f.sent();
                     if ((_a = response === null || response === void 0 ? void 0 : response.data) === null || _a === void 0 ? void 0 : _a.cart) {
                         setCart((_b = response === null || response === void 0 ? void 0 : response.data) === null || _b === void 0 ? void 0 : _b.cart);
-                        (0, cookies_next_1.setCookie)('shopifyCartId', (_d = (_c = response === null || response === void 0 ? void 0 : response.data) === null || _c === void 0 ? void 0 : _c.cart) === null || _d === void 0 ? void 0 : _d.id);
+                        (0, cookies_next_1.setCookie)(cookie, (_d = (_c = response === null || response === void 0 ? void 0 : response.data) === null || _c === void 0 ? void 0 : _c.cart) === null || _d === void 0 ? void 0 : _d.id);
                     }
                     return [2 /*return*/, (_e = response === null || response === void 0 ? void 0 : response.data) === null || _e === void 0 ? void 0 : _e.cart];
             }
@@ -186,7 +187,7 @@ var useCart = function () {
         var response, cartId;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, (0, cookies_next_1.getCookie)('shopifyCartId')];
+                case 0: return [4 /*yield*/, (0, cookies_next_1.getCookie)(cookie)];
                 case 1:
                     cartId = _a.sent();
                     if (!cartId) return [3 /*break*/, 5];
@@ -217,7 +218,7 @@ var useCart = function () {
                     response = _b.sent();
                     if (response === null || response === void 0 ? void 0 : response.data) {
                         setCart(response === null || response === void 0 ? void 0 : response.data);
-                        (0, cookies_next_1.setCookie)('shopifyCartId', (_a = response === null || response === void 0 ? void 0 : response.data) === null || _a === void 0 ? void 0 : _a.id);
+                        (0, cookies_next_1.setCookie)(cookie, (_a = response === null || response === void 0 ? void 0 : response.data) === null || _a === void 0 ? void 0 : _a.id);
                     }
                     return [2 /*return*/, response === null || response === void 0 ? void 0 : response.data];
             }

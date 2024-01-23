@@ -5,8 +5,9 @@ import { CartLine } from '../types'
 import { useLoadingWrapper } from '../hooks'
 
 const useCart = () => {
-	const { shopifyClient, cart, setCart } = useContext(ShopContext)
-	const { errors, loading, loadingWrapper } = useLoadingWrapper()
+	const { domain, shopifyClient, cart, setCart } = useContext(ShopContext)
+	const { errors, loading, loadingWrapper } = useLoadingWrapper()  
+  let cookie = `${domain}-cart-id`
 
 	const cartBuyerIdentityUpdate = async (customerAccessToken, email) => {
 		let response = await loadingWrapper(() =>
@@ -84,14 +85,14 @@ const useCart = () => {
 		const response = await loadingWrapper(() => shopifyClient.findCart(cartId))
     if(response?.data?.cart){
 		  setCart(response?.data?.cart)
-      setCookie('shopifyCartId', response?.data?.cart?.id)
+      setCookie(cookie, response?.data?.cart?.id)
     }
 		return response?.data?.cart
 	}
 
 	const cartFindOrCreate = async () => {
     let response
-		let cartId = await getCookie('shopifyCartId')
+		let cartId = await getCookie(cookie)
 		if (cartId) {
 			response = await findCart(cartId)
 			if (!response) {
@@ -107,7 +108,7 @@ const useCart = () => {
 		const response = await loadingWrapper(() => shopifyClient.cartCreate())
     if(response?.data){
       setCart(response?.data)
-      setCookie('shopifyCartId', response?.data?.id)
+      setCookie(cookie, response?.data?.id)
     }		
 		return response?.data
 	}

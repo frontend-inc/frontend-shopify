@@ -5,8 +5,10 @@ import { useLoadingWrapper } from '../hooks'
 
 const useCheckout = () => {
 	
-  const { shopifyClient, checkout, setCheckout } =
+  const { domain, shopifyClient, checkout, setCheckout } =
 		useContext(ShopContext)
+
+  let cookie = `${domain}-checkout-id`
 
 	const { loading, errors, loadingWrapper } = useLoadingWrapper()
 
@@ -83,14 +85,14 @@ const useCheckout = () => {
 
 	const checkoutFindOrCreate = async () => {
 		let resp
-		let checkoutId = getCookie('shopifyCheckoutId')
+		let checkoutId = getCookie(cookie)
 		if (checkoutId) {
 			resp = await loadingWrapper(() => shopifyClient.findCheckout(checkoutId))
 			if (resp?.data?.orderStatusUrl != null) {
 				// If there was a successful checkout,
 				// clear the cookie and create a new checkout
 				setCheckout(null)
-				setCookie('shopifyCheckoutId', null)
+				setCookie(cookie, null)
 				resp = await loadingWrapper(() => shopifyClient.checkoutCreate())
 				setCheckout(resp?.data)
 				return resp?.data
@@ -108,7 +110,7 @@ const useCheckout = () => {
 
 	useEffect(() => {
 		if (checkout) {			
-			setCookie('shopifyCheckoutId', checkout?.id)
+			setCookie(cookie, checkout?.id)
 			if (checkout?.discountApplications?.edges) {
 				let codes = checkout?.discountApplications?.edges.map(
 					({ node: discount }) => ({

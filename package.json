@@ -1,6 +1,6 @@
 {
     "name": "webstudio-shopify",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "license": "MIT",
     "description": "An Apollo GraphQL client for the Shopify Storefront API.",
     "homepage": "https://github.com/webstudio-co/webstudio-shopify",

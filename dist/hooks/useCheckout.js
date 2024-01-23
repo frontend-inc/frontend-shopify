@@ -41,7 +41,8 @@ var context_1 = require("../context");
 var cookies_next_1 = require("cookies-next");
 var hooks_1 = require("../hooks");
 var useCheckout = function () {
-    var _a = (0, react_1.useContext)(context_1.ShopContext), shopifyClient = _a.shopifyClient, checkout = _a.checkout, setCheckout = _a.setCheckout;
+    var _a = (0, react_1.useContext)(context_1.ShopContext), domain = _a.domain, shopifyClient = _a.shopifyClient, checkout = _a.checkout, setCheckout = _a.setCheckout;
+    var cookie = domain + "-checkout-id";
     var _b = (0, hooks_1.useLoadingWrapper)(), loading = _b.loading, errors = _b.errors, loadingWrapper = _b.loadingWrapper;
     var _c = (0, react_1.useState)([]), discountCodes = _c[0], setDiscountCodes = _c[1];
     var _d = (0, react_1.useState)({}), discountCodeError = _d[0], setDiscountCodeError = _d[1];
@@ -166,7 +167,7 @@ var useCheckout = function () {
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
-                    checkoutId = (0, cookies_next_1.getCookie)('shopifyCheckoutId');
+                    checkoutId = (0, cookies_next_1.getCookie)(cookie);
                     if (!checkoutId) return [3 /*break*/, 5];
                     return [4 /*yield*/, loadingWrapper(function () { return shopifyClient.findCheckout(checkoutId); })];
                 case 1:
@@ -175,7 +176,7 @@ var useCheckout = function () {
                     // If there was a successful checkout,
                     // clear the cookie and create a new checkout
                     setCheckout(null);
-                    (0, cookies_next_1.setCookie)('shopifyCheckoutId', null);
+                    (0, cookies_next_1.setCookie)(cookie, null);
                     return [4 /*yield*/, loadingWrapper(function () { return shopifyClient.checkoutCreate(); })];
                 case 2:
                     resp = _b.sent();
@@ -199,7 +200,7 @@ var useCheckout = function () {
     (0, react_1.useEffect)(function () {
         var _a, _b;
         if (checkout) {
-            (0, cookies_next_1.setCookie)('shopifyCheckoutId', checkout === null || checkout === void 0 ? void 0 : checkout.id);
+            (0, cookies_next_1.setCookie)(cookie, checkout === null || checkout === void 0 ? void 0 : checkout.id);
             if ((_a = checkout === null || checkout === void 0 ? void 0 : checkout.discountApplications) === null || _a === void 0 ? void 0 : _a.edges) {
                 var codes = (_b = checkout === null || checkout === void 0 ? void 0 : checkout.discountApplications) === null || _b === void 0 ? void 0 : _b.edges.map(function (_a) {
                     var _b, _c;
