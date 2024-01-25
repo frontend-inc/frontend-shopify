@@ -1,4 +1,4 @@
-# Webstudio Shopify 
+# Frontend.co Shopify 
 
 An Apollo GraphQL client for the Shopify Storefront API.
 
@@ -7,7 +7,7 @@ An Apollo GraphQL client for the Shopify Storefront API.
 ## Installation
 
 ```shell
-yarn add webstudio-shopify webstudio-mui
+yarn add frontend-shopify frontend-mui
 ```
 
 ## Requirements

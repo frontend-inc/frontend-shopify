@@ -1,12 +1,12 @@
 {
-    "name": "webstudio-shopify",
-    "version": "0.0.5",
+    "name": "frontend-shopify",
+    "version": "0.0.6",
     "license": "MIT",
     "description": "An Apollo GraphQL client for the Shopify Storefront API.",
-    "homepage": "https://github.com/webstudio-co/webstudio-shopify",
+    "homepage": "https://github.com/frontend-inc/frontend-shopify",
     "repository": {
         "type": "git",
-        "url": "https://github.com/webstudio-co/webstudio-shopify"
+        "url": "https://github.com/frontend-inc/frontend-shopify"
     },
     "keywords": [
         "react",
