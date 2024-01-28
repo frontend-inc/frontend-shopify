@@ -5,7 +5,6 @@ declare type ShopProviderProps = {
     children: React.ReactNode;
     logo?: string;
     shopUrl: string;
-    authCookie: string;
     apiVersion?: string;
 };
 declare const ShopProvider: (props: ShopProviderProps) => any;

@@ -11,7 +11,6 @@ type ShopProviderProps = {
 	children: React.ReactNode
 	logo?: string
 	shopUrl: string
-	authCookie: string
 	apiVersion?: string
 }
 
