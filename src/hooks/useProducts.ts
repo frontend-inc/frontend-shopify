@@ -13,12 +13,9 @@ const useProducts = () => {
   const [product, setProduct] = useState<Product>()
 	const [products, setProducts] = useState<Product[]>()
 
-	const fetchProduct = async (handle: string, metafields: MetafieldQuery[] = [{
-    namespace: 'namespace',
-    key: 'key',
-  }]) => {
+	const fetchProduct = async (handle: string) => {
 		setProduct(null)
-		const resp = await loadingWrapper(() => shopifyClient.findProduct(handle, metafields))
+		const resp = await loadingWrapper(() => shopifyClient.findProduct(handle))
 		setProduct(resp?.data)
 	}
 

@@ -1,4 +1,4 @@
-import { Address, Customer, QueryResponse, MetafieldQuery, ShopifyQueryParams, ProductCollectionFilter, ProductCollectionSortKey } from '../types';
+import { Address, Customer, QueryResponse, ShopifyQueryParams, ProductCollectionFilter, ProductCollectionSortKey } from '../types';
 export declare class ShopifyClient {
     private _first?;
     private _filters?;
@@ -46,7 +46,7 @@ export declare class ShopifyClient {
     removeCheckoutLineItems(checkoutId: string, lineItemIds: string[]): Promise<QueryResponse>;
     applyCheckoutDiscountCode(checkoutId: string, discountCode: string): Promise<QueryResponse>;
     removeCheckoutDiscountCode(checkoutId: string): Promise<QueryResponse>;
-    findProduct(handle: string, metafields?: MetafieldQuery[]): Promise<QueryResponse>;
+    findProduct(handle: string): Promise<QueryResponse>;
     findProductbyId(id: string): Promise<QueryResponse>;
     findProducts(params: ShopifyQueryParams): Promise<QueryResponse>;
     searchProducts(params: ShopifyQueryParams): Promise<QueryResponse>;
