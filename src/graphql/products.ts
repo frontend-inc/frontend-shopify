@@ -109,7 +109,7 @@ export const ProductFragment = gql`
 `
 
 export const QUERY_PRODUCT_BY_HANDLE = gql`
-	query Product($handle: String!, $metafields: [Metafield]!) {
+	query Product($handle: String!, $metafields: [HasMetafieldsIdentifier]!) {
 		productByHandle(handle: $handle) {
       availableForSale
       createdAt
