@@ -3,6 +3,7 @@ import {
 	Address,
 	Customer,
 	QueryResponse,
+  MetafieldQuery,
 	ShopifyQueryParams,
 	ProductCollectionFilter,
 	ProductCollectionSortKey,
@@ -436,9 +437,10 @@ export class ShopifyClient {
 	}
 
 	// Products
-	async findProduct(handle: string): Promise<QueryResponse> {
+	async findProduct(handle: string, metafields?: MetafieldQuery[]): Promise<QueryResponse> {
 		const response = await this.executeQuery(QUERY_PRODUCT_BY_HANDLE, {
 			handle,
+      metafields
 		})
 		return {
 			data: response?.data?.productByHandle,

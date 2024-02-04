@@ -17,70 +17,7 @@ export const ProductFragment = gql`
 					url
 				}
 			}
-		}
-		metafields(identifiers: []) {
-			id
-			key
-			value
-			namespace
-			description
-			reference {
-				... on ProductVariant {
-					id
-					title
-					sku
-					availableForSale
-				}
-				... on MediaImage {
-					image {
-						id
-						altText
-						url
-					}
-				}
-			}
-			references(first: 250) {
-				edges {
-					node {
-						... on Metaobject {
-							id
-							handle
-							type
-							updatedAt
-							fields {
-								key
-								type
-								value
-								reference {
-									... on Product {
-										id
-										handle
-										title
-										variants(first: 20) {
-											edges {
-												node {
-													id
-													sku
-													title
-													price {
-														amount
-														currencyCode
-													}
-													image {
-														url
-													}
-													availableForSale
-												}
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
+		}		
 		onlineStoreUrl
 		options {
 			id
@@ -172,12 +109,176 @@ export const ProductFragment = gql`
 `
 
 export const QUERY_PRODUCT_BY_HANDLE = gql`
-	query Product($handle: String!) {
+	query Product($handle: String!, $metafields: [Metafield]!) {
 		productByHandle(handle: $handle) {
-			...ProductFragment
+      availableForSale
+      createdAt
+      updatedAt
+      description
+      descriptionHtml
+      handle
+      id
+      images(first: 250) {
+        edges {
+          node {
+            id
+            altText
+            url
+          }
+        }
+      }
+      metafields(identifiers: $metafields, first: 50) {
+        id
+        key
+        value
+        namespace
+        description
+        reference {
+          ... on ProductVariant {
+            id
+            title
+            sku
+            availableForSale
+          }
+          ... on MediaImage {
+            image {
+              id
+              altText
+              url
+            }
+          }
+        }
+        references(first: 250) {
+          edges {
+            node {
+              ... on Metaobject {
+                id
+                handle
+                type
+                updatedAt
+                fields {
+                  key
+                  type
+                  value
+                  reference {
+                    ... on Product {
+                      id
+                      handle
+                      title
+                      variants(first: 20) {
+                        edges {
+                          node {
+                            id
+                            sku
+                            title
+                            price {
+                              amount
+                              currencyCode
+                            }
+                            image {
+                              url
+                            }
+                            availableForSale
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      onlineStoreUrl
+      options {
+        id
+        name
+        values
+      }
+      priceRange {
+        minVariantPrice {
+          amount
+          currencyCode
+        }
+        maxVariantPrice {
+          amount
+          currencyCode
+        }
+      }
+      sellingPlanGroups(first: 10) {
+        edges {
+          node {
+            name
+            sellingPlans(first: 10) {
+              edges {
+                node {
+                  id
+                  name
+                  description
+                  priceAdjustments {
+                    adjustmentValue {
+                      ... on SellingPlanFixedAmountPriceAdjustment {
+                        adjustmentAmount {
+                          amount
+                          currencyCode
+                        }
+                      }
+                      ... on SellingPlanFixedPriceAdjustment {
+                        price {
+                          amount
+                          currencyCode
+                        }
+                      }
+                      ... on SellingPlanPercentagePriceAdjustment {
+                        adjustmentPercentage
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      productType
+      publishedAt
+      tags
+      title
+      updatedAt
+      variants(first: 250) {
+        edges {
+          node {
+            availableForSale
+            compareAtPrice {
+              amount
+              currencyCode
+            }
+            id
+            image {
+              id
+              altText
+              url
+            }
+            price {
+              amount
+              currencyCode
+            }
+            requiresShipping
+            selectedOptions {
+              name
+              value
+            }
+            sku
+            title
+            weight
+            weightUnit
+          }
+        }
+      }
+      vendor      
 		}
-	}
-	${ProductFragment}
+	}	
 `
 
 export const QUERY_PRODUCT_BY_ID = gql`
@@ -195,6 +296,7 @@ export const QUERY_PRODUCTS = gql`
 		$reverse: Boolean
 		$sortKey: ProductSortKeys
 		$after: String
+    $metafields: [Metafield] 
 	) {
 		products(
 			first: 48

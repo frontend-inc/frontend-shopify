@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { ShopContext } from '../context'
-import { Product } from '../types'
+import { MetafieldQuery, Product } from '../types'
 import { useLoadingWrapper } from '../hooks'
 
 const useProducts = () => {
@@ -13,9 +13,12 @@ const useProducts = () => {
   const [product, setProduct] = useState<Product>()
 	const [products, setProducts] = useState<Product[]>()
 
-	const fetchProduct = async (handle) => {
+	const fetchProduct = async (handle: string, metafields: MetafieldQuery[] = [{
+    namespace: 'namespace',
+    key: 'key',
+  }]) => {
 		setProduct(null)
-		const resp = await loadingWrapper(() => shopifyClient.findProduct(handle))
+		const resp = await loadingWrapper(() => shopifyClient.findProduct(handle, metafields))
 		setProduct(resp?.data)
 	}
 

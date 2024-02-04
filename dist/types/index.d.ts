@@ -118,6 +118,10 @@ export declare type MetafieldReference = {
         };
     }[];
 };
+export declare type MetafieldQuery = {
+    namespace: string;
+    key: string;
+};
 export declare type Metafield = {
     id: string;
     key: string;

@@ -560,7 +560,7 @@ var ShopifyClient = /** @class */ (function () {
         });
     };
     // Products
-    ShopifyClient.prototype.findProduct = function (handle) {
+    ShopifyClient.prototype.findProduct = function (handle, metafields) {
         var _a;
         return __awaiter(this, void 0, void 0, function () {
             var response;
@@ -568,6 +568,7 @@ var ShopifyClient = /** @class */ (function () {
                 switch (_b.label) {
                     case 0: return [4 /*yield*/, this.executeQuery(graphql_1.QUERY_PRODUCT_BY_HANDLE, {
                             handle: handle,
+                            metafields: metafields
                         })];
                     case 1:
                         response = _b.sent();

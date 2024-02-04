@@ -144,6 +144,11 @@ export type MetafieldReference = {
 	}[]
 }
 
+export type MetafieldQuery = {
+  namespace: string
+  key: string
+}
+
 export type Metafield = {
 	id: string
 	key: string
