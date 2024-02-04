@@ -127,7 +127,7 @@ export const QUERY_PRODUCT_BY_HANDLE = gql`
           }
         }
       }
-      metafields(identifiers: $metafields, first: 50) {
+      metafields(identifiers: $metafields) {
         id
         key
         value
