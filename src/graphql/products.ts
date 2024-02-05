@@ -158,7 +158,7 @@ export const QUERY_PRODUCT_RECOMMENDATIONS = gql`
 	${ProductFragment}
 `
 
-export const QUERY_PRODUCT_BY_HANDLE = (metafields: MetafieldIdentifier) => gql`
+export const QUERY_PRODUCT_BY_HANDLE = gql`
 	query Product($handle: String!) {
 		productByHandle(handle: $handle) {
       availableForSale
@@ -177,7 +177,7 @@ export const QUERY_PRODUCT_BY_HANDLE = (metafields: MetafieldIdentifier) => gql`
           }
         }
       }
-      metafields(identifiers: ${metafields}) {
+      metafields(identifiers: []) {
         id
         key
         value

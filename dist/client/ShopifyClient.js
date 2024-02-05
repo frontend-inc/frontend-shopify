@@ -560,13 +560,13 @@ var ShopifyClient = /** @class */ (function () {
         });
     };
     // Products
-    ShopifyClient.prototype.findProduct = function (handle, metafields) {
+    ShopifyClient.prototype.findProduct = function (handle) {
         var _a;
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_b) {
                 switch (_b.label) {
-                    case 0: return [4 /*yield*/, this.executeQuery((0, graphql_1.QUERY_PRODUCT_BY_HANDLE)(metafields || []), {
+                    case 0: return [4 /*yield*/, this.executeQuery(graphql_1.QUERY_PRODUCT_BY_HANDLE, {
                             handle: handle
                         })];
                     case 1:

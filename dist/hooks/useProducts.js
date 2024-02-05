@@ -55,13 +55,13 @@ var useProducts = function () {
     var _c = (0, react_1.useState)(false), hasNextPage = _c[0], setHasNextPage = _c[1];
     var _d = (0, react_1.useState)(), product = _d[0], setProduct = _d[1];
     var _e = (0, react_1.useState)(), products = _e[0], setProducts = _e[1];
-    var fetchProduct = function (handle, metafields) { return __awaiter(void 0, void 0, void 0, function () {
+    var fetchProduct = function (handle) { return __awaiter(void 0, void 0, void 0, function () {
         var resp;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     setProduct(null);
-                    return [4 /*yield*/, loadingWrapper(function () { return shopifyClient.findProduct(handle, metafields); })];
+                    return [4 /*yield*/, loadingWrapper(function () { return shopifyClient.findProduct(handle); })];
                 case 1:
                     resp = _a.sent();
                     setProduct(resp === null || resp === void 0 ? void 0 : resp.data);
