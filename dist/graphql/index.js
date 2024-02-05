@@ -22,4 +22,5 @@ __exportStar(require("./metaobjects"), exports);
 __exportStar(require("./blogs"), exports);
 __exportStar(require("./pages"), exports);
 __exportStar(require("./menus"), exports);
+__exportStar(require("./metafields"), exports);
 __exportStar(require("./search"), exports);

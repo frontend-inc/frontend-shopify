@@ -1,4 +1,6 @@
 import { gql } from '@apollo/client'
+import { MetafieldFragment } from './metafields'
+import { MetafieldIdentifier } from '../types'
 
 export const ProductFragment = gql`
 	fragment ProductFragment on Product {
@@ -108,7 +110,56 @@ export const ProductFragment = gql`
 	}
 `
 
-export const QUERY_PRODUCT_BY_HANDLE = gql`
+export const QUERY_PRODUCT_BY_ID = gql`
+	query Product($id: ID!) {
+		product(id: $id) {
+			...ProductFragment
+		}
+	}
+	${ProductFragment}
+`
+
+export const QUERY_PRODUCTS = gql`
+	query Products(
+		$query: String
+		$reverse: Boolean
+		$sortKey: ProductSortKeys
+		$after: String
+    $metafields: [Metafield] 
+	) {
+		products(
+			first: 48
+			after: $after
+			query: $query
+			reverse: $reverse
+			sortKey: $sortKey
+		) {
+			pageInfo {
+				startCursor
+				endCursor
+				hasNextPage
+				hasPreviousPage
+			}
+			edges {
+				node {
+					...ProductFragment
+				}
+			}
+		}
+	}
+	${ProductFragment}
+`
+
+export const QUERY_PRODUCT_RECOMMENDATIONS = gql`
+	query ProductRecommendations($productId: ID!) {
+		productRecommendations(productId: $productId) {
+			...ProductFragment
+		}
+	}
+	${ProductFragment}
+`
+
+export const QUERY_PRODUCT_BY_HANDLE = (metafields: MetafieldIdentifier) => gql`
 	query Product($handle: String!) {
 		productByHandle(handle: $handle) {
       availableForSale
@@ -127,68 +178,8 @@ export const QUERY_PRODUCT_BY_HANDLE = gql`
           }
         }
       }
-      metafields(identifiers: []) {
-        id
-        key
-        value
-        namespace
-        description
-        reference {
-          ... on ProductVariant {
-            id
-            title
-            sku
-            availableForSale
-          }
-          ... on MediaImage {
-            image {
-              id
-              altText
-              url
-            }
-          }
-        }
-        references(first: 250) {
-          edges {
-            node {
-              ... on Metaobject {
-                id
-                handle
-                type
-                updatedAt
-                fields {
-                  key
-                  type
-                  value
-                  reference {
-                    ... on Product {
-                      id
-                      handle
-                      title
-                      variants(first: 20) {
-                        edges {
-                          node {
-                            id
-                            sku
-                            title
-                            price {
-                              amount
-                              currencyCode
-                            }
-                            image {
-                              url
-                            }
-                            availableForSale
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
+      metafields(identifiers: ${metafields}) {
+        ...MetafieldFragment
       }
       onlineStoreUrl
       options {
@@ -279,53 +270,5 @@ export const QUERY_PRODUCT_BY_HANDLE = gql`
       vendor      
 		}
 	}	
-`
-
-export const QUERY_PRODUCT_BY_ID = gql`
-	query Product($id: ID!) {
-		product(id: $id) {
-			...ProductFragment
-		}
-	}
-	${ProductFragment}
-`
-
-export const QUERY_PRODUCTS = gql`
-	query Products(
-		$query: String
-		$reverse: Boolean
-		$sortKey: ProductSortKeys
-		$after: String
-    $metafields: [Metafield] 
-	) {
-		products(
-			first: 48
-			after: $after
-			query: $query
-			reverse: $reverse
-			sortKey: $sortKey
-		) {
-			pageInfo {
-				startCursor
-				endCursor
-				hasNextPage
-				hasPreviousPage
-			}
-			edges {
-				node {
-					...ProductFragment
-				}
-			}
-		}
-	}
-	${ProductFragment}
-`
-
-export const QUERY_PRODUCT_RECOMMENDATIONS = gql`
-	query ProductRecommendations($productId: ID!) {
-		productRecommendations(productId: $productId) {
-			...ProductFragment
-		}
-	}
-	${ProductFragment}
+  ${MetafieldFragment}
 `

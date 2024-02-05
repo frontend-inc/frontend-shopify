@@ -2,11 +2,11 @@ import { initApollo } from './apollo'
 import {
 	Address,
 	Customer,
-	QueryResponse,
-  MetafieldQuery,
+	QueryResponse,  
 	ShopifyQueryParams,
 	ProductCollectionFilter,
 	ProductCollectionSortKey,
+  MetafieldIdentifier,
 } from '../types'
 import {
 	QUERY_PRODUCT_BY_HANDLE,
@@ -437,8 +437,8 @@ export class ShopifyClient {
 	}
 
 	// Products
-	async findProduct(handle: string): Promise<QueryResponse> {
-		const response = await this.executeQuery(QUERY_PRODUCT_BY_HANDLE, {
+	async findProduct(handle: string, metafields?: MetafieldIdentifier): Promise<QueryResponse> {
+		const response = await this.executeQuery(QUERY_PRODUCT_BY_HANDLE(metafields || []), {
 			handle      
 		})
 		return {
