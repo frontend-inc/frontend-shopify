@@ -1,5 +1,4 @@
 import { gql } from '@apollo/client'
-import { MetafieldFragment } from './metafields'
 import { MetafieldIdentifier } from '../types'
 
 export const ProductFragment = gql`
@@ -179,7 +178,67 @@ export const QUERY_PRODUCT_BY_HANDLE = (metafields: MetafieldIdentifier) => gql`
         }
       }
       metafields(identifiers: ${metafields}) {
-        ...MetafieldFragment
+        id
+        key
+        value
+        namespace
+        description
+        reference {
+          ... on ProductVariant {
+            id
+            title
+            sku
+            availableForSale
+          }
+          ... on MediaImage {
+            image {
+              id
+              altText
+              url
+            }
+          }
+        }
+        references(first: 250) {
+          edges {
+            node {
+              ... on Metaobject {
+                id
+                handle
+                type
+                updatedAt
+                fields {
+                  key
+                  type
+                  value
+                  reference {
+                    ... on Product {
+                      id
+                      handle
+                      title
+                      variants(first: 20) {
+                        edges {
+                          node {
+                            id
+                            sku
+                            title
+                            price {
+                              amount
+                              currencyCode
+                            }
+                            image {
+                              url
+                            }
+                            availableForSale
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
       onlineStoreUrl
       options {
@@ -270,5 +329,4 @@ export const QUERY_PRODUCT_BY_HANDLE = (metafields: MetafieldIdentifier) => gql`
       vendor      
 		}
 	}	
-  ${MetafieldFragment}
 `

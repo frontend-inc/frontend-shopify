@@ -10,5 +10,4 @@ export * from './metaobjects';
 export * from './blogs';
 export * from './pages';
 export * from './menus';
-export * from './metafields';
 export * from './search';
