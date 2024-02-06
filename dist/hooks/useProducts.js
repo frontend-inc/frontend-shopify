@@ -83,6 +83,20 @@ var useProducts = function () {
             }
         });
     }); };
+    var fetchProductWithMetafields = function (handle, metafields) { return __awaiter(void 0, void 0, void 0, function () {
+        var resp;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    setProduct(null);
+                    return [4 /*yield*/, loadingWrapper(function () { return shopifyClient.findProductWithMetafields(handle, metafields); })];
+                case 1:
+                    resp = _a.sent();
+                    setProduct(resp === null || resp === void 0 ? void 0 : resp.data);
+                    return [2 /*return*/];
+            }
+        });
+    }); };
     var fetchProducts = function (productsQuery) { return __awaiter(void 0, void 0, void 0, function () {
         var first, reverse, _a, sortKey, query, after, resp, results;
         var _b, _c;
@@ -167,6 +181,7 @@ var useProducts = function () {
         fetchProduct: fetchProduct,
         fetchProducts: fetchProducts,
         fetchProductById: fetchProductById,
+        fetchProductWithMetafields: fetchProductWithMetafields,
         fetchProductRecommendations: fetchProductRecommendations,
         searchProducts: searchProducts,
         hasNextPage: hasNextPage,

@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { ShopContext } from '../context'
-import { Product } from '../types'
+import { MetafieldIdentifier, Product } from '../types'
 import { useLoadingWrapper } from '../hooks'
 
 const useProducts = () => {
@@ -24,6 +24,13 @@ const useProducts = () => {
 		const resp = await loadingWrapper(() => shopifyClient.findProductById(id))
 		setProduct(resp?.data)
 	}
+
+  const fetchProductWithMetafields = async (handle: string, metafields: MetafieldIdentifier[]) => {    
+		setProduct(null)
+		const resp = await loadingWrapper(() => shopifyClient.findProductWithMetafields(handle, metafields))
+		setProduct(resp?.data)
+	}
+
 
 	const fetchProducts = async (productsQuery) => {
 		const {
@@ -92,6 +99,7 @@ const useProducts = () => {
 		fetchProduct,
 		fetchProducts,
 		fetchProductById,
+    fetchProductWithMetafields,
 		fetchProductRecommendations,
 		searchProducts,
 		hasNextPage,
