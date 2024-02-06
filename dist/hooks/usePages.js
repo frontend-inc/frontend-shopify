@@ -43,7 +43,7 @@ var usePages = function () {
     var shopifyClient = (0, react_1.useContext)(context_1.ShopContext).shopifyClient;
     var _a = (0, hooks_1.useLoadingWrapper)(), errors = _a.errors, loading = _a.loading, loadingWrapper = _a.loadingWrapper;
     var _b = (0, react_1.useState)(null), page = _b[0], setPage = _b[1];
-    var fetchPage = function (handle) { return __awaiter(void 0, void 0, void 0, function () {
+    var findPage = function (handle) { return __awaiter(void 0, void 0, void 0, function () {
         var response;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -59,7 +59,7 @@ var usePages = function () {
         loading: loading,
         errors: errors,
         page: page,
-        fetchPage: fetchPage,
+        findPage: findPage,
     };
 };
 exports.default = usePages;

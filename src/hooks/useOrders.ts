@@ -10,7 +10,7 @@ const useOrders = () => {
 	const [order, setOrder] = useState<any | Order>({})
 	const [orders, setOrders] = useState<Order[]>(null)
 
-	const fetchCustomerOrder = async (orderId) => {
+	const findCustomerOrder = async (orderId) => {
 		const response = await loadingWrapper(() =>
 			shopifyClient.findCustomerOrders({
 				first: 1,
@@ -23,7 +23,7 @@ const useOrders = () => {
 		return response?.data
 	}
 
-	const fetchCustomerOrders = async (queryParams: ShopifyQueryParams) => {
+	const findCustomerOrders = async (queryParams: ShopifyQueryParams) => {
 		const {
 			first = 20,
 			after,
@@ -52,8 +52,8 @@ const useOrders = () => {
 		errors,
 		order,
 		orders,
-		fetchCustomerOrder,
-		fetchCustomerOrders,
+		findCustomerOrder,
+		findCustomerOrders,
 	}
 }
 

@@ -12,7 +12,7 @@ const useAddresses = () => {
 	const [address, setAddress] = useState<any | Address>({})
 	const [addresses, setAddresses] = useState<Address[]>(null)
 
-	const fetchCustomerAddress = async (addressId) => {
+	const findCustomerAddress = async (addressId) => {
 		const response = await loadingWrapper(() =>
 			shopifyClient.findCustomerAddresses(50)
 		)
@@ -25,7 +25,7 @@ const useAddresses = () => {
 		return _address
 	}
 
-	const fetchCustomerAddresses = async (first = 20, cursor = null) => {
+	const findCustomerAddresses = async (first = 20, cursor = null) => {
 		const response = await loadingWrapper(() =>
 			shopifyClient.findCustomerAddresses(first, cursor)
 		)
@@ -78,8 +78,8 @@ const useAddresses = () => {
 		updateCustomerAddress,
 		createCustomerAddress,
 		deleteCustomerAddress,
-		fetchCustomerAddress,
-		fetchCustomerAddresses,
+		findCustomerAddress,
+		findCustomerAddresses,
 		handleChange,
 	}
 }

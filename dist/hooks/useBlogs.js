@@ -45,7 +45,7 @@ var useBlogs = function () {
     var _b = (0, react_1.useState)(), articles = _b[0], setArticles = _b[1];
     var _c = (0, react_1.useState)(), blog = _c[0], setBlog = _c[1];
     var _d = (0, react_1.useState)(), blogs = _d[0], setBlogs = _d[1];
-    var fetchBlog = function (handle, perPage) {
+    var findBlog = function (handle, perPage) {
         if (perPage === void 0) { perPage = 250; }
         return __awaiter(void 0, void 0, void 0, function () {
             var response;
@@ -64,7 +64,7 @@ var useBlogs = function () {
             });
         });
     };
-    var fetchBlogs = function (perPage) {
+    var findBlogs = function (perPage) {
         if (perPage === void 0) { perPage = 250; }
         return __awaiter(void 0, void 0, void 0, function () {
             var response;
@@ -85,8 +85,8 @@ var useBlogs = function () {
         articles: articles,
         blog: blog,
         blogs: blogs,
-        fetchBlog: fetchBlog,
-        fetchBlogs: fetchBlogs,
+        findBlog: findBlog,
+        findBlogs: findBlogs,
         loading: loading,
         errors: errors,
     };

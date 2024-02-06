@@ -44,7 +44,7 @@ var useArticles = function () {
     var _a = (0, hooks_1.useLoadingWrapper)(), errors = _a.errors, loading = _a.loading, loadingWrapper = _a.loadingWrapper;
     var _b = (0, react_1.useState)(), article = _b[0], setArticle = _b[1];
     var _c = (0, react_1.useState)(), articles = _c[0], setArticles = _c[1];
-    var fetchArticle = function (blogHandle, articleHandle, perPage) {
+    var findArticle = function (blogHandle, articleHandle, perPage) {
         if (perPage === void 0) { perPage = 250; }
         return __awaiter(void 0, void 0, void 0, function () {
             var response;
@@ -61,7 +61,7 @@ var useArticles = function () {
             });
         });
     };
-    var fetchArticles = function (perPage) {
+    var findArticles = function (perPage) {
         if (perPage === void 0) { perPage = 250; }
         return __awaiter(void 0, void 0, void 0, function () {
             var response;
@@ -81,8 +81,8 @@ var useArticles = function () {
     return {
         article: article,
         articles: articles,
-        fetchArticle: fetchArticle,
-        fetchArticles: fetchArticles,
+        findArticle: findArticle,
+        findArticles: findArticles,
         loading: loading,
         errors: errors,
     };

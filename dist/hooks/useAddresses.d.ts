@@ -6,8 +6,8 @@ declare const useAddresses: () => {
     updateCustomerAddress: (address: any) => Promise<any>;
     createCustomerAddress: (address: any) => Promise<any>;
     deleteCustomerAddress: (id: any) => Promise<any>;
-    fetchCustomerAddress: (addressId: any) => Promise<any>;
-    fetchCustomerAddresses: (first?: number, cursor?: any) => Promise<any>;
+    findCustomerAddress: (addressId: any) => Promise<any>;
+    findCustomerAddresses: (first?: number, cursor?: any) => Promise<any>;
     handleChange: (ev: any) => void;
 };
 export default useAddresses;

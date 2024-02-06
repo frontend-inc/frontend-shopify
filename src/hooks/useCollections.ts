@@ -101,7 +101,7 @@ const useCollections = () => {
 		setFilters([])
 	}
 
-	const fetchCollection = async (handle, query?: any) => {
+	const findCollection = async (handle, query?: any) => {
 		const {
 			first = PER_PAGE,
 			filters,
@@ -131,7 +131,7 @@ const useCollections = () => {
 		setImage(resp?.data?.image?.url)
 	}
 
-	const fetchCollections = async (perPage = PER_PAGE) => {
+	const findCollections = async (perPage = PER_PAGE) => {
 		const resp = await loadingWrapper(() =>
 			shopifyClient.findCollections(perPage)
 		)
@@ -146,8 +146,8 @@ const useCollections = () => {
 		setHasNextPage,
 		collection,
 		collections,
-		fetchCollection,
-		fetchCollections,
+		findCollection,
+		findCollections,
 		filters,
 		setFilters,
 		addFilter,

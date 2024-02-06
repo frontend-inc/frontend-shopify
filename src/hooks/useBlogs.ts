@@ -11,7 +11,7 @@ const useBlogs = () => {
 	const [blog, setBlog] = useState()
 	const [blogs, setBlogs] = useState()
 
-	const fetchBlog = async (handle, perPage = 250) => {
+	const findBlog = async (handle, perPage = 250) => {
 		const response = await loadingWrapper(() =>
 			shopifyClient.findBlog(handle, perPage)
 		)
@@ -20,7 +20,7 @@ const useBlogs = () => {
 		return response?.data
 	}
 
-	const fetchBlogs = async (perPage = 250) => {
+	const findBlogs = async (perPage = 250) => {
 		const response = await loadingWrapper(() =>
 			shopifyClient.findBlogs(perPage)
 		)
@@ -32,8 +32,8 @@ const useBlogs = () => {
 		articles,
 		blog,
 		blogs,
-		fetchBlog,
-		fetchBlogs,
+		findBlog,
+		findBlogs,
 		loading,
 		errors,
 	}

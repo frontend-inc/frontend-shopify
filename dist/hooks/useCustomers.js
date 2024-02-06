@@ -43,7 +43,7 @@ var useCustomers = function () {
     var shopifyClient = (0, react_1.useContext)(context_1.ShopContext).shopifyClient;
     var _a = (0, hooks_1.useLoadingWrapper)(), errors = _a.errors, loading = _a.loading, loadingWrapper = _a.loadingWrapper;
     var _b = (0, react_1.useState)(null), customer = _b[0], setCustomer = _b[1];
-    var fetchCustomer = function (customerAccessToken) { return __awaiter(void 0, void 0, void 0, function () {
+    var findCustomer = function (customerAccessToken) { return __awaiter(void 0, void 0, void 0, function () {
         var resp;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -98,7 +98,7 @@ var useCustomers = function () {
         loading: loading,
         errors: errors,
         customer: customer,
-        fetchCustomer: fetchCustomer,
+        findCustomer: findCustomer,
         createCustomer: createCustomer,
         updateCustomer: updateCustomer,
     };

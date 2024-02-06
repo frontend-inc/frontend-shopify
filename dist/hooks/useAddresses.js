@@ -56,7 +56,7 @@ var useAddresses = function () {
     var _a = (0, hooks_1.useLoadingWrapper)(), loading = _a.loading, errors = _a.errors, loadingWrapper = _a.loadingWrapper;
     var _b = (0, react_1.useState)({}), address = _b[0], setAddress = _b[1];
     var _c = (0, react_1.useState)(null), addresses = _c[0], setAddresses = _c[1];
-    var fetchCustomerAddress = function (addressId) { return __awaiter(void 0, void 0, void 0, function () {
+    var findCustomerAddress = function (addressId) { return __awaiter(void 0, void 0, void 0, function () {
         var response, _address;
         var _a;
         return __generator(this, function (_b) {
@@ -74,7 +74,7 @@ var useAddresses = function () {
             }
         });
     }); };
-    var fetchCustomerAddresses = function (first, cursor) {
+    var findCustomerAddresses = function (first, cursor) {
         if (first === void 0) { first = 20; }
         if (cursor === void 0) { cursor = null; }
         return __awaiter(void 0, void 0, void 0, function () {
@@ -152,8 +152,8 @@ var useAddresses = function () {
         updateCustomerAddress: updateCustomerAddress,
         createCustomerAddress: createCustomerAddress,
         deleteCustomerAddress: deleteCustomerAddress,
-        fetchCustomerAddress: fetchCustomerAddress,
-        fetchCustomerAddresses: fetchCustomerAddresses,
+        findCustomerAddress: findCustomerAddress,
+        findCustomerAddresses: findCustomerAddresses,
         handleChange: handleChange,
     };
 };

@@ -1,8 +1,8 @@
 declare const useArticles: () => {
     article: any;
     articles: any;
-    fetchArticle: (blogHandle: any, articleHandle: any, perPage?: number) => Promise<any>;
-    fetchArticles: (perPage?: number) => Promise<any>;
+    findArticle: (blogHandle: any, articleHandle: any, perPage?: number) => Promise<any>;
+    findArticles: (perPage?: number) => Promise<any>;
     loading: any;
     errors: any;
 };

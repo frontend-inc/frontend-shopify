@@ -9,7 +9,7 @@ const useCustomers = () => {
 
 	const [customer, setCustomer] = useState<Customer>(null)
 
-	const fetchCustomer = async (customerAccessToken) => {
+	const findCustomer = async (customerAccessToken) => {
 		const resp = await loadingWrapper(() =>
 			shopifyClient.findCustomer(customerAccessToken)
 		)
@@ -49,7 +49,7 @@ const useCustomers = () => {
 		loading,
 		errors,
 		customer,
-		fetchCustomer,
+		findCustomer,
 		createCustomer,
 		updateCustomer,
 	}

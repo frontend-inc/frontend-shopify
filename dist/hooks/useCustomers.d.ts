@@ -2,7 +2,7 @@ declare const useCustomers: () => {
     loading: any;
     errors: any;
     customer: any;
-    fetchCustomer: (customerAccessToken: any) => Promise<any>;
+    findCustomer: (customerAccessToken: any) => Promise<any>;
     createCustomer: ({ firstName, lastName, email, password, acceptsMarketing, }: {
         firstName: any;
         lastName: any;

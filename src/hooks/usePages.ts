@@ -8,7 +8,7 @@ const usePages = () => {
 
 	const [page, setPage] = useState<Record<string, any>>(null)
 
-	const fetchPage = async (handle) => {
+	const findPage = async (handle) => {
 		const response = await loadingWrapper(() => shopifyClient.findPage(handle))
 		setPage(response?.data)
 		return response?.data
@@ -18,7 +18,7 @@ const usePages = () => {
 		loading,
 		errors,
 		page,
-		fetchPage,
+		findPage,
 	}
 }
 

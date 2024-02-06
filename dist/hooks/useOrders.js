@@ -44,7 +44,7 @@ var useOrders = function () {
     var _a = (0, hooks_1.useLoadingWrapper)(), loading = _a.loading, errors = _a.errors, loadingWrapper = _a.loadingWrapper;
     var _b = (0, react_1.useState)({}), order = _b[0], setOrder = _b[1];
     var _c = (0, react_1.useState)(null), orders = _c[0], setOrders = _c[1];
-    var fetchCustomerOrder = function (orderId) { return __awaiter(void 0, void 0, void 0, function () {
+    var findCustomerOrder = function (orderId) { return __awaiter(void 0, void 0, void 0, function () {
         var response;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -63,7 +63,7 @@ var useOrders = function () {
             }
         });
     }); };
-    var fetchCustomerOrders = function (queryParams) { return __awaiter(void 0, void 0, void 0, function () {
+    var findCustomerOrders = function (queryParams) { return __awaiter(void 0, void 0, void 0, function () {
         var _a, _b, first, after, _c, sortKey, _d, reverse, query, response;
         return __generator(this, function (_e) {
             switch (_e.label) {
@@ -92,8 +92,8 @@ var useOrders = function () {
         errors: errors,
         order: order,
         orders: orders,
-        fetchCustomerOrder: fetchCustomerOrder,
-        fetchCustomerOrders: fetchCustomerOrders,
+        findCustomerOrder: findCustomerOrder,
+        findCustomerOrders: findCustomerOrders,
     };
 };
 exports.default = useOrders;

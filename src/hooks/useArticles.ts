@@ -9,7 +9,7 @@ const useArticles = () => {
 	const [article, setArticle] = useState<Record<string, any>>()
 	const [articles, setArticles] = useState<Record<string, any>[]>()
 
-	const fetchArticle = async (blogHandle, articleHandle, perPage = 250) => {
+	const findArticle = async (blogHandle, articleHandle, perPage = 250) => {
 		const response = await loadingWrapper(() =>
 			shopifyClient.findArticle(blogHandle, articleHandle, perPage)
 		)
@@ -17,7 +17,7 @@ const useArticles = () => {
 		return response?.data
 	}
 
-	const fetchArticles = async (perPage = 250) => {
+	const findArticles = async (perPage = 250) => {
 		const response = await loadingWrapper(() =>
 			shopifyClient.findArticles(perPage)
 		)
@@ -28,8 +28,8 @@ const useArticles = () => {
 	return {
 		article,
 		articles,
-		fetchArticle,
-		fetchArticles,
+		findArticle,
+		findArticles,
 		loading,
 		errors,
 	}

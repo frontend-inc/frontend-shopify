@@ -128,7 +128,7 @@ var useCollections = function () {
     var clearFilters = function () {
         setFilters([]);
     };
-    var fetchCollection = function (handle, query) { return __awaiter(void 0, void 0, void 0, function () {
+    var findCollection = function (handle, query) { return __awaiter(void 0, void 0, void 0, function () {
         var _a, _b, first, filters, _c, reverse, _d, sortKey, after, resp, collectionProducts;
         var _e, _f, _g, _h, _j;
         return __generator(this, function (_k) {
@@ -161,7 +161,7 @@ var useCollections = function () {
             }
         });
     }); };
-    var fetchCollections = function (perPage) {
+    var findCollections = function (perPage) {
         if (perPage === void 0) { perPage = PER_PAGE; }
         return __awaiter(void 0, void 0, void 0, function () {
             var resp;
@@ -187,8 +187,8 @@ var useCollections = function () {
         setHasNextPage: setHasNextPage,
         collection: collection,
         collections: collections,
-        fetchCollection: fetchCollection,
-        fetchCollections: fetchCollections,
+        findCollection: findCollection,
+        findCollections: findCollections,
         filters: filters,
         setFilters: setFilters,
         addFilter: addFilter,

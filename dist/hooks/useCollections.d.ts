@@ -5,8 +5,8 @@ declare const useCollections: () => {
     setHasNextPage: any;
     collection: any;
     collections: any;
-    fetchCollection: (handle: any, query?: any) => Promise<void>;
-    fetchCollections: (perPage?: number) => Promise<void>;
+    findCollection: (handle: any, query?: any) => Promise<void>;
+    findCollections: (perPage?: number) => Promise<void>;
     filters: any;
     setFilters: any;
     addFilter: (filter: ProductCollectionFilter) => void;
