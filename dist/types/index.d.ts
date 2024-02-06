@@ -118,7 +118,7 @@ export declare type MetafieldReference = {
         };
     }[];
 };
-export declare type MetafieldIdentifier = [] | {
+export declare type MetafieldIdentifier = {
     namespace: string;
     key: string;
 };

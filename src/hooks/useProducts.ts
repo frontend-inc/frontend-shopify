@@ -13,26 +13,19 @@ const useProducts = () => {
   const [product, setProduct] = useState<Product>()
 	const [products, setProducts] = useState<Product[]>()
 
-	const fetchProduct = async (handle: string) => {    
+	const findProduct = async (handle: string, metafields?: MetafieldIdentifier[]) => {    
 		setProduct(null)
-		const resp = await loadingWrapper(() => shopifyClient.findProduct(handle))
+		const resp = await loadingWrapper(() => shopifyClient.findProduct(handle, metafields))
 		setProduct(resp?.data)
 	}
 
-	const fetchProductById = async (id) => {
+	const findProductById = async (id) => {
 		setProduct(null)
 		const resp = await loadingWrapper(() => shopifyClient.findProductById(id))
 		setProduct(resp?.data)
 	}
 
-  const fetchProductWithMetafields = async (handle: string, metafields: string[]) => {    
-		setProduct(null)
-		const resp = await loadingWrapper(() => shopifyClient.findProductWithMetafields(handle, metafields))
-		setProduct(resp?.data)
-	}
-
-
-	const fetchProducts = async (productsQuery) => {
+	const findProducts = async (productsQuery) => {
 		const {
 			first,
 			reverse,
@@ -84,7 +77,7 @@ const useProducts = () => {
 		return resp?.data
 	}
 
-	const fetchProductRecommendations = async (productId) => {
+	const findProductRecommendations = async (productId) => {
 		const resp = await loadingWrapper(() =>
 			shopifyClient.findProductRecommendations(productId)
 		)
@@ -96,11 +89,10 @@ const useProducts = () => {
 		products,
 		setProduct,
 		setProducts,
-		fetchProduct,
-		fetchProducts,
-		fetchProductById,
-    fetchProductWithMetafields,
-		fetchProductRecommendations,
+		findProduct,
+		findProducts,
+		findProductById,
+		findProductRecommendations,
 		searchProducts,
 		hasNextPage,
 		cursor,

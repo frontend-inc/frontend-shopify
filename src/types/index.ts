@@ -144,9 +144,9 @@ export type MetafieldReference = {
 	}[]
 }
 
-export type MetafieldIdentifier = [] | {
-  namespace: string
-  key: string
+export type MetafieldIdentifier = { 
+  namespace: string, 
+  key: string 
 }
 
 export type Metafield = {

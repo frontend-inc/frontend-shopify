@@ -59,7 +59,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.createClient = exports.ShopifyClient = void 0;
 var apollo_1 = require("./apollo");
 var graphql_1 = require("../graphql");
-var graphql_2 = require("../graphql");
 var ShopifyClient = /** @class */ (function () {
     function ShopifyClient(domain, storefrontAccessToken, fetchAccessToken, apiVersion) {
         if (apiVersion === void 0) { apiVersion = '2023-10'; }
@@ -561,33 +560,14 @@ var ShopifyClient = /** @class */ (function () {
         });
     };
     // Products
-    ShopifyClient.prototype.findProduct = function (handle) {
-        var _a;
-        return __awaiter(this, void 0, void 0, function () {
-            var response;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
-                    case 0: return [4 /*yield*/, this.executeQuery(graphql_1.QUERY_PRODUCT_BY_HANDLE, {
-                            handle: handle
-                        })];
-                    case 1:
-                        response = _b.sent();
-                        return [2 /*return*/, {
-                                data: (_a = response === null || response === void 0 ? void 0 : response.data) === null || _a === void 0 ? void 0 : _a.productByHandle,
-                                error: response === null || response === void 0 ? void 0 : response.error,
-                            }];
-                }
-            });
-        });
-    };
-    ShopifyClient.prototype.findProductWithMetafields = function (handle, metafields) {
+    ShopifyClient.prototype.findProduct = function (handle, metafields) {
         var _a;
         return __awaiter(this, void 0, void 0, function () {
             var gql, response;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
-                        gql = (0, graphql_2.buildProductQuery)(metafields);
+                        gql = (0, graphql_1.QUERY_PRODUCT_BY_HANDLE_FN)(metafields);
                         return [4 /*yield*/, this.executeQuery(gql, {
                                 handle: handle
                             })];

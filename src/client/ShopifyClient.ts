@@ -8,9 +8,9 @@ import {
 	ProductCollectionSortKey,
   MetafieldIdentifier,
 } from '../types'
-import {
-	QUERY_PRODUCT_BY_HANDLE,
+import {	
 	QUERY_PRODUCTS,
+  QUERY_PRODUCT_BY_HANDLE_FN,
 	QUERY_PRODUCT_RECOMMENDATIONS,
 	QUERY_PRODUCT_BY_ID,
 	QUERY_COLLECTION_BY_HANDLE,
@@ -54,7 +54,6 @@ import {
 	CART_BUYER_IDENTITY_UPDATE,
 	QUERY_MENU_BY_HANDLE,  
 } from '../graphql'
-import { buildProductQuery } from '../graphql'
 
 export class ShopifyClient {
 	private _first?: number
@@ -438,18 +437,8 @@ export class ShopifyClient {
 	}
 
 	// Products
-	async findProduct(handle: string): Promise<QueryResponse> {
-		const response = await this.executeQuery(QUERY_PRODUCT_BY_HANDLE, {
-			handle      
-		})
-		return {
-			data: response?.data?.productByHandle,
-			error: response?.error,
-		}
-	}
-
-  async findProductWithMetafields(handle: string, metafields: string[]): Promise<QueryResponse> {
-    const gql = buildProductQuery(metafields)
+	async findProduct(handle: string, metafields?: MetafieldIdentifier[]): Promise<QueryResponse> {
+    const gql = QUERY_PRODUCT_BY_HANDLE_FN(metafields)
 		const response = await this.executeQuery(gql, {
 			handle      
 		})

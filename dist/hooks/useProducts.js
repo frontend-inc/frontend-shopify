@@ -55,13 +55,13 @@ var useProducts = function () {
     var _c = (0, react_1.useState)(false), hasNextPage = _c[0], setHasNextPage = _c[1];
     var _d = (0, react_1.useState)(), product = _d[0], setProduct = _d[1];
     var _e = (0, react_1.useState)(), products = _e[0], setProducts = _e[1];
-    var fetchProduct = function (handle) { return __awaiter(void 0, void 0, void 0, function () {
+    var findProduct = function (handle, metafields) { return __awaiter(void 0, void 0, void 0, function () {
         var resp;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     setProduct(null);
-                    return [4 /*yield*/, loadingWrapper(function () { return shopifyClient.findProduct(handle); })];
+                    return [4 /*yield*/, loadingWrapper(function () { return shopifyClient.findProduct(handle, metafields); })];
                 case 1:
                     resp = _a.sent();
                     setProduct(resp === null || resp === void 0 ? void 0 : resp.data);
@@ -69,7 +69,7 @@ var useProducts = function () {
             }
         });
     }); };
-    var fetchProductById = function (id) { return __awaiter(void 0, void 0, void 0, function () {
+    var findProductById = function (id) { return __awaiter(void 0, void 0, void 0, function () {
         var resp;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -83,21 +83,7 @@ var useProducts = function () {
             }
         });
     }); };
-    var fetchProductWithMetafields = function (handle, metafields) { return __awaiter(void 0, void 0, void 0, function () {
-        var resp;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    setProduct(null);
-                    return [4 /*yield*/, loadingWrapper(function () { return shopifyClient.findProductWithMetafields(handle, metafields); })];
-                case 1:
-                    resp = _a.sent();
-                    setProduct(resp === null || resp === void 0 ? void 0 : resp.data);
-                    return [2 /*return*/];
-            }
-        });
-    }); };
-    var fetchProducts = function (productsQuery) { return __awaiter(void 0, void 0, void 0, function () {
+    var findProducts = function (productsQuery) { return __awaiter(void 0, void 0, void 0, function () {
         var first, reverse, _a, sortKey, query, after, resp, results;
         var _b, _c;
         return __generator(this, function (_d) {
@@ -159,7 +145,7 @@ var useProducts = function () {
             }
         });
     }); };
-    var fetchProductRecommendations = function (productId) { return __awaiter(void 0, void 0, void 0, function () {
+    var findProductRecommendations = function (productId) { return __awaiter(void 0, void 0, void 0, function () {
         var resp;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -178,11 +164,10 @@ var useProducts = function () {
         products: products,
         setProduct: setProduct,
         setProducts: setProducts,
-        fetchProduct: fetchProduct,
-        fetchProducts: fetchProducts,
-        fetchProductById: fetchProductById,
-        fetchProductWithMetafields: fetchProductWithMetafields,
-        fetchProductRecommendations: fetchProductRecommendations,
+        findProduct: findProduct,
+        findProducts: findProducts,
+        findProductById: findProductById,
+        findProductRecommendations: findProductRecommendations,
         searchProducts: searchProducts,
         hasNextPage: hasNextPage,
         cursor: cursor,
