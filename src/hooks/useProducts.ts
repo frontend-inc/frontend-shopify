@@ -25,7 +25,7 @@ const useProducts = () => {
 		setProduct(resp?.data)
 	}
 
-  const fetchProductWithMetafields = async (handle: string, metafields: MetafieldIdentifier[]) => {    
+  const fetchProductWithMetafields = async (handle: string, metafields: string[]) => {    
 		setProduct(null)
 		const resp = await loadingWrapper(() => shopifyClient.findProductWithMetafields(handle, metafields))
 		setProduct(resp?.data)

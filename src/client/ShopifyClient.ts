@@ -448,7 +448,7 @@ export class ShopifyClient {
 		}
 	}
 
-  async findProductWithMetafields(handle: string, metafields: MetafieldIdentifier[]): Promise<QueryResponse> {
+  async findProductWithMetafields(handle: string, metafields: string[]): Promise<QueryResponse> {
     const gql = buildProductQuery(metafields)
 		const response = await this.executeQuery(gql, {
 			handle      

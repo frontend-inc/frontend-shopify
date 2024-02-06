@@ -331,7 +331,17 @@ export const QUERY_PRODUCT_BY_HANDLE = gql`
 	}	
 `
 
-export const buildProductQuery = (metafields: MetafieldIdentifier[] = []) => gql`
+// Metafields is of the form ['namespace.key', 'namespace.key']
+export const buildProductQuery = (metafields: string[] = ['custom.key']) => {
+  
+  let query = '['
+  metafields.forEach((metafield) => {
+    const [namespace, key] = metafield.split('.')
+    query += `{namespace:"${namespace}", key:"${key}"}`
+  })
+  query += ']'
+
+  return gql`
 	query Product($handle: String!) {
 		productByHandle(handle: $handle) {
       availableForSale
@@ -350,7 +360,7 @@ export const buildProductQuery = (metafields: MetafieldIdentifier[] = []) => gql
           }
         }
       }
-      metafields(identifiers: ${metafields}) {
+      metafields(identifiers: ${query}) {
         id
         key
         value
@@ -502,4 +512,4 @@ export const buildProductQuery = (metafields: MetafieldIdentifier[] = []) => gql
       vendor      
 		}
 	}	
-`
+`}

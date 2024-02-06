@@ -1,4 +1,3 @@
-import { MetafieldIdentifier } from '../types';
 declare const useProducts: () => {
     product: any;
     products: any;
@@ -7,7 +6,7 @@ declare const useProducts: () => {
     fetchProduct: (handle: string) => Promise<void>;
     fetchProducts: (productsQuery: any) => Promise<any>;
     fetchProductById: (id: any) => Promise<void>;
-    fetchProductWithMetafields: (handle: string, metafields: MetafieldIdentifier[]) => Promise<void>;
+    fetchProductWithMetafields: (handle: string, metafields: string[]) => Promise<void>;
     fetchProductRecommendations: (productId: any) => Promise<void>;
     searchProducts: (searchParams: any) => Promise<any>;
     hasNextPage: any;
