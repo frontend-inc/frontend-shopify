@@ -118,6 +118,16 @@ export const QUERY_PRODUCT_BY_ID = gql`
 	${ProductFragment}
 `
 
+export const QUERY_PRODUCT_BY_HANDLE = gql`
+  query Product($handle: String!) {
+    productByHandle(handle: $handle) {
+			...ProductFragment
+		}
+	}
+	${ProductFragment}
+`
+
+
 export const QUERY_PRODUCTS = gql`
 	query Products(
 		$query: String
