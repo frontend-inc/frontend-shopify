@@ -133,8 +133,7 @@ export const QUERY_PRODUCTS = gql`
 		$query: String
 		$reverse: Boolean
 		$sortKey: ProductSortKeys
-		$after: String
-    $metafields: [Metafield] 
+		$after: String    
 	) {
 		products(
 			first: 48
