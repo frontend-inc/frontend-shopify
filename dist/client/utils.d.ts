@@ -1,10 +1,9 @@
-export declare const getField: (object: any, key: any) => any;
-export declare const getValue: (object: any, key: any) => any;
 export declare const getMetafield: (metaobject: any, key: any) => any;
-export declare const getMetaValue: (metaobject: any, key: any) => any;
-export declare const getMetaImage: (metaobject: any, key: any) => any;
-export declare const getMetaReference: (metaobject: any, key: any) => any;
-export declare const getMetaReferences: (metaobject: any, key: any) => any;
+export declare const getMetafieldType: (metaobject: any, key: any) => any;
+export declare const getMetafieldValue: (metaobject: any, key: any) => any;
+export declare const getMetafieldImage: (metaobject: any, key: any) => any;
+export declare const getMetafieldReference: (metaobject: any, key: any) => any;
+export declare const getMetafieldReferences: (metaobject: any, key: any) => any;
 export declare const getArrayFromString: (stringArray: any) => any;
 export declare const truncate: (str: any, n: any) => any;
 export declare const shopifyResizeImage: (url: any, { height, width }: {

@@ -1,33 +1,29 @@
 // Metafield helpers
-export const getField = (object, key) => {
-	return object?.fields?.find((field) => field?.key == key)
-}
-
-export const getValue = (object, key) => {
-	let field = getField(object, key)
-	return field?.value
-}
-
 export const getMetafield = (metaobject, key) => {
 	return metaobject?.metafields?.find((field) => field?.key == key)
 }
 
-export const getMetaValue = (metaobject, key) => {
+export const getMetafieldType = (metaobject, key) => {
+	let field = getMetafield(metaobject, key)
+	return field?.type
+}
+
+export const getMetafieldValue = (metaobject, key) => {
 	let field = getMetafield(metaobject, key)
 	return field?.value
 }
 
-export const getMetaImage = (metaobject, key) => {
+export const getMetafieldImage = (metaobject, key) => {
 	let field = getMetafield(metaobject, key)
 	return field?.reference?.image?.url
 }
 
-export const getMetaReference = (metaobject, key) => {
+export const getMetafieldReference = (metaobject, key) => {
 	let field = getMetafield(metaobject, key)
 	return field?.reference
 }
 
-export const getMetaReferences = (metaobject, key) => {
+export const getMetafieldReferences = (metaobject, key) => {
 	let field = getMetafield(metaobject, key)
 	return field?.references?.edges.map((e) => e.node)
 }
