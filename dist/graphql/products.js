@@ -16,6 +16,7 @@ var QUERY_PRODUCT_BY_HANDLE_FN = function (metafields) {
     if ((metafields === null || metafields === void 0 ? void 0 : metafields.length) > 0) {
         metafields.forEach(function (_a) {
             var namespace = _a.namespace, key = _a.key;
+            console.log("META", namespace, key);
             metafieldsQuery += "{namespace:\"" + namespace + "\", key:\"" + key + "\"}";
         });
     }

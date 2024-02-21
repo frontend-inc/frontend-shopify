@@ -171,7 +171,8 @@ export const QUERY_PRODUCT_RECOMMENDATIONS = gql`
 export const QUERY_PRODUCT_BY_HANDLE_FN = (metafields?: MetafieldIdentifier[]) => {  
   let metafieldsQuery = '['
   if(metafields?.length > 0){
-    metafields.forEach(({ namespace, key }) => {          
+    metafields.forEach(({ namespace, key }) => {     
+      console.log("META", namespace, key)     
       metafieldsQuery += `{namespace:"${namespace}", key:"${key}"}`
     })
   }  
