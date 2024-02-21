@@ -568,6 +568,7 @@ var ShopifyClient = /** @class */ (function () {
                 switch (_b.label) {
                     case 0:
                         gql = (0, graphql_1.QUERY_PRODUCT_BY_HANDLE_FN)(metafields);
+                        console.log("ProductByHandle", handle, metafields, gql);
                         return [4 /*yield*/, this.executeQuery(gql, {
                                 handle: handle
                             })];
