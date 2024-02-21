@@ -439,7 +439,6 @@ export class ShopifyClient {
 	// Products
 	async findProduct(handle: string, metafields?: MetafieldIdentifier[]): Promise<QueryResponse> {
     const gql = QUERY_PRODUCT_BY_HANDLE_FN(metafields)
-    console.log("ProductByHandle", handle, metafields, gql)
 		const response = await this.executeQuery(gql, {
 			handle      
 		})

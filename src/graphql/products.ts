@@ -172,14 +172,10 @@ export const QUERY_PRODUCT_BY_HANDLE_FN = (metafields?: MetafieldIdentifier[]) =
   let metafieldsQuery = '['
   if(metafields?.length > 0){
     metafields.forEach(({ namespace, key }) => {     
-      console.log("META", namespace, key)     
       metafieldsQuery += `{namespace:"${namespace}", key:"${key}"}`
     })
   }  
   metafieldsQuery += ']'
-
-  console.log("METAFIELDS QUERY", metafieldsQuery)
-
   return gql`
     query Product($handle: String!) {
       productByHandle(handle: $handle) {

@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getShopifyIdFromGid = exports.stripParams = exports.getBase64DecodedId = exports.decodeBase64 = exports.renderLineItemCompareAtPrice = exports.renderLineItemPrice = exports.renderMerchandiseTitle = exports.truncate = exports.getArrayFromString = exports.getMetaReferences = exports.getMetaReference = exports.getMetaImage = exports.getMetaValue = exports.getMetafield = exports.getValue = exports.getField = exports.getSellingPlanPrice = exports.getSellingPlanDescription = exports.findVariantFilters = exports.findTagFilters = exports.findStyleFilters = exports.findMaterialFilters = exports.findSizeFilters = exports.findColorFilters = exports.findVendorFilters = exports.findProductTypeFilters = exports.findAvailableFilter = exports.findPriceFilter = exports.findVariantByColor = exports.shopifyResizeImage = exports.formatCurrency = void 0;
+exports.getShopifyIdFromGid = exports.stripParams = exports.getBase64DecodedId = exports.decodeBase64 = exports.renderLineItemCompareAtPrice = exports.renderLineItemPrice = exports.renderMerchandiseTitle = exports.truncate = exports.getArrayFromString = exports.getMetafieldReferences = exports.getMetafieldReference = exports.getMetafieldImage = exports.getMetafieldValue = exports.getMetafield = exports.getSellingPlanPrice = exports.getSellingPlanDescription = exports.findVariantFilters = exports.findTagFilters = exports.findStyleFilters = exports.findMaterialFilters = exports.findSizeFilters = exports.findColorFilters = exports.findVendorFilters = exports.findProductTypeFilters = exports.findAvailableFilter = exports.findPriceFilter = exports.findVariantByColor = exports.shopifyResizeImage = exports.formatCurrency = void 0;
 var formatCurrency = function (money, digits) {
     if (digits === void 0) { digits = 2; }
     return new Intl.NumberFormat('en-US', {
@@ -116,43 +116,33 @@ var getSellingPlanPrice = function (variant, sellingPlan) {
 };
 exports.getSellingPlanPrice = getSellingPlanPrice;
 // Metafield helpers
-var getField = function (object, key) {
-    var _a;
-    return (_a = object === null || object === void 0 ? void 0 : object.fields) === null || _a === void 0 ? void 0 : _a.find(function (field) { return (field === null || field === void 0 ? void 0 : field.key) == key; });
-};
-exports.getField = getField;
-var getValue = function (object, key) {
-    var field = (0, exports.getField)(object, key);
-    return field === null || field === void 0 ? void 0 : field.value;
-};
-exports.getValue = getValue;
 var getMetafield = function (metaobject, key) {
     var _a;
     return (_a = metaobject === null || metaobject === void 0 ? void 0 : metaobject.metafields) === null || _a === void 0 ? void 0 : _a.find(function (field) { return (field === null || field === void 0 ? void 0 : field.key) == key; });
 };
 exports.getMetafield = getMetafield;
-var getMetaValue = function (metaobject, key) {
+var getMetafieldValue = function (metaobject, key) {
     var field = (0, exports.getMetafield)(metaobject, key);
     return field === null || field === void 0 ? void 0 : field.value;
 };
-exports.getMetaValue = getMetaValue;
-var getMetaImage = function (metaobject, key) {
+exports.getMetafieldValue = getMetafieldValue;
+var getMetafieldImage = function (metaobject, key) {
     var _a, _b;
     var field = (0, exports.getMetafield)(metaobject, key);
     return (_b = (_a = field === null || field === void 0 ? void 0 : field.reference) === null || _a === void 0 ? void 0 : _a.image) === null || _b === void 0 ? void 0 : _b.url;
 };
-exports.getMetaImage = getMetaImage;
-var getMetaReference = function (metaobject, key) {
+exports.getMetafieldImage = getMetafieldImage;
+var getMetafieldReference = function (metaobject, key) {
     var field = (0, exports.getMetafield)(metaobject, key);
     return field === null || field === void 0 ? void 0 : field.reference;
 };
-exports.getMetaReference = getMetaReference;
-var getMetaReferences = function (metaobject, key) {
+exports.getMetafieldReference = getMetafieldReference;
+var getMetafieldReferences = function (metaobject, key) {
     var _a;
     var field = (0, exports.getMetafield)(metaobject, key);
     return (_a = field === null || field === void 0 ? void 0 : field.references) === null || _a === void 0 ? void 0 : _a.edges.map(function (e) { return e.node; });
 };
-exports.getMetaReferences = getMetaReferences;
+exports.getMetafieldReferences = getMetafieldReferences;
 var getArrayFromString = function (stringArray) {
     var jsonValues = JSON.parse("{ \"values\": " + stringArray + " }");
     return jsonValues === null || jsonValues === void 0 ? void 0 : jsonValues.values;
