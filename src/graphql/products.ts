@@ -199,6 +199,7 @@ export const QUERY_PRODUCT_BY_HANDLE_FN = (metafields?: MetafieldIdentifier[]) =
           key
           value
           namespace
+          type
           description
           reference {
             ... on ProductVariant {
