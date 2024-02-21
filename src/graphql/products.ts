@@ -196,7 +196,6 @@ export const QUERY_PRODUCT_BY_HANDLE_FN = (metafields?: MetafieldIdentifier[]) =
         }
         metafields(identifiers: ${metafieldsQuery}) {
           id
-          name
           key
           value
           namespace
