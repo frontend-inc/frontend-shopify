@@ -177,6 +177,8 @@ export const QUERY_PRODUCT_BY_HANDLE_FN = (metafields?: MetafieldIdentifier[]) =
   }  
   metafieldsQuery += ']'
 
+  console.log("METAFIELDS QUERY", metafieldsQuery)
+
   return gql`
     query Product($handle: String!) {
       productByHandle(handle: $handle) {
