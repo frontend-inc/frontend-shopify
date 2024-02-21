@@ -49,7 +49,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = require("react");
 var context_1 = require("../context");
-var shopify_1 = require("../helpers/shopify");
+var utils_1 = require("../helpers/utils");
 var hooks_1 = require("../hooks");
 var useAddresses = function () {
     var shopifyClient = (0, react_1.useContext)(context_1.ShopContext).shopifyClient;
@@ -66,7 +66,7 @@ var useAddresses = function () {
                     })];
                 case 1:
                     response = _b.sent();
-                    _address = (_a = response === null || response === void 0 ? void 0 : response.data) === null || _a === void 0 ? void 0 : _a.find(function (a) { return (0, shopify_1.getShopifyIdFromGid)(a.id) == String(addressId); });
+                    _address = (_a = response === null || response === void 0 ? void 0 : response.data) === null || _a === void 0 ? void 0 : _a.find(function (a) { return (0, utils_1.getShopifyIdFromGid)(a.id) == String(addressId); });
                     if (_address) {
                         setAddress(_address);
                     }

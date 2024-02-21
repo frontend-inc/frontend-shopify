@@ -24,57 +24,6 @@ export const findVariantByColor = (product, color) => {
 	return productVariant?.node
 }
 
-export const findPriceFilter = (filters) => {
-	return filters
-		.filter((filter) => filter?.priceRange)
-		.map((filter) => filter?.priceRange)
-}
-
-export const findAvailableFilter = (filters) => {
-	return filters.find(
-		(filter) => filter?.available === true || filter?.available === false
-	)?.available
-}
-
-export const findProductTypeFilters = (filters) => {
-	return filters
-		.filter((filter) => filter?.productType)
-		.map((filter) => filter?.productType)
-}
-
-export const findVendorFilters = (filters) => {
-	return filters
-		.filter((filter) => filter?.productVendor)
-		.map((filter) => filter?.productVendor)
-}
-
-export const findColorFilters = (filters) => {
-	return findVariantFilters('color', filters)
-}
-
-export const findSizeFilters = (filters) => {
-	return findVariantFilters('size', filters)
-}
-
-export const findMaterialFilters = (filters) => {
-	return findVariantFilters('material', filters)
-}
-
-export const findStyleFilters = (filters) => {
-	return findVariantFilters('style', filters)
-}
-
-export const findTagFilters = (filters) => {
-	return filters.filter((filter) => filter?.tag).map((filter) => filter?.tag)
-}
-
-export const findVariantFilters = (name, filters) => {
-	return filters
-		.filter((filter) => filter?.variantOption?.name === name)
-		.map((filter) => filter?.variantOption?.value)
-}
-
-
 export const getSellingPlanDescription = (sellingPlan) => {
   let adjustment = (sellingPlan?.priceAdjustments && sellingPlan?.priceAdjustments[0]?.adjustmentValue) || {}
   let savingsDescription = 'Save'
@@ -102,40 +51,9 @@ export const getSellingPlanPrice = (variant, sellingPlan) => {
   return discountedPrice
 }
 
-// Metafield helpers
-export const getMetafield = (metaobject, key) => {
-	return metaobject?.metafields?.find((field) => field?.key == key)
-}
-
-export const getMetafieldValue = (metaobject, key) => {
-	let field = getMetafield(metaobject, key)
-	return field?.value
-}
-
-export const getMetafieldImage = (metaobject, key) => {
-	let field = getMetafield(metaobject, key)
-	return field?.reference?.image?.url
-}
-
-export const getMetafieldReference = (metaobject, key) => {
-	let field = getMetafield(metaobject, key)
-	return field?.reference
-}
-
-export const getMetafieldReferences = (metaobject, key) => {
-	let field = getMetafield(metaobject, key)
-	return field?.references?.edges.map((e) => e.node)
-}
-
-export const getArrayFromString = (stringArray) => {
-	let jsonValues = JSON.parse(`{ "values": ${stringArray} }`)
-	return jsonValues?.values
-}
-
 export const truncate = (str, n) => {
 	return str?.length > n ? str.substr(0, n - 1) + '...' : str
 }
-
 
 // Shopify will render single SKU products with title 'Default Title'
 export const renderMerchandiseTitle = (merchandise) => {
@@ -166,6 +84,13 @@ export const renderLineItemCompareAtPrice = (line) => {
 	}
 }
 
+// NextJS Image has trouble rendering SVG icons if file ext does not end in .svg
+// such as ?variant=1234567890 so a fix here is to strip params from url
+export function stripParams(src) {
+	return src?.split('?')[0]
+}
+
+
 export const decodeBase64 = (data) => {
 	return Buffer.from(data, 'base64').toString('ascii')
 }
@@ -174,12 +99,6 @@ export const getBase64DecodedId = (id) => {
 	let orderGid = decodeBase64(id)
 	let orderId = orderGid.split('/')[-1]
 	return orderId.split('?')[0]
-}
-
-// NextJS Image has trouble rendering SVG icons if file ext does not end in .svg
-// such as ?variant=1234567890 so a fix here is to strip params from url
-export function stripParams(src) {
-	return src?.split('?')[0]
 }
 
 export const getShopifyIdFromGid = (gid) => {

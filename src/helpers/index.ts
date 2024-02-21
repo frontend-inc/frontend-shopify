@@ -1,1 +1,3 @@
-export * from './shopify'
+export * from './utils'
+export * from './metafields'
+export * from './search'

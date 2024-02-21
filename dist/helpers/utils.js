@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getShopifyIdFromGid = exports.stripParams = exports.getBase64DecodedId = exports.decodeBase64 = exports.renderLineItemCompareAtPrice = exports.renderLineItemPrice = exports.renderMerchandiseTitle = exports.truncate = exports.getArrayFromString = exports.getMetafieldReferences = exports.getMetafieldReference = exports.getMetafieldImage = exports.getMetafieldValue = exports.getMetafield = exports.getSellingPlanPrice = exports.getSellingPlanDescription = exports.findVariantFilters = exports.findTagFilters = exports.findStyleFilters = exports.findMaterialFilters = exports.findSizeFilters = exports.findColorFilters = exports.findVendorFilters = exports.findProductTypeFilters = exports.findAvailableFilter = exports.findPriceFilter = exports.findVariantByColor = exports.shopifyResizeImage = exports.formatCurrency = void 0;
+exports.getShopifyIdFromGid = exports.getBase64DecodedId = exports.decodeBase64 = exports.stripParams = exports.renderLineItemCompareAtPrice = exports.renderLineItemPrice = exports.renderMerchandiseTitle = exports.truncate = exports.getSellingPlanPrice = exports.getSellingPlanDescription = exports.findVariantByColor = exports.shopifyResizeImage = exports.formatCurrency = void 0;
 var formatCurrency = function (money, digits) {
     if (digits === void 0) { digits = 2; }
     return new Intl.NumberFormat('en-US', {
@@ -33,55 +33,6 @@ var findVariantByColor = function (product, color) {
     return productVariant === null || productVariant === void 0 ? void 0 : productVariant.node;
 };
 exports.findVariantByColor = findVariantByColor;
-var findPriceFilter = function (filters) {
-    return filters
-        .filter(function (filter) { return filter === null || filter === void 0 ? void 0 : filter.priceRange; })
-        .map(function (filter) { return filter === null || filter === void 0 ? void 0 : filter.priceRange; });
-};
-exports.findPriceFilter = findPriceFilter;
-var findAvailableFilter = function (filters) {
-    var _a;
-    return (_a = filters.find(function (filter) { return (filter === null || filter === void 0 ? void 0 : filter.available) === true || (filter === null || filter === void 0 ? void 0 : filter.available) === false; })) === null || _a === void 0 ? void 0 : _a.available;
-};
-exports.findAvailableFilter = findAvailableFilter;
-var findProductTypeFilters = function (filters) {
-    return filters
-        .filter(function (filter) { return filter === null || filter === void 0 ? void 0 : filter.productType; })
-        .map(function (filter) { return filter === null || filter === void 0 ? void 0 : filter.productType; });
-};
-exports.findProductTypeFilters = findProductTypeFilters;
-var findVendorFilters = function (filters) {
-    return filters
-        .filter(function (filter) { return filter === null || filter === void 0 ? void 0 : filter.productVendor; })
-        .map(function (filter) { return filter === null || filter === void 0 ? void 0 : filter.productVendor; });
-};
-exports.findVendorFilters = findVendorFilters;
-var findColorFilters = function (filters) {
-    return (0, exports.findVariantFilters)('color', filters);
-};
-exports.findColorFilters = findColorFilters;
-var findSizeFilters = function (filters) {
-    return (0, exports.findVariantFilters)('size', filters);
-};
-exports.findSizeFilters = findSizeFilters;
-var findMaterialFilters = function (filters) {
-    return (0, exports.findVariantFilters)('material', filters);
-};
-exports.findMaterialFilters = findMaterialFilters;
-var findStyleFilters = function (filters) {
-    return (0, exports.findVariantFilters)('style', filters);
-};
-exports.findStyleFilters = findStyleFilters;
-var findTagFilters = function (filters) {
-    return filters.filter(function (filter) { return filter === null || filter === void 0 ? void 0 : filter.tag; }).map(function (filter) { return filter === null || filter === void 0 ? void 0 : filter.tag; });
-};
-exports.findTagFilters = findTagFilters;
-var findVariantFilters = function (name, filters) {
-    return filters
-        .filter(function (filter) { var _a; return ((_a = filter === null || filter === void 0 ? void 0 : filter.variantOption) === null || _a === void 0 ? void 0 : _a.name) === name; })
-        .map(function (filter) { var _a; return (_a = filter === null || filter === void 0 ? void 0 : filter.variantOption) === null || _a === void 0 ? void 0 : _a.value; });
-};
-exports.findVariantFilters = findVariantFilters;
 var getSellingPlanDescription = function (sellingPlan) {
     var _a, _b, _c;
     var adjustment = ((sellingPlan === null || sellingPlan === void 0 ? void 0 : sellingPlan.priceAdjustments) && ((_a = sellingPlan === null || sellingPlan === void 0 ? void 0 : sellingPlan.priceAdjustments[0]) === null || _a === void 0 ? void 0 : _a.adjustmentValue)) || {};
@@ -115,39 +66,6 @@ var getSellingPlanPrice = function (variant, sellingPlan) {
     return discountedPrice;
 };
 exports.getSellingPlanPrice = getSellingPlanPrice;
-// Metafield helpers
-var getMetafield = function (metaobject, key) {
-    var _a;
-    return (_a = metaobject === null || metaobject === void 0 ? void 0 : metaobject.metafields) === null || _a === void 0 ? void 0 : _a.find(function (field) { return (field === null || field === void 0 ? void 0 : field.key) == key; });
-};
-exports.getMetafield = getMetafield;
-var getMetafieldValue = function (metaobject, key) {
-    var field = (0, exports.getMetafield)(metaobject, key);
-    return field === null || field === void 0 ? void 0 : field.value;
-};
-exports.getMetafieldValue = getMetafieldValue;
-var getMetafieldImage = function (metaobject, key) {
-    var _a, _b;
-    var field = (0, exports.getMetafield)(metaobject, key);
-    return (_b = (_a = field === null || field === void 0 ? void 0 : field.reference) === null || _a === void 0 ? void 0 : _a.image) === null || _b === void 0 ? void 0 : _b.url;
-};
-exports.getMetafieldImage = getMetafieldImage;
-var getMetafieldReference = function (metaobject, key) {
-    var field = (0, exports.getMetafield)(metaobject, key);
-    return field === null || field === void 0 ? void 0 : field.reference;
-};
-exports.getMetafieldReference = getMetafieldReference;
-var getMetafieldReferences = function (metaobject, key) {
-    var _a;
-    var field = (0, exports.getMetafield)(metaobject, key);
-    return (_a = field === null || field === void 0 ? void 0 : field.references) === null || _a === void 0 ? void 0 : _a.edges.map(function (e) { return e.node; });
-};
-exports.getMetafieldReferences = getMetafieldReferences;
-var getArrayFromString = function (stringArray) {
-    var jsonValues = JSON.parse("{ \"values\": " + stringArray + " }");
-    return jsonValues === null || jsonValues === void 0 ? void 0 : jsonValues.values;
-};
-exports.getArrayFromString = getArrayFromString;
 var truncate = function (str, n) {
     return (str === null || str === void 0 ? void 0 : str.length) > n ? str.substr(0, n - 1) + '...' : str;
 };
@@ -183,6 +101,12 @@ var renderLineItemCompareAtPrice = function (line) {
     }
 };
 exports.renderLineItemCompareAtPrice = renderLineItemCompareAtPrice;
+// NextJS Image has trouble rendering SVG icons if file ext does not end in .svg
+// such as ?variant=1234567890 so a fix here is to strip params from url
+function stripParams(src) {
+    return src === null || src === void 0 ? void 0 : src.split('?')[0];
+}
+exports.stripParams = stripParams;
 var decodeBase64 = function (data) {
     return Buffer.from(data, 'base64').toString('ascii');
 };
@@ -193,12 +117,6 @@ var getBase64DecodedId = function (id) {
     return orderId.split('?')[0];
 };
 exports.getBase64DecodedId = getBase64DecodedId;
-// NextJS Image has trouble rendering SVG icons if file ext does not end in .svg
-// such as ?variant=1234567890 so a fix here is to strip params from url
-function stripParams(src) {
-    return src === null || src === void 0 ? void 0 : src.split('?')[0];
-}
-exports.stripParams = stripParams;
 var getShopifyIdFromGid = function (gid) {
     var parsedURL = new URL(gid);
     var pathname = parsedURL.pathname;
