@@ -1,6 +1,35 @@
 import { gql } from '@apollo/client'
 import { MetafieldIdentifier } from '../types'
 
+export const ProductVariantFragment = gql`
+  fragment ProductVariantFragment on ProductVariant {
+    availableForSale
+    compareAtPrice {
+      amount
+      currencyCode
+    }
+    id
+    image {
+      id
+      altText
+      url
+    }
+    price {
+      amount
+      currencyCode
+    }
+    requiresShipping
+    selectedOptions {
+      name
+      value
+    }
+    sku
+    title
+    weight
+    weightUnit
+  }
+`
+
 export const ProductFragment = gql`
 	fragment ProductFragment on Product {
 		availableForSale
@@ -78,35 +107,13 @@ export const ProductFragment = gql`
 		variants(first: 250) {
 			edges {
 				node {
-					availableForSale
-					compareAtPrice {
-						amount
-						currencyCode
-					}
-					id
-					image {
-						id
-						altText
-						url
-					}
-					price {
-						amount
-						currencyCode
-					}
-					requiresShipping
-					selectedOptions {
-						name
-						value
-					}
-					sku
-					title
-					weight
-					weightUnit
-				}
+          ...ProductVariantFragment
+        }
 			}
 		}
 		vendor
 	}
+  ${ProductVariantFragment}
 `
 
 export const QUERY_PRODUCT_BY_ID = gql`
@@ -202,11 +209,11 @@ export const QUERY_PRODUCT_BY_HANDLE_FN = (metafields?: MetafieldIdentifier[]) =
           type
           description
           reference {
+            ... on Product {
+              ...ProductFragment
+            }
             ... on ProductVariant {
-              id
-              title
-              sku
-              availableForSale
+              ...ProductVariantFragment
             }
             ... on MediaImage {
               image {
@@ -219,6 +226,9 @@ export const QUERY_PRODUCT_BY_HANDLE_FN = (metafields?: MetafieldIdentifier[]) =
           references(first: 250) {
             edges {
               node {
+                ... on Product {
+                  ...ProductFragment
+                }
                 ... on Metaobject {
                   id
                   handle
@@ -230,26 +240,7 @@ export const QUERY_PRODUCT_BY_HANDLE_FN = (metafields?: MetafieldIdentifier[]) =
                     value
                     reference {
                       ... on Product {
-                        id
-                        handle
-                        title
-                        variants(first: 20) {
-                          edges {
-                            node {
-                              id
-                              sku
-                              title
-                              price {
-                                amount
-                                currencyCode
-                              }
-                              image {
-                                url
-                              }
-                              availableForSale
-                            }
-                          }
-                        }
+                        ...ProductFragment
                       }
                     }
                   }
@@ -317,35 +308,14 @@ export const QUERY_PRODUCT_BY_HANDLE_FN = (metafields?: MetafieldIdentifier[]) =
         variants(first: 250) {
           edges {
             node {
-              availableForSale
-              compareAtPrice {
-                amount
-                currencyCode
-              }
-              id
-              image {
-                id
-                altText
-                url
-              }
-              price {
-                amount
-                currencyCode
-              }
-              requiresShipping
-              selectedOptions {
-                name
-                value
-              }
-              sku
-              title
-              weight
-              weightUnit
+              ...ProductVariantFragment
             }
           }
         }
         vendor      
       }
     }	
+    ${ProductFragment}
+    ${ProductVariantFragment}
   `
 }
