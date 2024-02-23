@@ -41,7 +41,11 @@ export const ProductFragment = gql`
 		handle
 		id
     media(first: 250) {
-      ...FieldsForMediaTypes
+      edges {
+        node {
+          ... FieldsForMediaTypes
+        }
+      }      
     }
 		images(first: 250) {
 			edges {
