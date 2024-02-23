@@ -228,13 +228,6 @@ export const QUERY_PRODUCT_BY_HANDLE_FN = (metafields?: MetafieldIdentifier[]) =
                 url
                 width
               }
-              originalSource {
-                format
-                height
-                mimeType
-                url
-                width
-              }
             }
             ... on MediaImage {
               id
