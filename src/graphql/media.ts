@@ -4,7 +4,6 @@ export const FieldsForMediaTypes = gql`
   fragment FieldsForMediaTypes on Media {
     alt
     mediaContentType
-    status
     ... on Video {
       id
       sources {
