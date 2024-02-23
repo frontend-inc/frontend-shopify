@@ -215,6 +215,24 @@ export const QUERY_PRODUCT_BY_HANDLE_FN = (metafields?: MetafieldIdentifier[]) =
             ... on ProductVariant {
               ...ProductVariantFragment
             }
+            ... on Video {
+              id
+              altText
+              previewImage {
+                altText
+                id
+                src
+                width
+                height
+              }
+              sources {
+                format
+                height
+                mimeType
+                url
+                width
+              }
+            }                   
             ... on MediaImage {
               image {
                 id
@@ -228,6 +246,9 @@ export const QUERY_PRODUCT_BY_HANDLE_FN = (metafields?: MetafieldIdentifier[]) =
               node {
                 ... on Product {
                   ...ProductFragment
+                }
+                ... on ProductVariant {
+                  ...ProductVariantFragment
                 }
                 ... on Metaobject {
                   id
