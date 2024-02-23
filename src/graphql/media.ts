@@ -13,13 +13,6 @@ export const FieldsForMediaTypes = gql`
         url
         width
       }
-      originalSource {
-        format
-        height
-        mimeType
-        url
-        width
-      }
     }
     ... on ExternalVideo {
       id
@@ -28,11 +21,6 @@ export const FieldsForMediaTypes = gql`
     }
     ... on Model3d {
       sources {
-        format
-        mimeType
-        url
-      }
-      originalSource {
         format
         mimeType
         url
