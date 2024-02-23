@@ -122,6 +122,7 @@ export const ProductFragment = gql`
 		vendor
 	}
   ${ProductVariantFragment}
+  ${FieldsForMediaTypes}
 `
 
 export const QUERY_PRODUCT_BY_ID = gql`
