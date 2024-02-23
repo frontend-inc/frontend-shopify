@@ -1,5 +1,6 @@
 import { gql } from '@apollo/client'
 import { MetafieldIdentifier } from '../types'
+import { FieldsForMediaTypes } from './media'
 
 export const ProductVariantFragment = gql`
   fragment ProductVariantFragment on ProductVariant {
@@ -215,31 +216,9 @@ export const QUERY_PRODUCT_BY_HANDLE_FN = (metafields?: MetafieldIdentifier[]) =
             ... on ProductVariant {
               ...ProductVariantFragment
             }
-            ... on Video {
-              id
-              altText
-              previewImage {
-                altText
-                id
-                src
-                width
-                height
-              }
-              sources {
-                format
-                height
-                mimeType
-                url
-                width
-              }
-            }                   
-            ... on MediaImage {
-              image {
-                id
-                altText
-                url
-              }
-            }
+            ... on Media {
+              ...FieldsForMediaTypes
+            }            
           }
           references(first: 250) {
             edges {
@@ -338,5 +317,6 @@ export const QUERY_PRODUCT_BY_HANDLE_FN = (metafields?: MetafieldIdentifier[]) =
     }	
     ${ProductFragment}
     ${ProductVariantFragment}
+    ${FieldsForMediaTypes}
   `
 }
