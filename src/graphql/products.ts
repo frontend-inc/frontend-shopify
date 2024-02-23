@@ -40,6 +40,9 @@ export const ProductFragment = gql`
 		descriptionHtml
 		handle
 		id
+    media(first: 250) {
+      ...FieldsForMediaTypes
+    }
 		images(first: 250) {
 			edges {
 				node {
@@ -216,9 +219,30 @@ export const QUERY_PRODUCT_BY_HANDLE_FN = (metafields?: MetafieldIdentifier[]) =
             ... on ProductVariant {
               ...ProductVariantFragment
             }
-            ... on Media {
-              ...FieldsForMediaTypes
-            }            
+            ... on Video {
+              id
+              sources {
+                format
+                height
+                mimeType
+                url
+                width
+              }
+              originalSource {
+                format
+                height
+                mimeType
+                url
+                width
+              }
+            }
+            ... on MediaImage {
+              id
+              image {
+                altText
+                url
+              }
+            }
           }
           references(first: 250) {
             edges {

@@ -2,6 +2,16 @@ import { gql } from '@apollo/client'
 
 export const FieldsForMediaTypes = gql`
   fragment FieldsForMediaTypes on Media {
+    alt
+    mediaContentType
+    preview {
+      image {
+        id
+        altText
+        url
+      }
+    }
+    status
     ... on Video {
       id
       sources {
