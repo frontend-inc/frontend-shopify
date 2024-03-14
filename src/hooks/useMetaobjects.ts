@@ -35,7 +35,7 @@ const useMetaobjects = () => {
 		return field?.value
 	}
 
-	const getImage = (metaobject, key) => {
+	const getImageType = (metaobject, key) => {
 		let field = getField(metaobject, key)
 		return field?.reference?.image?.url
 	}
@@ -53,7 +53,7 @@ const useMetaobjects = () => {
 	return {
 		getField,
 		getValue,
-		getImage,
+		getImageType,
 		getReference,
 		getReferences,
 		metaobject,

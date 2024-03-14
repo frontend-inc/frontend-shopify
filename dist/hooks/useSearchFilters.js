@@ -14,85 +14,47 @@ var react_1 = require("react");
 // https://shopify.dev/docs/custom-storefronts/building-with-the-storefront-api/products-collections/filter-products
 var useSearchFilters = function () {
     var _a = (0, react_1.useState)([]), filters = _a[0], setFilters = _a[1];
-    var filterInStock = function () {
-        if (filters.find(function (f) { return f.available; })) {
-            removeFilter(filters.find(function (f) { return f.available; }));
+    var handleFilter = function (filter) {
+        var name = filter.name;
+        if (filters === null || filters === void 0 ? void 0 : filters.find(function (f) { return f.name == name; })) {
+            setFilters(filters.filter(function (f) { return f.name != name; }));
         }
         else {
-            addFilter({ available: true });
+            setFilters(__spreadArray(__spreadArray([], filters, true), [filter], false));
         }
     };
-    var filterProductType = function (productType) {
-        if (filters.find(function (f) { return f.productType === productType; })) {
-            removeFilter(filters.find(function (f) { return f.productType === productType; }));
+    var handleFilterArray = function (filter) {
+        var name = filter.name, value = filter.value;
+        if (filters === null || filters === void 0 ? void 0 : filters.find(function (f) { return f.name == name && f.value == value; })) {
+            setFilters(filters.filter(function (f) { return !(f.name == name && f.value == value); }));
         }
         else {
-            addFilter({ productType: productType });
+            setFilters(__spreadArray(__spreadArray([], filters, true), [filter], false));
         }
     };
-    var filterVendor = function (productVendor) {
-        if (filters.find(function (f) { return f.productVendor === productVendor; })) {
-            removeFilter(filters.find(function (f) { return f.productVendor === productVendor; }));
-        }
-        else {
-            addFilter({ productVendor: productVendor });
-        }
-    };
-    var filterVariantOption = function (name, value) {
-        if (filters.find(function (f) { var _a, _b; return ((_a = f.variantOption) === null || _a === void 0 ? void 0 : _a.name) === name && ((_b = f.variantOption) === null || _b === void 0 ? void 0 : _b.value) === value; })) {
-            removeFilter(filters.find(function (f) { var _a; return ((_a = f.variantOption) === null || _a === void 0 ? void 0 : _a.name) === name; }));
-        }
-        else {
-            addFilter({
-                variantOption: {
-                    name: name,
-                    //@ts-ignore
-                    value: value,
-                },
-            });
-        }
-    };
-    var filterTag = function (tag) {
-        if (filters.find(function (f) { return f.tag === tag; })) {
-            removeFilter(filters.find(function (f) { return f.tag === tag; }));
-        }
-        else {
-            addFilter({ tag: tag });
-        }
-    };
-    var filterPrice = function (min, max) {
-        if (filters.find(function (f) { return f.price; })) {
-            removeFilter(filters.find(function (f) { return f.price; }));
-        }
-        addFilter({
-            //@ts-ignore
-            price: {
-                min: min,
-                max: max,
-            },
+    var buildFilterQuery = function (filters) {
+        // Group filters by name
+        var groupedFilters = filters.reduce(function (groups, filter) {
+            if (!groups[filter.name]) {
+                groups[filter.name] = [];
+            }
+            groups[filter.name].push(filter.value);
+            return groups;
+        }, {});
+        // Build query for each group and join with AND
+        var queryParts = Object.keys(groupedFilters).map(function (name) {
+            var values = groupedFilters[name];
+            var queryPart = values.map(function (value) { return name + ":" + value; }).join(' OR ');
+            return "(" + queryPart + ")";
         });
-    };
-    var addFilter = function (filter) {
-        setFilters(__spreadArray(__spreadArray([], filters, true), [filter], false));
-    };
-    var removeFilter = function (filter) {
-        setFilters(filters.filter(function (f) { return f !== filter; }));
-    };
-    var clearFilters = function () {
-        setFilters([]);
+        return queryParts.join(' AND ');
     };
     return {
         filters: filters,
         setFilters: setFilters,
-        addFilter: addFilter,
-        removeFilter: removeFilter,
-        clearFilters: clearFilters,
-        filterInStock: filterInStock,
-        filterProductType: filterProductType,
-        filterVendor: filterVendor,
-        filterVariantOption: filterVariantOption,
-        filterTag: filterTag,
-        filterPrice: filterPrice
+        handleFilter: handleFilter,
+        handleFilterArray: handleFilterArray,
+        buildFilterQuery: buildFilterQuery
     };
 };
 exports.default = useSearchFilters;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { ApolloProvider } from '@apollo/client'
 import ShopContext from './ShopContext'
-import { Checkout, Customer, Cart } from '../types'
+import { CheckoutType, CustomerType, CartType } from '../types'
 import { createClient, useApollo } from '../client'
 import { getCookie } from 'cookies-next'
 
@@ -38,9 +38,9 @@ const ShopProvider = (props: ShopProviderProps) => {
 	const [accessToken, setAccessToken] = useState()
 	const [alert, setAlert] = useState()
 
-	const [cart, setCart] = useState<Cart>(null)
-	const [checkout, setCheckout] = useState<Checkout>(null)
-	const [customer, setCustomer] = useState<Customer | any>({})
+	const [cart, setCart] = useState<CartType>(null)
+	const [checkout, setCheckout] = useState<CheckoutType>(null)
+	const [customer, setCustomer] = useState<CustomerType | any>({})
 
 	const [expiresAt, setExpiresAt] = useState()
 	const [loading, setLoading] = useState(false)

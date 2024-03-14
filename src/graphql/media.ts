@@ -26,7 +26,7 @@ export const FieldsForMediaTypes = gql`
         url
       }
     }
-    ... on MediaImage {
+    ... on MediaImageType {
       id
       image {
         altText
@@ -36,8 +36,8 @@ export const FieldsForMediaTypes = gql`
   }
 `
 
-export const ImageFragment = gql`
-	fragment ImageFragment on Image {
+export const ImageTypeFragment = gql`
+	fragment ImageTypeFragment on ImageType {
 		id
 		altText
 		url

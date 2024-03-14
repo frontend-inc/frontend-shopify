@@ -21,7 +21,7 @@ export const CollectionFragment = gql`
 			namespace
 			description
 			reference {
-				... on MediaImage {
+				... on MediaImageType {
 					image {
 						id
 						altText
@@ -38,7 +38,7 @@ export const QUERY_COLLECTION_BY_HANDLE = gql`
 		$handle: String!
 		$first: Int!
 		$filters: [ProductFilter!]
-		$sortKey: ProductCollectionSortKeys
+		$sortKey: ProductSortKeyTypes
 		$reverse: Boolean
 		$after: String
 	) {

@@ -27,7 +27,7 @@ export const QUERY_SHOP = gql`
 						width
 					}
 				}
-				coverImage {
+				coverImageType {
 					alt
 					id
 					image {

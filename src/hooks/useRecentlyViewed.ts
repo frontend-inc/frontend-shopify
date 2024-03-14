@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { CookieValueTypes, getCookie, setCookie } from 'cookies-next'
-import { Product } from '../types'
+import { ProductType } from '../types'
 import { ShopContext } from '../context'
 
 
@@ -9,7 +9,7 @@ const useRecentlyViewed = () => {
   const { domain } = useContext(ShopContext)
   let cookie = `${domain}-recently-viewed`
   
-  const [products, setProducts] = useState<Product[]>([])  
+  const [products, setProducts] = useState<ProductType[]>([])  
 
   const viewProduct = (product) => {
     let newProduct = {

@@ -1,5 +1,5 @@
 import { gql } from '@apollo/client'
-import { MetafieldIdentifier } from '../types'
+import { MetafieldIdentifierType } from '../types'
 import { FieldsForMediaTypes } from './media'
 
 export const ProductVariantFragment = gql`
@@ -183,7 +183,7 @@ export const QUERY_PRODUCT_RECOMMENDATIONS = gql`
 	${ProductFragment}
 `
 
-export const QUERY_PRODUCT_BY_HANDLE_FN = (metafields?: MetafieldIdentifier[]) => {  
+export const QUERY_PRODUCT_BY_HANDLE_FN = (metafields?: MetafieldIdentifierType[]) => {  
   let metafieldsQuery = '['
   if(metafields?.length > 0){
     metafields.forEach(({ namespace, key }) => {     
@@ -234,7 +234,7 @@ export const QUERY_PRODUCT_BY_HANDLE_FN = (metafields?: MetafieldIdentifier[]) =
                 width
               }
             }
-            ... on MediaImage {
+            ... on MediaImageType {
               id
               image {
                 altText

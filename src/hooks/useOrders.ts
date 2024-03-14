@@ -1,14 +1,14 @@
 import React, { useContext, useState } from 'react'
 import { ShopContext } from '../context'
 import { useLoadingWrapper } from '../hooks'
-import { Order, ShopifyQueryParams } from '../types'
+import { OrderType, QueryParamsType } from '../types'
 
 const useOrders = () => {
 	const { shopifyClient } = useContext(ShopContext)
 	const { loading, errors, loadingWrapper } = useLoadingWrapper()
 
-	const [order, setOrder] = useState<any | Order>({})
-	const [orders, setOrders] = useState<Order[]>(null)
+	const [order, setOrder] = useState<any | OrderType>({})
+	const [orders, setOrders] = useState<OrderType[]>(null)
 
 	const findCustomerOrder = async (orderId) => {
 		const response = await loadingWrapper(() =>
@@ -23,7 +23,7 @@ const useOrders = () => {
 		return response?.data
 	}
 
-	const findCustomerOrders = async (queryParams: ShopifyQueryParams) => {
+	const findCustomerOrders = async (queryParams: QueryParamsType) => {
 		const {
 			first = 20,
 			after,

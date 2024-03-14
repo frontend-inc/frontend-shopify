@@ -1,7 +1,7 @@
 declare const useMetaobjects: () => {
     getField: (metaobject: any, key: any) => any;
     getValue: (metaobject: any, key: any) => any;
-    getImage: (metaobject: any, key: any) => any;
+    getImageType: (metaobject: any, key: any) => any;
     getReference: (metaobject: any, key: any) => any;
     getReferences: (metaobject: any, key: any) => any;
     metaobject: any;

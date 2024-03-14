@@ -15,14 +15,14 @@ var react_1 = require("react");
 var useProductDetails = function (props) {
     var product = props.product;
     var _a = (0, react_1.useState)(null), variant = _a[0], setVariant = _a[1];
-    var _b = (0, react_1.useState)(), images = _b[0], setImages = _b[1];
-    var _c = (0, react_1.useState)(null), image = _c[0], setImage = _c[1];
+    var _b = (0, react_1.useState)(), images = _b[0], setImageTypes = _b[1];
+    var _c = (0, react_1.useState)(null), image = _c[0], setImageType = _c[1];
     var _d = (0, react_1.useState)({}), selectedOptions = _d[0], setSelectedOptions = _d[1];
     var _e = (0, react_1.useState)(null), sellingPlans = _e[0], setSellingPlans = _e[1];
     var _f = (0, react_1.useState)(), price = _f[0], setPrice = _f[1];
     var _g = (0, react_1.useState)(), compareAtPrice = _g[0], setCompareAtPrice = _g[1];
-    var handleImageClick = function (image) {
-        setImage(image);
+    var handleImageTypeClick = function (image) {
+        setImageType(image);
     };
     var handleOptionChange = function (name, value) {
         var _a;
@@ -51,9 +51,9 @@ var useProductDetails = function (props) {
         if (product === null || product === void 0 ? void 0 : product.handle) {
             setSelectedOptions({});
             //@ts-ignore      
-            setImage((_b = (_a = product === null || product === void 0 ? void 0 : product.images) === null || _a === void 0 ? void 0 : _a.edges[0]) === null || _b === void 0 ? void 0 : _b.node);
+            setImageType((_b = (_a = product === null || product === void 0 ? void 0 : product.images) === null || _a === void 0 ? void 0 : _a.edges[0]) === null || _b === void 0 ? void 0 : _b.node);
             //@ts-ignore      
-            setImages((_c = product === null || product === void 0 ? void 0 : product.images) === null || _c === void 0 ? void 0 : _c.edges.map(function (e) { return e.node; }));
+            setImageTypes((_c = product === null || product === void 0 ? void 0 : product.images) === null || _c === void 0 ? void 0 : _c.edges.map(function (e) { return e.node; }));
             setPrice((_e = (_d = product === null || product === void 0 ? void 0 : product.priceRange) === null || _d === void 0 ? void 0 : _d.minVariantPrice) === null || _e === void 0 ? void 0 : _e.amount);
             setCompareAtPrice(null);
             setSellingPlans((_j = (_h = (_g = (_f = product === null || product === void 0 ? void 0 : product.sellingPlanGroups) === null || _f === void 0 ? void 0 : _f.edges[0]) === null || _g === void 0 ? void 0 : _g.node) === null || _h === void 0 ? void 0 : _h.sellingPlans) === null || _j === void 0 ? void 0 : _j.edges.map(function (_a) {
@@ -67,8 +67,8 @@ var useProductDetails = function (props) {
         }
         else {
             setVariant(null);
-            setImages(null);
-            setImage(null);
+            setImageTypes(null);
+            setImageType(null);
             setPrice(null);
             setCompareAtPrice(null);
             setSelectedOptions({});
@@ -77,7 +77,7 @@ var useProductDetails = function (props) {
     (0, react_1.useEffect)(function () {
         var _a, _b;
         if (variant) {
-            setImage(variant === null || variant === void 0 ? void 0 : variant.image);
+            setImageType(variant === null || variant === void 0 ? void 0 : variant.image);
             setPrice((_a = variant === null || variant === void 0 ? void 0 : variant.price) === null || _a === void 0 ? void 0 : _a.amount);
             setCompareAtPrice((_b = variant === null || variant === void 0 ? void 0 : variant.compareAtPrice) === null || _b === void 0 ? void 0 : _b.amount);
         }
@@ -88,7 +88,7 @@ var useProductDetails = function (props) {
         price: price,
         compareAtPrice: compareAtPrice,
         sellingPlans: sellingPlans,
-        handleImageClick: handleImageClick,
+        handleImageTypeClick: handleImageTypeClick,
         selectedOptions: selectedOptions,
         handleOptionChange: handleOptionChange,
         product: product,

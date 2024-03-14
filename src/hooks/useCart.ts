@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { ShopContext } from '../context'
 import { getCookie, setCookie } from 'cookies-next'
-import { CartLine } from '../types'
+import { CartLineType } from '../types'
 import { useLoadingWrapper } from '../hooks'
 
 const useCart = () => {
@@ -21,11 +21,11 @@ const useCart = () => {
 		return response?.data
 	}
 
-	const cartLineAdd = async (line: CartLine) => {
+	const cartLineAdd = async (line: CartLineType) => {
 		return await cartLinesAdd([line])
 	}
 
-	const cartLinesAdd = async (lines: CartLine[]) => {
+	const cartLinesAdd = async (lines: CartLineType[]) => {
 		const response = await loadingWrapper(() =>
 			shopifyClient.cartLinesAdd(cart?.id, lines)
 		)

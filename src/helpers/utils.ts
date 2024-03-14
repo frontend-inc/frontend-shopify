@@ -7,7 +7,7 @@ export const formatCurrency = (money, digits = 2) => {
 	}).format(money)
 }
 
-export const shopifyResizeImage = (url, { height, width }) => {
+export const shopifyResizeImageType = (url, { height, width }) => {
 	if (!url) return
 	let extension = url.split('.').pop()
 	let filePath = url.split(`.${extension}`)[0]
@@ -84,7 +84,7 @@ export const renderLineItemCompareAtPrice = (line) => {
 	}
 }
 
-// NextJS Image has trouble rendering SVG icons if file ext does not end in .svg
+// NextJS ImageType has trouble rendering SVG icons if file ext does not end in .svg
 // such as ?variant=1234567890 so a fix here is to strip params from url
 export function stripParams(src) {
 	return src?.split('?')[0]

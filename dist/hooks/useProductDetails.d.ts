@@ -1,6 +1,6 @@
-import { Product } from '../types';
+import { ProductType } from '../types';
 declare type useProductDetailsProps = {
-    product: Product;
+    product: ProductType;
 };
 declare const useProductDetails: (props: useProductDetailsProps) => {
     image: any;
@@ -8,10 +8,10 @@ declare const useProductDetails: (props: useProductDetailsProps) => {
     price: any;
     compareAtPrice: any;
     sellingPlans: any;
-    handleImageClick: (image: any) => void;
+    handleImageTypeClick: (image: any) => void;
     selectedOptions: any;
     handleOptionChange: (name: any, value: any) => void;
-    product: Product;
+    product: ProductType;
     variant: any;
     selectVariant: (product: any, selectedOptions?: {}) => void;
 };

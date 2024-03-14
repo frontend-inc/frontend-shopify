@@ -1,4 +1,4 @@
-import { CartLine } from '../types';
+import { CartLineType } from '../types';
 declare const useCart: () => {
     loading: any;
     errors: any;
@@ -10,8 +10,8 @@ declare const useCart: () => {
     cartCreate: () => Promise<any>;
     cartDiscountCodesUpdate: (discountCodes: any) => Promise<any>;
     cartFindOrCreate: () => Promise<any>;
-    cartLineAdd: (line: CartLine) => Promise<any>;
-    cartLinesAdd: (lines: CartLine[]) => Promise<any>;
+    cartLineAdd: (line: CartLineType) => Promise<any>;
+    cartLinesAdd: (lines: CartLineType[]) => Promise<any>;
     cartLineRemove: (lineId: any) => Promise<any>;
     cartLinesRemove: (lineIds: any) => Promise<any>;
     cartLineUpdate: (line: any) => Promise<any>;

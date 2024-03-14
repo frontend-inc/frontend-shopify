@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import ProductContext from './ProductContext'
 import {
-	ProductVariant,
-	Product,
-	Collection,
+	ProductVariantType,
+	ProductType,
+	CollectionType,
 } from '../types'
 
 type ProductProviderProps = {
@@ -12,9 +12,9 @@ type ProductProviderProps = {
 
 const ProductProvider = (props: ProductProviderProps) => {
 	const { children } = props
-	const [product, setProduct] = useState<Product>(null)
-	const [variant, setVariant] = useState<ProductVariant>(null)
-	const [collection, setCollection] = useState<Collection>(null)
+	const [product, setProduct] = useState<ProductType>(null)
+	const [variant, setVariant] = useState<ProductVariantType>(null)
+	const [collection, setCollection] = useState<CollectionType>(null)
 	const [selectedOptions, setSelectedOptions] = useState<Record<any, string>>(
 		{}
 	)

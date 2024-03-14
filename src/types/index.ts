@@ -1,32 +1,9 @@
-export type ProductCollectionFilter =
-	| { available: boolean }
-	| { productType: string }
-	| { productVendor: string }
-	| {
-			variantOption: {
-				name: string
-				value: string
-			}
-	  }
-	| {
-			productMetafield:
-				| {
-						namespace: string
-						key: string
-						value: string
-				  }
-				| {
-						price: {
-							min: number
-							max?: number
-						}
-				  }
-	  }
-	| { tag: string }
+export type SearchFilterType = {
+  name: 'tag' |  'product_type' | 'vendor' | 'variant_option' | 'price' | 'available',
+  value: string  
+} 
 
-export type ProductCollectionFilters = ProductCollectionFilter[]
-
-export type ProductCollectionSortKey =
+export type ProductSortKeyType =
 	| 'BEST_SELLING'
 	| 'COLLECTION_DEFAULT'
 	| 'CREATED'
@@ -36,15 +13,15 @@ export type ProductCollectionSortKey =
 	| 'RELEVANCE'
 	| 'TITLE'
 
-export type ShopifyQueryParams = {
+export type QueryParamsType = {
 	query?: string
 	first?: number
-	sortKey?: ProductCollectionSortKey
+	sortKey?: ProductSortKeyType
 	reverse?: boolean
 	after?: string
 }
 
-export type QueryResponse = {
+export type QueryResponseType = {
 	meta?: {
 		hasNextPage: boolean
 		endCursor: string
@@ -54,79 +31,79 @@ export type QueryResponse = {
 }
 
 // Types.ts
-export type MoneyV2 = {
+export type MoneyV2Type = {
 	amount: string
 	currencyCode: string
 }
 
-export type Image = {
+export type ImageType = {
 	id: string
 	altText: string
 	url: string
 }
 
-export type ProductOption = {
+export type ProductOptionType = {
 	id: string
 	name: string
 	values: string[]
 }
 
-export type PriceRange = {
-	minVariantPrice: MoneyV2
-	maxVariantPrice: MoneyV2
+export type PriceRangeType = {
+	minVariantPrice: MoneyV2Type
+	maxVariantPrice: MoneyV2Type
 }
 
-export type SelectedOption = {
+export type SelectedOptionType = {
 	name: string
 	value: string
 }
 
-export type Variant = {
+export type VariantType = {
 	availableForSale: boolean
-	compareAtPrice?: MoneyV2
+	compareAtPrice?: MoneyV2Type
 	id: string
-	image?: Image
-	price: MoneyV2
+	image?: ImageType
+	price: MoneyV2Type
 	requiresShipping: boolean
-	selectedOptions: SelectedOption[]
+	selectedOptions: SelectedOptionType[]
 	sku: string
 	title: string
 	weight?: number
 	weightUnit: string
 }
 
-export type SellingPlanPriceAdjustment = {
+export type SellingPlanPriceAdjustmentType = {
 	adjustmentValue: {
-		adjustmentAmount?: MoneyV2
+		adjustmentAmount?: MoneyV2Type
 		adjustmentPercentage?: number
-		price?: MoneyV2
+		price?: MoneyV2Type
 	}
 }
 
-export type SellingPlan = {
+export type SellingPlanType = {
 	id: string
 	name: string
 	description: string
-	priceAdjustments: SellingPlanPriceAdjustment[]
+	priceAdjustments: SellingPlanPriceAdjustmentType[]
 }
 
-export type SellingPlanGroup = {
+export type SellingPlanGroupType = {
 	name: string
-	sellingPlans: SellingPlan[]
+	sellingPlans: SellingPlanType[]
 }
 
-export type MetafieldReferenceVariant = {
+export type MetafieldReferenceVariantType = {
 	id: string
 	title: string
 	sku: string
 	availableForSale: boolean
 }
 
-export type MetafieldReferenceImage = {
-	image: Image
+export type MetafieldReferenceImageType = {
+	image: ImageType
 }
 
-export type MetafieldReference = {
+export type MetafieldReferenceType = {
 	id: string
 	handle: string
 	type: string
@@ -139,28 +116,28 @@ export type MetafieldReference = {
 			id: string
 			handle: string
 			title: string
-			variants?: Variant[]
+			variants?: VariantType[]
 		}
 	}[]
 }
 
-export type MetafieldIdentifier = { 
+export type MetafieldIdentifierType = { 
   label?: string,
   namespace: string, 
   key: string 
 }
 
-export type Metafield = {
+export type MetafieldType = {
 	id: string
 	key: string
 	value: string
 	namespace: string
 	description: string
-	reference?: MetafieldReferenceVariant | MetafieldReferenceImage
-	references: MetafieldReference[]
+	reference?: MetafieldReferenceVariantType | MetafieldReferenceImageType
+	references: MetafieldReferenceType[]
 }
 
-export type Product = {
+export type ProductType = {
 	availableForSale: boolean
 	createdAt: string
 	updatedAt: string
@@ -168,35 +145,35 @@ export type Product = {
 	descriptionHtml: string
 	handle: string
 	id: string
-	images: Image[]
-	metafields: Metafield[]
+	images: ImageType[]
+	metafields: MetafieldType[]
 	onlineStoreUrl: string
-	options: ProductOption[]
-	priceRange: PriceRange
-	sellingPlanGroups: SellingPlanGroup[]
+	options: ProductOptionType[]
+	priceRange: PriceRangeType
+	sellingPlanGroups: SellingPlanGroupType[]
 	productType: string
 	publishedAt: string
 	tags: string[]
 	title: string
-	variants: Variant[]
+	variants: VariantType[]
 	vendor: string
 	seo: SEO
 }
 
-export type ProductVariant = {
+export type ProductVariantType = {
 	id: string
 	title: string
-	price: MoneyV2
-	image?: Image
-	compareAtPriceV2?: MoneyV2
+	price: MoneyV2Type
+	image?: ImageType
+	compareAtPriceV2?: MoneyV2Type
 	availableForSale: boolean
 	sku?: string
-	selectedOptions: SelectedOption[]
+	selectedOptions: SelectedOptionType[]
 	requiresShipping: boolean
 	taxable: boolean
 	weight?: number
 	weightUnit?: string
-	presentmentPrices?: MoneyV2[]
+	presentmentPrices?: MoneyV2Type[]
 }
 
 export type SEO = {
@@ -204,26 +181,26 @@ export type SEO = {
 	description?: string
 }
 
-export type Collection = {
+export type CollectionType = {
 	id: string
 	title: string
 	description: string
 	descriptionHtml: string
 	updatedAt: string
 	handle: string
-	image?: Image
+	image?: ImageType
 	seo: SEO
-	products: Product[]
+	products: ProductType[]
 }
 
-export type CartLine = {
+export type CartLineType = {
 	id?: string
 	merchandiseId: string
 	quantity: number
 	sellingPlanId?: string
 	attributes?: Record<string, any>
   discountAllocations?: {
-    allocatedAmount: MoneyV2
+    allocatedAmount: MoneyV2Type
     discountApplication: {
       targetSelection: string
       targetType: string
@@ -234,17 +211,17 @@ export type CartLine = {
   }[]
   sellingPlanAllocation?: {
     priceAdjustments: {
-      price: MoneyV2
-      perDeliveryPrice: MoneyV2
-      compareAtPrice: MoneyV2
-      unitPrice: MoneyV2
+      price: MoneyV2Type
+      perDeliveryPrice: MoneyV2Type
+      compareAtPrice: MoneyV2Type
+      unitPrice: MoneyV2Type
     }[]
-    sellingPlan: SellingPlan
+    sellingPlan: SellingPlanType
   }
-	merchandise?: ProductVariant
+	merchandise?: ProductVariantType 
 }
 
-export type Cart = {
+export type CartType = {
 	id: string
   attribute: {
     key: string
@@ -254,66 +231,66 @@ export type Cart = {
     key: string
     value: string
   }[]
-	lineItems: CartLine[]
-	lineItemsSubtotalPrice: MoneyV2
+	lineItems: CartLineType[]
+	lineItemsSubtotalPrice: MoneyV2Type
 	checkoutUrl: string
   discountCodes: {
     code: string
     applicable: boolean
   }[]
   discountAllocations: {
-    discountedAmount: MoneyV2
+    discountedAmount: MoneyV2Type
   }[]
   cost: {
-    checkoutChargeAmount: MoneyV2
-    totalTaxAmount: MoneyV2
-    totalTaxAmountEstimated: MoneyV2
-    totalAmount: MoneyV2
-    totalAmountEstimated: MoneyV2
-    totalDutyAmount: MoneyV2
-    totalDutyAmountEstimated: MoneyV2
-    subtotalAmount: MoneyV2
-    subtotalAmountEstimated: MoneyV2
+    checkoutChargeAmount: MoneyV2Type
+    totalTaxAmount: MoneyV2Type
+    totalTaxAmountEstimated: MoneyV2Type
+    totalAmount: MoneyV2Type
+    totalAmountEstimated: MoneyV2Type
+    totalDutyAmount: MoneyV2Type
+    totalDutyAmountEstimated: MoneyV2Type
+    subtotalAmount: MoneyV2Type
+    subtotalAmountEstimated: MoneyV2Type
   }
 	webUrl: string
 }
 
-export type CheckoutLineItem = {
+export type CheckoutLineItemType = {
 	title: string
 	variantId: string
 	quantity: number
 	variant: {
 		title: string
-		price: MoneyV2
+		price: MoneyV2Type
 		product: {
 			title: string
 		}
 	}
 }
 
-export type ShippingRate = {
+export type ShippingRateType = {
 	handle: string
 	title: string
-	price: MoneyV2
+	price: MoneyV2Type
 }
 
-export type Checkout = {
+export type CheckoutType = {
 	id: string
 	webUrl: string
-	totalPriceV2: MoneyV2
-	subtotalPriceV2: MoneyV2
-	totalTaxV2: MoneyV2
+	totalPriceV2: MoneyV2Type
+	subtotalPriceV2: MoneyV2Type
+	totalTaxV2: MoneyV2Type
 	completedAt: string | null
 	createdAt: string
 	updatedAt: string
 	email: string | null
 	note: string | null
-	shippingAddress: Address | null
-	shippingLine: ShippingRate | null
-	lineItems: CheckoutLineItem[]
+	shippingAddress: AddressType | null
+	shippingLine: ShippingRateType | null
+	lineItems: CheckoutLineItemType[]
 }
 
-export type Address = {
+export type AddressType = {
 	id?: string
 	phone?: string
 	firstName: string
@@ -326,11 +303,11 @@ export type Address = {
 	zip: string
 }
 
-export type DefaultAddress = Address & {
+export type DefaultAddressType = AddressType & {
 	name: string
 }
 
-export type Customer = {
+export type CustomerType = {
 	id: string
 	displayName: string
 	email: string
@@ -340,8 +317,8 @@ export type Customer = {
 	createdAt: string
 	updatedAt: string
 	acceptsMarketing: boolean
-	addresses: Address[]
-	defaultAddress?: DefaultAddress
+	addresses: AddressType[]
+	defaultAddress?: DefaultAddressType
 	lastIncompleteCheckout?: {
 		id: string
 		createdAt: string
@@ -352,7 +329,7 @@ export type Customer = {
 	passwordConfirmation?: string
 }
 
-export type MailingAddress = {
+export type MailingAddressType = {
 	address1: string
 	address2?: string
 	city: string
@@ -365,15 +342,15 @@ export type MailingAddress = {
 	zip: string
 }
 
-export type OrderLineItem = {
+export type OrderLineItemType = {
 	title: string
 	variantTitle?: string
 	quantity: number
-	price?: MoneyV2
-	variant?: Variant
+	price?: MoneyV2Type
+	variant?: VariantType
 }
 
-export type ShippingAddress = {
+export type ShippingAddressType = {
 	firstName: string
 	lastName: string
 	address1: string
@@ -386,16 +363,16 @@ export type ShippingAddress = {
 	company?: string
 }
 
-export type Order = {
+export type OrderType = {
 	id: string
 	name: string
 	statusUrl: string
 	orderNumber: number
 	processedAt: string
 	currencyCode: string
-	totalPrice: MoneyV2
-	totalRefunded: MoneyV2
-	totalShippingPrice: MoneyV2
-	lineItems: OrderLineItem[]
-	shippingAddress?: ShippingAddress
+	totalPrice: MoneyV2Type
+	totalRefunded: MoneyV2Type
+	totalShippingPrice: MoneyV2Type
+	lineItems: OrderLineItemType[]
+	shippingAddress?: ShippingAddressType
 }

@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client'
 import { ProductFragment } from './products'
 import { CollectionFragment } from './collections'
-import { ImageFragment } from './media'
+import { ImageTypeFragment } from './media'
 
 const MetaobjectFragment = gql`
 	fragment MetaobjectFragment on Metaobject {
@@ -17,9 +17,9 @@ const MetaobjectFragment = gql`
 				... on Collection {
 					...CollectionFragment
 				}
-				... on MediaImage {
+				... on MediaImageType {
 					image {
-						...ImageFragment
+						...ImageTypeFragment
 					}
 				}
 				... on Metaobject {
@@ -35,9 +35,9 @@ const MetaobjectFragment = gql`
 							... on Collection {
 								...CollectionFragment
 							}
-							... on MediaImage {
+							... on MediaImageType {
 								image {
-									...ImageFragment
+									...ImageTypeFragment
 								}
 							}
 							... on Metaobject {
@@ -48,9 +48,9 @@ const MetaobjectFragment = gql`
 									key
 									value
 									reference {
-										... on MediaImage {
+										... on MediaImageType {
 											image {
-												...ImageFragment
+												...ImageTypeFragment
 											}
 										}
 									}
@@ -69,9 +69,9 @@ const MetaobjectFragment = gql`
 						... on Collection {
 							...CollectionFragment
 						}
-						... on MediaImage {
+						... on MediaImageType {
 							image {
-								...ImageFragment
+								...ImageTypeFragment
 							}
 						}
 						... on Metaobject {
@@ -82,9 +82,9 @@ const MetaobjectFragment = gql`
 								key
 								value
 								reference {
-									... on MediaImage {
+									... on MediaImageType {
 										image {
-											...ImageFragment
+											...ImageTypeFragment
 										}
 									}
 								}
@@ -97,7 +97,7 @@ const MetaobjectFragment = gql`
 	}
 	${CollectionFragment}
 	${ProductFragment}
-	${ImageFragment}
+	${ImageTypeFragment}
 `
 
 export const QUERY_METAOBJECT_BY_HANDLE = gql`
@@ -120,9 +120,9 @@ export const QUERY_METAOBJECTS = gql`
 						key
 						value
 						reference {
-							... on MediaImage {
+							... on MediaImageType {
 								image {
-									...ImageFragment
+									...ImageTypeFragment
 								}
 							}
 							... on Product {
@@ -145,6 +145,6 @@ export const QUERY_METAOBJECTS = gql`
 			}
 		}
 	}
-	${ImageFragment}
+	${ImageTypeFragment}
 	${ProductFragment}
 `

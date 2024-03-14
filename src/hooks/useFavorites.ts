@@ -1,10 +1,10 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { CookieValueTypes, getCookie, setCookie } from 'cookies-next'
 import { ShopContext } from '../context'
-import { Product } from '../types'
+import { ProductType } from '../types'
 
 type FavoritesProps = {
-  product?: Product
+  product?: ProductType
   cookie?: CookieValueTypes | string
 }
 
@@ -14,7 +14,7 @@ const useFavorites = (props?: FavoritesProps) => {
   const { domain } = useContext(ShopContext)
   let cookie = `${domain}-favorites`
 
-  const [favorites, setFavorites] = useState<Product[]>([])
+  const [favorites, setFavorites] = useState<ProductType[]>([])
   const [isFavorite, setIsFavorite] = useState(false)
 
   const toggleFavorite = () => {

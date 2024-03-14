@@ -1,15 +1,9 @@
-import { ProductCollectionFilter } from '../types';
+import { SearchFilterType } from '../types';
 declare const useSearchFilters: () => {
     filters: any;
     setFilters: any;
-    addFilter: (filter: ProductCollectionFilter) => void;
-    removeFilter: (filter: ProductCollectionFilter) => void;
-    clearFilters: () => void;
-    filterInStock: () => void;
-    filterProductType: (productType: string) => void;
-    filterVendor: (productVendor: string) => void;
-    filterVariantOption: (name: string, value: string | number) => void;
-    filterTag: (tag: string) => void;
-    filterPrice: (min: number, max: number) => void;
+    handleFilter: (filter: SearchFilterType) => void;
+    handleFilterArray: (filter: SearchFilterType) => void;
+    buildFilterQuery: (filters: any) => string;
 };
 export default useSearchFilters;

@@ -4,10 +4,10 @@ declare const useProductContext: () => {
     compareAtPrice: any;
     setCompareAtPrice: any;
     image: any;
-    setImage: any;
+    setImageType: any;
     images: any;
-    setImages: any;
-    handleImageClick: (image: any) => void;
+    setImageTypes: any;
+    handleImageTypeClick: (image: any) => void;
     product: any;
     setProduct: any;
     variant: any;

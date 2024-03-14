@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getShopifyIdFromGid = exports.getBase64DecodedId = exports.decodeBase64 = exports.stripParams = exports.renderLineItemCompareAtPrice = exports.renderLineItemPrice = exports.renderMerchandiseTitle = exports.truncate = exports.getSellingPlanPrice = exports.getSellingPlanDescription = exports.findVariantByColor = exports.shopifyResizeImage = exports.formatCurrency = void 0;
+exports.getShopifyIdFromGid = exports.getBase64DecodedId = exports.decodeBase64 = exports.stripParams = exports.renderLineItemCompareAtPrice = exports.renderLineItemPrice = exports.renderMerchandiseTitle = exports.truncate = exports.getSellingPlanPrice = exports.getSellingPlanDescription = exports.findVariantByColor = exports.shopifyResizeImageType = exports.formatCurrency = void 0;
 var formatCurrency = function (money, digits) {
     if (digits === void 0) { digits = 2; }
     return new Intl.NumberFormat('en-US', {
@@ -11,7 +11,7 @@ var formatCurrency = function (money, digits) {
     }).format(money);
 };
 exports.formatCurrency = formatCurrency;
-var shopifyResizeImage = function (url, _a) {
+var shopifyResizeImageType = function (url, _a) {
     var height = _a.height, width = _a.width;
     if (!url)
         return;
@@ -20,7 +20,7 @@ var shopifyResizeImage = function (url, _a) {
     var resizedUrl = filePath + "_" + width + "x" + height + "." + extension + "?q=100";
     return resizedUrl;
 };
-exports.shopifyResizeImage = shopifyResizeImage;
+exports.shopifyResizeImageType = shopifyResizeImageType;
 var findVariantByColor = function (product, color) {
     var _a, _b;
     var productVariant = (_b = (_a = product === null || product === void 0 ? void 0 : product.variants) === null || _a === void 0 ? void 0 : _a.edges) === null || _b === void 0 ? void 0 : _b.find(function (_a) {
@@ -101,7 +101,7 @@ var renderLineItemCompareAtPrice = function (line) {
     }
 };
 exports.renderLineItemCompareAtPrice = renderLineItemCompareAtPrice;
-// NextJS Image has trouble rendering SVG icons if file ext does not end in .svg
+// NextJS ImageType has trouble rendering SVG icons if file ext does not end in .svg
 // such as ?variant=1234567890 so a fix here is to strip params from url
 function stripParams(src) {
     return src === null || src === void 0 ? void 0 : src.split('?')[0];

@@ -1,12 +1,12 @@
 import { initApollo } from './apollo'
 import {
-	Address,
-	Customer,
-	QueryResponse,  
-	ShopifyQueryParams,
-	ProductCollectionFilter,
-	ProductCollectionSortKey,
-  MetafieldIdentifier,
+	AddressType,
+	CustomerType,
+	QueryResponseType,  
+	QueryParamsType,
+	SearchFilterType,
+	ProductSortKeyType,
+  MetafieldIdentifierType,
 } from '../types'
 import {	
 	QUERY_PRODUCTS,
@@ -57,8 +57,8 @@ import {
 
 export class ShopifyClient {
 	private _first?: number
-	private _filters?: any[] & ProductCollectionFilter[]
-	private _sortKey?: ProductCollectionSortKey
+	private _filters?: any[] & SearchFilterType[]
+	private _sortKey?: ProductSortKeyType
 	private _reverse?: boolean
 	private _after?: string
 	private _query?: string
@@ -96,7 +96,7 @@ export class ShopifyClient {
 		return this
 	}
 
-	sort(sortKey: ProductCollectionSortKey): ShopifyClient {
+	sort(sortKey: ProductSortKeyType): ShopifyClient {
 		this._sortKey = sortKey
 		return this
 	}
@@ -111,7 +111,7 @@ export class ShopifyClient {
 		return this
 	}
 
-	filters(filters: ProductCollectionFilter): ShopifyClient {
+	filters(filters: SearchFilterType): ShopifyClient {
 		//@ts-ignore
 		this._filters = filters
 		return this
@@ -194,7 +194,7 @@ export class ShopifyClient {
 	}
 
 	// Articles
-	async findArticle(handle: string): Promise<QueryResponse> {
+	async findArticle(handle: string): Promise<QueryResponseType> {
 		const response = await this.executeQuery(QUERY_ARTICLE_BY_HANDLE, {
 			handle,
 		})
@@ -204,7 +204,7 @@ export class ShopifyClient {
 		}
 	}
 
-	async findArticles(params: any): Promise<QueryResponse> {
+	async findArticles(params: any): Promise<QueryResponseType> {
 		const { first = 20, query } = params || {}
 		const response = await this.executeQuery(QUERY_ARTICLES, {
 			first: first || this._first,
@@ -218,7 +218,7 @@ export class ShopifyClient {
 	}
 
 	// Blogs
-	async findBlog(handle: string): Promise<QueryResponse> {
+	async findBlog(handle: string): Promise<QueryResponseType> {
 		const response = await this.executeQuery(QUERY_BLOG_BY_HANDLE, { handle })
 		let data = {
 			...response?.data?.blogByHandle,
@@ -232,7 +232,7 @@ export class ShopifyClient {
 		}
 	}
 
-	async findBlogs(params: any): Promise<QueryResponse> {
+	async findBlogs(params: any): Promise<QueryResponseType> {
 		const { first = 20, query } = params || {}
 		const response = await this.executeQuery(QUERY_BLOGS, {
 			first: first || this._first,
@@ -246,7 +246,7 @@ export class ShopifyClient {
 	}
 
 	// Cart
-	async findCart(id: string): Promise<QueryResponse> {
+	async findCart(id: string): Promise<QueryResponseType> {
 		const response = await this.executeQuery(QUERY_CART, {
 			id,
 		})
@@ -256,7 +256,7 @@ export class ShopifyClient {
 		}
 	}
 
-	async cartCreate(): Promise<QueryResponse> {
+	async cartCreate(): Promise<QueryResponseType> {
 		const response = await this.executeMutation(CART_CREATE, {
 			input: {},
 		})
@@ -266,7 +266,7 @@ export class ShopifyClient {
 		}
 	}
 
-  async cartDiscountCodesUpdate(cartId: string, discountCodes: string[]): Promise<QueryResponse> {
+  async cartDiscountCodesUpdate(cartId: string, discountCodes: string[]): Promise<QueryResponseType> {
     const response = await this.executeMutation(CART_DISCOUNT_CODES_UPDATE, {
       cartId,
       discountCodes,
@@ -277,11 +277,11 @@ export class ShopifyClient {
     }
   }
 
-	async cartLineAdd(cartId: string, line: any): Promise<QueryResponse> {
+	async cartLineAdd(cartId: string, line: any): Promise<QueryResponseType> {
 		return await this.cartLinesAdd(cartId, [line])
 	}
 
-	async cartLinesAdd(cartId: string, lines: any): Promise<QueryResponse> {
+	async cartLinesAdd(cartId: string, lines: any): Promise<QueryResponseType> {
 		const response = await this.executeMutation(CART_LINES_ADD, {
 			cartId,
 			lines,
@@ -292,14 +292,14 @@ export class ShopifyClient {
 		}
 	}
 
-	async cartLineRemove(cartId: string, lineId: string): Promise<QueryResponse> {
+	async cartLineRemove(cartId: string, lineId: string): Promise<QueryResponseType> {
 		return await this.cartLinesRemove(cartId, [lineId])
 	}
 
 	async cartLinesRemove(
 		cartId: string,
 		lineIds: string[]
-	): Promise<QueryResponse> {
+	): Promise<QueryResponseType> {
 		const response = await this.executeMutation(CART_LINES_REMOVE, {
 			cartId,
 			lineIds,
@@ -310,7 +310,7 @@ export class ShopifyClient {
 		}
 	}
 
-	async cartLinesUpdate(cartId: string, lines: any): Promise<QueryResponse> {
+	async cartLinesUpdate(cartId: string, lines: any): Promise<QueryResponseType> {
 		const response = await this.executeMutation(CART_LINES_UPDATE, {
 			cartId,
 			lines,
@@ -324,7 +324,7 @@ export class ShopifyClient {
 	async cartBuyerIdentityUpdate(
 		cartId: string,
 		buyerIdentity: any
-	): Promise<QueryResponse> {
+	): Promise<QueryResponseType> {
 		const response = await this.executeMutation(CART_BUYER_IDENTITY_UPDATE, {
 			cartId,
 			buyerIdentity,
@@ -336,7 +336,7 @@ export class ShopifyClient {
 	}
 
 	// Checkout
-	async findCheckout(id: string): Promise<QueryResponse> {
+	async findCheckout(id: string): Promise<QueryResponseType> {
 		const response = await this.executeQuery(CHECKOUT_FETCH, {
 			id,
 		})
@@ -346,7 +346,7 @@ export class ShopifyClient {
 		}
 	}
 
-	async checkoutCreate(): Promise<QueryResponse> {
+	async checkoutCreate(): Promise<QueryResponseType> {
 		const response = await this.executeMutation(CHECKOUT_CREATE, {
 			input: {},
 		})
@@ -359,14 +359,14 @@ export class ShopifyClient {
 	async addCheckoutLineItem(
 		checkoutId: string,
 		lineItem: any
-	): Promise<QueryResponse> {
+	): Promise<QueryResponseType> {
 		return await this.addCheckoutLineItems(checkoutId, [lineItem])
 	}
 
 	async addCheckoutLineItems(
 		checkoutId: string,
 		lineItems: any
-	): Promise<QueryResponse> {
+	): Promise<QueryResponseType> {
 		const response = await this.executeMutation(CHECKOUT_LINE_ITEMS_ADD, {
 			checkoutId,
 			lineItems,
@@ -380,7 +380,7 @@ export class ShopifyClient {
 	async updateCheckoutLineItems(
 		checkoutId: string,
 		lineItems: any
-	): Promise<QueryResponse> {
+	): Promise<QueryResponseType> {
 		const response = await this.executeMutation(CHECKOUT_LINE_ITEMS_UPDATE, {
 			checkoutId,
 			lineItems,
@@ -394,14 +394,14 @@ export class ShopifyClient {
 	async removeCheckoutLineItem(
 		checkoutId: string,
 		lineItemId: string
-	): Promise<QueryResponse> {
+	): Promise<QueryResponseType> {
 		return await this.removeCheckoutLineItems(checkoutId, [lineItemId])
 	}
 
 	async removeCheckoutLineItems(
 		checkoutId: string,
 		lineItemIds: string[]
-	): Promise<QueryResponse> {
+	): Promise<QueryResponseType> {
 		const response = await this.executeMutation(CHECKOUT_LINE_ITEMS_REMOVE, {
 			checkoutId,
 			lineItemIds,
@@ -415,7 +415,7 @@ export class ShopifyClient {
 	async applyCheckoutDiscountCode(
 		checkoutId: string,
 		discountCode: string
-	): Promise<QueryResponse> {
+	): Promise<QueryResponseType> {
 		const response = await this.executeMutation(CHECKOUT_DISCOUNT_CODE_APPLY, {
 			checkoutId,
 			discountCode,
@@ -426,7 +426,7 @@ export class ShopifyClient {
 		}
 	}
 
-	async removeCheckoutDiscountCode(checkoutId: string): Promise<QueryResponse> {
+	async removeCheckoutDiscountCode(checkoutId: string): Promise<QueryResponseType> {
 		const response = await this.executeMutation(CHECKOUT_DISCOUNT_CODE_REMOVE, {
 			checkoutId,
 		})
@@ -437,7 +437,7 @@ export class ShopifyClient {
 	}
 
 	// Products
-	async findProduct(handle: string, metafields?: MetafieldIdentifier[]): Promise<QueryResponse> {
+	async findProduct(handle: string, metafields?: MetafieldIdentifierType[]): Promise<QueryResponseType> {
     const gql = QUERY_PRODUCT_BY_HANDLE_FN(metafields)
 		const response = await this.executeQuery(gql, {
 			handle      
@@ -448,7 +448,7 @@ export class ShopifyClient {
 		}
 	}
 
-	async findProductbyId(id: string): Promise<QueryResponse> {
+	async findProductbyId(id: string): Promise<QueryResponseType> {
 		const response = await this.executeQuery(QUERY_PRODUCT_BY_ID, { id })
 		return {
 			data: response?.data?.product,
@@ -456,7 +456,7 @@ export class ShopifyClient {
 		}
 	}
 
-	async findProducts(params: ShopifyQueryParams): Promise<QueryResponse> {
+	async findProducts(params: QueryParamsType): Promise<QueryResponseType> {
 		this._query = params?.query || this._query
 		//this._first = params?.first || this._first || 48
 		this._sortKey = params?.sortKey || this._sortKey
@@ -480,7 +480,7 @@ export class ShopifyClient {
 		}
 	}
 
-	async searchProducts(params: ShopifyQueryParams): Promise<QueryResponse> {
+	async searchProducts(params: QueryParamsType): Promise<QueryResponseType> {
 		this._query = params?.query || this._query
 		this._sortKey = params?.sortKey || this._sortKey || 'RELEVANCE'
 		this._first = params?.first || this._first || 48
@@ -504,7 +504,7 @@ export class ShopifyClient {
 		}
 	}
 
-	async findProductRecommendations(productId: string): Promise<QueryResponse> {
+	async findProductRecommendations(productId: string): Promise<QueryResponseType> {
 		const response = await this.executeQuery(QUERY_PRODUCT_RECOMMENDATIONS, {
 			productId,
 		})
@@ -515,7 +515,7 @@ export class ShopifyClient {
 	}
 
 	// Collections
-	async findCollection(handle: string, query: any): Promise<QueryResponse> {
+	async findCollection(handle: string, query: any): Promise<QueryResponseType> {
 		const {
 			first = 20,
 			filters,
@@ -545,7 +545,7 @@ export class ShopifyClient {
 		}
 	}
 
-	async findCollections(first?: number): Promise<QueryResponse> {
+	async findCollections(first?: number): Promise<QueryResponseType> {
 		this._first = first || this._first
 		const response = await this.executeQuery(QUERY_COLLECTIONS, {
 			first: this._first,
@@ -558,7 +558,7 @@ export class ShopifyClient {
 	}
 
 	// Authentication
-	async login(email: string, password: string): Promise<QueryResponse> {
+	async login(email: string, password: string): Promise<QueryResponseType> {
 		const response = await this.executeMutation(MUTATION_ACCESS_TOKEN_CREATE, {
 			input: { email, password },
 		})
@@ -570,7 +570,7 @@ export class ShopifyClient {
 		}
 	}
 
-	async signup(customer: Customer): Promise<QueryResponse> {
+	async signup(customer: CustomerType): Promise<QueryResponseType> {
 		const response = await this.executeMutation(MUTATION_CUSTOMER_CREATE, {
 			input: customer,
 		})
@@ -581,7 +581,7 @@ export class ShopifyClient {
 		}
 	}
 
-	async forgotPassword(email: string): Promise<QueryResponse> {
+	async forgotPassword(email: string): Promise<QueryResponseType> {
 		const response = await this.executeMutation(MUTATION_CUSTOMER_RECOVER, {
 			email,
 		})
@@ -595,7 +595,7 @@ export class ShopifyClient {
 	async resetPassword(
 		resetToken: string,
 		password: string
-	): Promise<QueryResponse> {
+	): Promise<QueryResponseType> {
 		const response = await this.executeMutation(
 			MUTATION_CUSTOMER_RESET_BY_URL,
 			{
@@ -611,7 +611,7 @@ export class ShopifyClient {
 		}
 	}
 
-	async refreshCustomerAccessToken(): Promise<QueryResponse> {
+	async refreshCustomerAccessToken(): Promise<QueryResponseType> {
 		const customerAccessToken = this._accessToken || this._fetchAccessToken()
 		const response = await this.executeMutation(MUTATION_ACCESS_TOKEN_RENEW, {
 			customerAccessToken,
@@ -623,7 +623,7 @@ export class ShopifyClient {
 		}
 	}
 
-	async logout(): Promise<QueryResponse> {
+	async logout(): Promise<QueryResponseType> {
 		const customerAccessToken = this._accessToken || this._fetchAccessToken()
 		const response = await this.executeMutation(MUTATION_ACCESS_TOKEN_DELETE, {
 			customerAccessToken,
@@ -637,7 +637,7 @@ export class ShopifyClient {
 	}
 
 	// Customers
-	async findCustomer(): Promise<QueryResponse> {
+	async findCustomer(): Promise<QueryResponseType> {
 		const customerAccessToken = this._accessToken || this._fetchAccessToken()
 		const response = await this.executeQuery(QUERY_CUSTOMER, {
 			customerAccessToken,
@@ -648,7 +648,7 @@ export class ShopifyClient {
 		}
 	}
 
-	async updateCustomer(customer: Customer): Promise<QueryResponse> {
+	async updateCustomer(customer: CustomerType): Promise<QueryResponseType> {
 		const customerAccessToken = this._accessToken || this._fetchAccessToken()
 		const response = await this.executeMutation(MUTATION_CUSTOMER_UPDATE, {
 			customerAccessToken,
@@ -661,7 +661,7 @@ export class ShopifyClient {
 		}
 	}
 
-	async updateCustomerPassword({ password }): Promise<QueryResponse> {
+	async updateCustomerPassword({ password }): Promise<QueryResponseType> {
 		const customerAccessToken = this._accessToken || this._fetchAccessToken()
 		const response = await this.executeMutation(MUTATION_CUSTOMER_UPDATE, {
 			customerAccessToken,
@@ -680,7 +680,7 @@ export class ShopifyClient {
 	async findCustomerAddresses(
 		first: number = 20,
 		cursor: string = null
-	): Promise<QueryResponse> {
+	): Promise<QueryResponseType> {
 		const customerAccessToken = this._accessToken || this._fetchAccessToken()
 		const response = await this.executeQuery(QUERY_CUSTOMER_ADDRESSES, {
 			customerAccessToken,
@@ -694,7 +694,7 @@ export class ShopifyClient {
 		}
 	}
 
-	async updateCustomerAddress(address: Address): Promise<QueryResponse> {
+	async updateCustomerAddress(address: AddressType): Promise<QueryResponseType> {
 		const customerAccessToken = this._accessToken || this._fetchAccessToken()
 		const response = await this.executeMutation(
 			MUTATION_CUSTOMER_ADDRESS_UPDATE,
@@ -722,7 +722,7 @@ export class ShopifyClient {
 		}
 	}
 
-	async createCustomerAddress(address: any): Promise<QueryResponse> {
+	async createCustomerAddress(address: any): Promise<QueryResponseType> {
 		const customerAccessToken = this._accessToken || this._fetchAccessToken()
 		const response = await this.executeMutation(
 			MUTATION_CUSTOMER_ADDRESS_CREATE,
@@ -739,7 +739,7 @@ export class ShopifyClient {
 		}
 	}
 
-	async deleteCustomerAddress(id: string): Promise<QueryResponse> {
+	async deleteCustomerAddress(id: string): Promise<QueryResponseType> {
 		const customerAccessToken = this._accessToken || this._fetchAccessToken()
 		const response = await this.executeMutation(
 			MUTATION_CUSTOMER_ADDRESS_DELETE,
@@ -755,7 +755,7 @@ export class ShopifyClient {
 	}
 
 	// Customer Orders
-	async findCustomerOrders(orderParams): Promise<QueryResponse> {
+	async findCustomerOrders(orderParams): Promise<QueryResponseType> {
 		const customerAccessToken = this._accessToken || this._fetchAccessToken()
 		const {
 			first = 20,
@@ -782,7 +782,7 @@ export class ShopifyClient {
 	}
 
 	// Menus
-	async findMenu(handle: string): Promise<QueryResponse> {
+	async findMenu(handle: string): Promise<QueryResponseType> {
 		const response = await this.executeQuery(QUERY_MENU_BY_HANDLE, { handle })
 		return {
 			data: response?.data?.menuByHandle,
@@ -791,7 +791,7 @@ export class ShopifyClient {
 	}
 
 	// Pages
-	async findPage(handle: string): Promise<QueryResponse> {
+	async findPage(handle: string): Promise<QueryResponseType> {
 		const response = await this.executeQuery(QUERY_PAGE_BY_HANDLE, { handle })
 		return {
 			data: response?.data?.pageByHandle,
@@ -799,7 +799,7 @@ export class ShopifyClient {
 		}
 	}
 
-	async findPages(params: any): Promise<QueryResponse> {
+	async findPages(params: any): Promise<QueryResponseType> {
 		const { first = 20, query } = params || {}
 		const response = await this.executeQuery(QUERY_PAGES, {
 			first: first || this._first,
@@ -813,7 +813,7 @@ export class ShopifyClient {
 	}
 
 	// Shop
-	async findShop(): Promise<QueryResponse> {
+	async findShop(): Promise<QueryResponseType> {
 		const response = await this.executeQuery(QUERY_SHOP, {})
 		return {
 			data: response?.data?.shop,
@@ -822,7 +822,7 @@ export class ShopifyClient {
 	}
 
 	// Metaobjects
-	async findMetaobject(handle: string): Promise<QueryResponse> {
+	async findMetaobject(handle: string): Promise<QueryResponseType> {
 		const response = await this.executeQuery(QUERY_METAOBJECT_BY_HANDLE, {
 			handle,
 		})
@@ -832,7 +832,7 @@ export class ShopifyClient {
 		}
 	}
 
-	async findMetaobjects(params: any): Promise<QueryResponse> {
+	async findMetaobjects(params: any): Promise<QueryResponseType> {
 		const { first = 20, type } = params || {}
 		const response = await this.executeQuery(QUERY_METAOBJECTS, {
 			first: first || this._first,
@@ -856,14 +856,14 @@ export class ShopifyClient {
 	}
 
 	// Query execution
-	async executeQuery(query: any, variables: any): Promise<QueryResponse> {
+	async executeQuery(query: any, variables: any): Promise<QueryResponseType> {
 		return await this.apollo.query({
 			query: query,
 			variables: variables,
 		})
 	}
 
-	async executeMutation(mutation: any, variables: any): Promise<QueryResponse> {
+	async executeMutation(mutation: any, variables: any): Promise<QueryResponseType> {
 		return await this.apollo.mutate({
 			mutation: mutation,
 			variables: variables,

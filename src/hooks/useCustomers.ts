@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react'
-import { Customer } from '../types'
+import { CustomerType } from '../types'
 import { useLoadingWrapper } from '../hooks'
 import { ShopContext } from '../context'
 
@@ -7,7 +7,7 @@ const useCustomers = () => {
 	const { shopifyClient } = useContext(ShopContext)
 	const { errors, loading, loadingWrapper } = useLoadingWrapper()
 
-	const [customer, setCustomer] = useState<Customer>(null)
+	const [customer, setCustomer] = useState<CustomerType>(null)
 
 	const findCustomer = async (customerAccessToken) => {
 		const resp = await loadingWrapper(() =>

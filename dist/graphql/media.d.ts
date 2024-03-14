@@ -1,2 +1,2 @@
 export declare const FieldsForMediaTypes: any;
-export declare const ImageFragment: any;
+export declare const ImageTypeFragment: any;

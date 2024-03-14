@@ -1,24 +1,24 @@
 import React, { useState, useEffect } from 'react'
-import { Product, ProductVariant, Image } from '../types'
+import { ProductType, ProductVariantType, ImageType } from '../types'
 
 type useProductDetailsProps = {
-  product: Product 
+  product: ProductType 
 }
 
 const useProductDetails = (props: useProductDetailsProps) => {
 
   const { product } = props
 
-  const [variant, setVariant] = useState<ProductVariant>(null)
-  const [images, setImages] = useState<Image[]>()
-  const [image, setImage] = useState<Image>(null)
+  const [variant, setVariant] = useState<ProductVariantType>(null)
+  const [images, setImageTypes] = useState<ImageType[]>()
+  const [image, setImageType] = useState<ImageType>(null)
   const [selectedOptions, setSelectedOptions] = useState({})
   const [sellingPlans, setSellingPlans] = useState(null)
 	const [price, setPrice] = useState<number | null>()
 	const [compareAtPrice, setCompareAtPrice] = useState<number | null>()
 	
-  const handleImageClick = (image) => {
-		setImage(image)
+  const handleImageTypeClick = (image) => {
+		setImageType(image)
 	}
 
 	const handleOptionChange = (name, value) => {
@@ -47,9 +47,9 @@ const useProductDetails = (props: useProductDetailsProps) => {
 		if (product?.handle) {
 			setSelectedOptions({})
       //@ts-ignore      
-      setImage(product?.images?.edges[0]?.node)
+      setImageType(product?.images?.edges[0]?.node)
       //@ts-ignore      
-			setImages(product?.images?.edges.map((e) => e.node))
+			setImageTypes(product?.images?.edges.map((e) => e.node))
 			setPrice(product?.priceRange?.minVariantPrice?.amount)
       setCompareAtPrice(null)      
       setSellingPlans(product
@@ -65,8 +65,8 @@ const useProductDetails = (props: useProductDetailsProps) => {
       }
 		}else{
       setVariant(null)
-      setImages(null)
-      setImage(null)
+      setImageTypes(null)
+      setImageType(null)
       setPrice(null)
       setCompareAtPrice(null)
       setSelectedOptions({})
@@ -75,7 +75,7 @@ const useProductDetails = (props: useProductDetailsProps) => {
 
 	useEffect(() => {
 		if (variant) {
-			setImage(variant?.image)
+			setImageType(variant?.image)
 			setPrice(variant?.price?.amount)
 			setCompareAtPrice(variant?.compareAtPrice?.amount)
 		} 
@@ -87,7 +87,7 @@ const useProductDetails = (props: useProductDetailsProps) => {
     price,
     compareAtPrice,		
     sellingPlans,
-    handleImageClick,
+    handleImageTypeClick,
     selectedOptions,
     handleOptionChange,
     product,        

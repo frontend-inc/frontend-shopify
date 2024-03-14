@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { ProductContext } from '../context'
-import { Image } from '../types'
+import { ImageType } from '../types'
 
 const useProductContext = () => {
-	const [image, setImage] = useState<Image>(null)
-	const [images, setImages] = useState<Image[]>(null)
+	const [image, setImageType] = useState<ImageType>(null)
+	const [images, setImageTypes] = useState<ImageType[]>(null)
 
   const [sellingPlans, setSellingPlans] = useState(null)
 	const [price, setPrice] = useState<number | null>()
@@ -21,8 +21,8 @@ const useProductContext = () => {
 		setSelectedOptions,
 	} = useContext(ProductContext)
 
-	const handleImageClick = (image) => {
-		setImage(image)
+	const handleImageTypeClick = (image) => {
+		setImageType(image)
 	}
 
 	const handleOptionChange = (name, value) => {
@@ -50,8 +50,8 @@ const useProductContext = () => {
 	useEffect(() => {
 		if (product) {
 			setSelectedOptions({})
-			setImages(product?.images?.edges.map((e) => e.node))
-			setImage(product?.images?.edges[0]?.node)
+			setImageTypes(product?.images?.edges.map((e) => e.node))
+			setImageType(product?.images?.edges[0]?.node)
 		}
 		if (product?.variants?.edges?.length == 1) {
 			selectVariant(product, {})
@@ -60,11 +60,11 @@ const useProductContext = () => {
 
 	useEffect(() => {
 		if (variant) {
-			setImage(variant?.image)
+			setImageType(variant?.image)
 			setPrice(variant?.price?.amount)
 			setCompareAtPrice(variant?.compareAtPrice?.amount)
 		} else if (product) {
-			setImage(product?.images?.edges[0]?.node)
+			setImageType(product?.images?.edges[0]?.node)
 			setPrice(product?.priceRange?.minVariantPrice?.amount)
 			setCompareAtPrice(null)
 		}
@@ -88,10 +88,10 @@ const useProductContext = () => {
 		setCompareAtPrice,
 
 		image,
-		setImage,
+		setImageType,
 		images,
-		setImages,
-		handleImageClick,
+		setImageTypes,
+		handleImageTypeClick,
 
 		product,
 		setProduct,

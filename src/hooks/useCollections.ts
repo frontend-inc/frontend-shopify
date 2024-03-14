@@ -2,9 +2,9 @@ import React, { useContext, useState } from 'react'
 import { ShopContext } from '../context'
 import { useLoadingWrapper } from '../hooks'
 import {
-	Image,
-	Collection,
-	Product,
+	ImageType,
+	CollectionType,
+	ProductType,
 } from '../types'
 
 const PER_PAGE = 20
@@ -14,12 +14,12 @@ const useCollections = () => {
 
 	const { errors, loading, loadingWrapper } = useLoadingWrapper()
 
-	const [image, setImage] = useState<Image>(null)
+	const [image, setImageType] = useState<ImageType>(null)
 	const [cursor, setCursor] = useState<string>(null)
 	const [hasNextPage, setHasNextPage] = useState(false)
-	const [products, setProducts] = useState<Product[]>(null)
-	const [collection, setCollection] = useState<Collection>(null)
-	const [collections, setCollections] = useState<Collection[]>(null)
+	const [products, setProducts] = useState<ProductType[]>(null)
+	const [collection, setCollection] = useState<CollectionType>(null)
+	const [collections, setCollections] = useState<CollectionType[]>(null)
 
 	const findCollection = async (handle, query?: any) => {
 		const {
@@ -48,7 +48,7 @@ const useCollections = () => {
 		} else {
 			setProducts(collectionProducts)
 		}
-		setImage(resp?.data?.image?.url)
+		setImageType(resp?.data?.image?.url)
 	}
 
 	const findCollections = async (perPage = PER_PAGE) => {

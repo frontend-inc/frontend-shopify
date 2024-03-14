@@ -1,38 +1,16 @@
-export declare type ProductCollectionFilter = {
-    available: boolean;
-} | {
-    productType: string;
-} | {
-    productVendor: string;
-} | {
-    variantOption: {
-        name: string;
-        value: string;
-    };
-} | {
-    productMetafield: {
-        namespace: string;
-        key: string;
-        value: string;
-    } | {
-        price: {
-            min: number;
-            max?: number;
-        };
-    };
-} | {
-    tag: string;
+export declare type SearchFilterType = {
+    name: 'tag' | 'product_type' | 'vendor' | 'variant_option' | 'price' | 'available';
+    value: string;
 };
-export declare type ProductCollectionFilters = ProductCollectionFilter[];
-export declare type ProductCollectionSortKey = 'BEST_SELLING' | 'COLLECTION_DEFAULT' | 'CREATED' | 'ID' | 'MANUAL' | 'PRICE' | 'RELEVANCE' | 'TITLE';
-export declare type ShopifyQueryParams = {
+export declare type ProductSortKeyType = 'BEST_SELLING' | 'COLLECTION_DEFAULT' | 'CREATED' | 'ID' | 'MANUAL' | 'PRICE' | 'RELEVANCE' | 'TITLE';
+export declare type QueryParamsType = {
     query?: string;
     first?: number;
-    sortKey?: ProductCollectionSortKey;
+    sortKey?: ProductSortKeyType;
     reverse?: boolean;
     after?: string;
 };
-export declare type QueryResponse = {
+export declare type QueryResponseType = {
     meta?: {
         hasNextPage: boolean;
         endCursor: string;
@@ -40,68 +18,68 @@ export declare type QueryResponse = {
     data: any;
     error?: any;
 };
-export declare type MoneyV2 = {
+export declare type MoneyV2Type = {
     amount: string;
     currencyCode: string;
 };
-export declare type Image = {
+export declare type ImageType = {
     id: string;
     altText: string;
     url: string;
 };
-export declare type ProductOption = {
+export declare type ProductOptionType = {
     id: string;
     name: string;
     values: string[];
 };
-export declare type PriceRange = {
-    minVariantPrice: MoneyV2;
-    maxVariantPrice: MoneyV2;
+export declare type PriceRangeType = {
+    minVariantPrice: MoneyV2Type;
+    maxVariantPrice: MoneyV2Type;
 };
-export declare type SelectedOption = {
+export declare type SelectedOptionType = {
     name: string;
     value: string;
 };
-export declare type Variant = {
+export declare type VariantType = {
     availableForSale: boolean;
-    compareAtPrice?: MoneyV2;
+    compareAtPrice?: MoneyV2Type;
     id: string;
-    image?: Image;
-    price: MoneyV2;
+    image?: ImageType;
+    price: MoneyV2Type;
     requiresShipping: boolean;
-    selectedOptions: SelectedOption[];
+    selectedOptions: SelectedOptionType[];
     sku: string;
     title: string;
     weight?: number;
     weightUnit: string;
 };
-export declare type SellingPlanPriceAdjustment = {
+export declare type SellingPlanPriceAdjustmentType = {
     adjustmentValue: {
-        adjustmentAmount?: MoneyV2;
+        adjustmentAmount?: MoneyV2Type;
         adjustmentPercentage?: number;
-        price?: MoneyV2;
+        price?: MoneyV2Type;
     };
 };
-export declare type SellingPlan = {
+export declare type SellingPlanType = {
     id: string;
     name: string;
     description: string;
-    priceAdjustments: SellingPlanPriceAdjustment[];
+    priceAdjustments: SellingPlanPriceAdjustmentType[];
 };
-export declare type SellingPlanGroup = {
+export declare type SellingPlanGroupType = {
     name: string;
-    sellingPlans: SellingPlan[];
+    sellingPlans: SellingPlanType[];
 };
-export declare type MetafieldReferenceVariant = {
+export declare type MetafieldReferenceVariantType = {
     id: string;
     title: string;
     sku: string;
     availableForSale: boolean;
 };
-export declare type MetafieldReferenceImage = {
-    image: Image;
+export declare type MetafieldReferenceImageType = {
+    image: ImageType;
 };
-export declare type MetafieldReference = {
+export declare type MetafieldReferenceType = {
     id: string;
     handle: string;
     type: string;
@@ -114,25 +92,25 @@ export declare type MetafieldReference = {
             id: string;
             handle: string;
             title: string;
-            variants?: Variant[];
+            variants?: VariantType[];
         };
     }[];
 };
-export declare type MetafieldIdentifier = {
+export declare type MetafieldIdentifierType = {
     label?: string;
     namespace: string;
     key: string;
 };
-export declare type Metafield = {
+export declare type MetafieldType = {
     id: string;
     key: string;
     value: string;
     namespace: string;
     description: string;
-    reference?: MetafieldReferenceVariant | MetafieldReferenceImage;
-    references: MetafieldReference[];
+    reference?: MetafieldReferenceVariantType | MetafieldReferenceImageType;
+    references: MetafieldReferenceType[];
 };
-export declare type Product = {
+export declare type ProductType = {
     availableForSale: boolean;
     createdAt: string;
     updatedAt: string;
@@ -140,58 +118,58 @@ export declare type Product = {
     descriptionHtml: string;
     handle: string;
     id: string;
-    images: Image[];
-    metafields: Metafield[];
+    images: ImageType[];
+    metafields: MetafieldType[];
     onlineStoreUrl: string;
-    options: ProductOption[];
-    priceRange: PriceRange;
-    sellingPlanGroups: SellingPlanGroup[];
+    options: ProductOptionType[];
+    priceRange: PriceRangeType;
+    sellingPlanGroups: SellingPlanGroupType[];
     productType: string;
     publishedAt: string;
     tags: string[];
     title: string;
-    variants: Variant[];
+    variants: VariantType[];
     vendor: string;
     seo: SEO;
 };
-export declare type ProductVariant = {
+export declare type ProductVariantType = {
     id: string;
     title: string;
-    price: MoneyV2;
-    image?: Image;
-    compareAtPriceV2?: MoneyV2;
+    price: MoneyV2Type;
+    image?: ImageType;
+    compareAtPriceV2?: MoneyV2Type;
     availableForSale: boolean;
     sku?: string;
-    selectedOptions: SelectedOption[];
+    selectedOptions: SelectedOptionType[];
     requiresShipping: boolean;
     taxable: boolean;
     weight?: number;
     weightUnit?: string;
-    presentmentPrices?: MoneyV2[];
+    presentmentPrices?: MoneyV2Type[];
 };
 export declare type SEO = {
     title?: string;
     description?: string;
 };
-export declare type Collection = {
+export declare type CollectionType = {
     id: string;
     title: string;
     description: string;
     descriptionHtml: string;
     updatedAt: string;
     handle: string;
-    image?: Image;
+    image?: ImageType;
     seo: SEO;
-    products: Product[];
+    products: ProductType[];
 };
-export declare type CartLine = {
+export declare type CartLineType = {
     id?: string;
     merchandiseId: string;
     quantity: number;
     sellingPlanId?: string;
     attributes?: Record<string, any>;
     discountAllocations?: {
-        allocatedAmount: MoneyV2;
+        allocatedAmount: MoneyV2Type;
         discountApplication: {
             targetSelection: string;
             targetType: string;
@@ -202,16 +180,16 @@ export declare type CartLine = {
     }[];
     sellingPlanAllocation?: {
         priceAdjustments: {
-            price: MoneyV2;
-            perDeliveryPrice: MoneyV2;
-            compareAtPrice: MoneyV2;
-            unitPrice: MoneyV2;
+            price: MoneyV2Type;
+            perDeliveryPrice: MoneyV2Type;
+            compareAtPrice: MoneyV2Type;
+            unitPrice: MoneyV2Type;
         }[];
-        sellingPlan: SellingPlan;
+        sellingPlan: SellingPlanType;
     };
-    merchandise?: ProductVariant;
+    merchandise?: ProductVariantType;
 };
-export declare type Cart = {
+export declare type CartType = {
     id: string;
     attribute: {
         key: string;
@@ -221,62 +199,62 @@ export declare type Cart = {
         key: string;
         value: string;
     }[];
-    lineItems: CartLine[];
-    lineItemsSubtotalPrice: MoneyV2;
+    lineItems: CartLineType[];
+    lineItemsSubtotalPrice: MoneyV2Type;
     checkoutUrl: string;
     discountCodes: {
         code: string;
         applicable: boolean;
     }[];
     discountAllocations: {
-        discountedAmount: MoneyV2;
+        discountedAmount: MoneyV2Type;
     }[];
     cost: {
-        checkoutChargeAmount: MoneyV2;
-        totalTaxAmount: MoneyV2;
-        totalTaxAmountEstimated: MoneyV2;
-        totalAmount: MoneyV2;
-        totalAmountEstimated: MoneyV2;
-        totalDutyAmount: MoneyV2;
-        totalDutyAmountEstimated: MoneyV2;
-        subtotalAmount: MoneyV2;
-        subtotalAmountEstimated: MoneyV2;
+        checkoutChargeAmount: MoneyV2Type;
+        totalTaxAmount: MoneyV2Type;
+        totalTaxAmountEstimated: MoneyV2Type;
+        totalAmount: MoneyV2Type;
+        totalAmountEstimated: MoneyV2Type;
+        totalDutyAmount: MoneyV2Type;
+        totalDutyAmountEstimated: MoneyV2Type;
+        subtotalAmount: MoneyV2Type;
+        subtotalAmountEstimated: MoneyV2Type;
     };
     webUrl: string;
 };
-export declare type CheckoutLineItem = {
+export declare type CheckoutLineItemType = {
     title: string;
     variantId: string;
     quantity: number;
     variant: {
         title: string;
-        price: MoneyV2;
+        price: MoneyV2Type;
         product: {
             title: string;
         };
     };
 };
-export declare type ShippingRate = {
+export declare type ShippingRateType = {
     handle: string;
     title: string;
-    price: MoneyV2;
+    price: MoneyV2Type;
 };
-export declare type Checkout = {
+export declare type CheckoutType = {
     id: string;
     webUrl: string;
-    totalPriceV2: MoneyV2;
-    subtotalPriceV2: MoneyV2;
-    totalTaxV2: MoneyV2;
+    totalPriceV2: MoneyV2Type;
+    subtotalPriceV2: MoneyV2Type;
+    totalTaxV2: MoneyV2Type;
     completedAt: string | null;
     createdAt: string;
     updatedAt: string;
     email: string | null;
     note: string | null;
-    shippingAddress: Address | null;
-    shippingLine: ShippingRate | null;
-    lineItems: CheckoutLineItem[];
+    shippingAddress: AddressType | null;
+    shippingLine: ShippingRateType | null;
+    lineItems: CheckoutLineItemType[];
 };
-export declare type Address = {
+export declare type AddressType = {
     id?: string;
     phone?: string;
     firstName: string;
@@ -288,10 +266,10 @@ export declare type Address = {
     country: string;
     zip: string;
 };
-export declare type DefaultAddress = Address & {
+export declare type DefaultAddressType = AddressType & {
     name: string;
 };
-export declare type Customer = {
+export declare type CustomerType = {
     id: string;
     displayName: string;
     email: string;
@@ -301,8 +279,8 @@ export declare type Customer = {
     createdAt: string;
     updatedAt: string;
     acceptsMarketing: boolean;
-    addresses: Address[];
-    defaultAddress?: DefaultAddress;
+    addresses: AddressType[];
+    defaultAddress?: DefaultAddressType;
     lastIncompleteCheckout?: {
         id: string;
         createdAt: string;
@@ -312,7 +290,7 @@ export declare type Customer = {
     password?: string;
     passwordConfirmation?: string;
 };
-export declare type MailingAddress = {
+export declare type MailingAddressType = {
     address1: string;
     address2?: string;
     city: string;
@@ -324,14 +302,14 @@ export declare type MailingAddress = {
     province: string;
     zip: string;
 };
-export declare type OrderLineItem = {
+export declare type OrderLineItemType = {
     title: string;
     variantTitle?: string;
     quantity: number;
-    price?: MoneyV2;
-    variant?: Variant;
+    price?: MoneyV2Type;
+    variant?: VariantType;
 };
-export declare type ShippingAddress = {
+export declare type ShippingAddressType = {
     firstName: string;
     lastName: string;
     address1: string;
@@ -343,16 +321,16 @@ export declare type ShippingAddress = {
     phone?: string;
     company?: string;
 };
-export declare type Order = {
+export declare type OrderType = {
     id: string;
     name: string;
     statusUrl: string;
     orderNumber: number;
     processedAt: string;
     currencyCode: string;
-    totalPrice: MoneyV2;
-    totalRefunded: MoneyV2;
-    totalShippingPrice: MoneyV2;
-    lineItems: OrderLineItem[];
-    shippingAddress?: ShippingAddress;
+    totalPrice: MoneyV2Type;
+    totalRefunded: MoneyV2Type;
+    totalShippingPrice: MoneyV2Type;
+    lineItems: OrderLineItemType[];
+    shippingAddress?: ShippingAddressType;
 };

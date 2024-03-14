@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { ShopContext } from '../context'
-import { MetafieldIdentifier, Product } from '../types'
+import { MetafieldIdentifierType, ProductType } from '../types'
 import { useLoadingWrapper } from '../hooks'
 
 const useProducts = () => {
@@ -10,10 +10,10 @@ const useProducts = () => {
 
 	const [cursor, setCursor] = useState()
 	const [hasNextPage, setHasNextPage] = useState(false)
-  const [product, setProduct] = useState<Product>()
-	const [products, setProducts] = useState<Product[]>()
+  const [product, setProduct] = useState<ProductType>()
+	const [products, setProducts] = useState<ProductType[]>()
 
-	const findProduct = async (handle: string, metafields?: MetafieldIdentifier[]) => {    
+	const findProduct = async (handle: string, metafields?: MetafieldIdentifierType[]) => {    
 		setProduct(null)
 		const resp = await loadingWrapper(() => shopifyClient.findProduct(handle, metafields))
 		setProduct(resp?.data)
