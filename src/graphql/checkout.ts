@@ -100,7 +100,7 @@ export const CheckoutFragment = gql`
 					allocationMethod
 					targetType
 					value {
-						... on MoneyV2Type {
+						... on MoneyV2 {
 							amount
 							currencyCode
 						}
