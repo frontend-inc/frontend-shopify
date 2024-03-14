@@ -7,7 +7,7 @@ export const formatCurrency = (money, digits = 2) => {
 	}).format(money)
 }
 
-export const shopifyResizeImageType = (url, { height, width }) => {
+export const shopifyResizeImage = (url, { height, width }) => {
 	if (!url) return
 	let extension = url.split('.').pop()
 	let filePath = url.split(`.${extension}`)[0]

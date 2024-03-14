@@ -1,5 +1,5 @@
 export declare const formatCurrency: (money: any, digits?: number) => string;
-export declare const shopifyResizeImageType: (url: any, { height, width }: {
+export declare const shopifyResizeImage: (url: any, { height, width }: {
     height: any;
     width: any;
 }) => string;
