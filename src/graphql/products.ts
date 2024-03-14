@@ -234,7 +234,7 @@ export const QUERY_PRODUCT_BY_HANDLE_FN = (metafields?: MetafieldIdentifierType[
                 width
               }
             }
-            ... on MediaImageType {
+            ... on MediaImage {
               id
               image {
                 altText

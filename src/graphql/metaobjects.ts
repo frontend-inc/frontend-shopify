@@ -17,7 +17,7 @@ const MetaobjectFragment = gql`
 				... on Collection {
 					...CollectionFragment
 				}
-				... on MediaImageType {
+				... on MediaImage {
 					image {
 						...ImageTypeFragment
 					}
@@ -35,7 +35,7 @@ const MetaobjectFragment = gql`
 							... on Collection {
 								...CollectionFragment
 							}
-							... on MediaImageType {
+							... on MediaImage {
 								image {
 									...ImageTypeFragment
 								}
@@ -48,7 +48,7 @@ const MetaobjectFragment = gql`
 									key
 									value
 									reference {
-										... on MediaImageType {
+										... on MediaImage {
 											image {
 												...ImageTypeFragment
 											}
@@ -69,7 +69,7 @@ const MetaobjectFragment = gql`
 						... on Collection {
 							...CollectionFragment
 						}
-						... on MediaImageType {
+						... on MediaImage {
 							image {
 								...ImageTypeFragment
 							}
@@ -82,7 +82,7 @@ const MetaobjectFragment = gql`
 								key
 								value
 								reference {
-									... on MediaImageType {
+									... on MediaImage {
 										image {
 											...ImageTypeFragment
 										}
@@ -120,7 +120,7 @@ export const QUERY_METAOBJECTS = gql`
 						key
 						value
 						reference {
-							... on MediaImageType {
+							... on MediaImage {
 								image {
 									...ImageTypeFragment
 								}

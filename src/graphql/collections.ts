@@ -21,7 +21,7 @@ export const CollectionFragment = gql`
 			namespace
 			description
 			reference {
-				... on MediaImageType {
+				... on MediaImage {
 					image {
 						id
 						altText

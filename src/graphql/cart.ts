@@ -131,7 +131,7 @@ export const CartFragment = gql`
 					sku
 					availableForSale
 				}
-				... on MediaImageType {
+				... on MediaImage {
 					image {
 						id
 						altText

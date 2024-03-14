@@ -26,7 +26,7 @@ export const FieldsForMediaTypes = gql`
         url
       }
     }
-    ... on MediaImageType {
+    ... on MediaImage {
       id
       image {
         altText
