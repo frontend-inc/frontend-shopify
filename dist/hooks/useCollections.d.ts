@@ -1,4 +1,3 @@
-import { ProductCollectionFilter } from '../types';
 declare const useCollections: () => {
     cursor: any;
     hasNextPage: any;
@@ -7,17 +6,6 @@ declare const useCollections: () => {
     collections: any;
     findCollection: (handle: any, query?: any) => Promise<void>;
     findCollections: (perPage?: number) => Promise<void>;
-    filters: any;
-    setFilters: any;
-    addFilter: (filter: ProductCollectionFilter) => void;
-    removeFilter: (filter: ProductCollectionFilter) => void;
-    clearFilters: () => void;
-    filterInStock: () => void;
-    filterProductType: (productType: string) => void;
-    filterVendor: (productVendor: string) => void;
-    filterVariantOption: (name: string, value: string | number) => void;
-    filterTag: (tag: string) => void;
-    filterPrice: (min: number, max: number) => void;
     image: any;
     products: any;
     loading: any;

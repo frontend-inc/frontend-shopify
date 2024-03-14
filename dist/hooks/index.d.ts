@@ -14,5 +14,6 @@ export { default as useMetaobjects } from './useMetaobjects';
 export { default as useOrders } from './useOrders';
 export { default as useProductContext } from './useProductContext';
 export { default as useRecentlyViewed } from './useRecentlyViewed';
+export { default as useSearchFilters } from './useSearchFilters';
 export { default as useShop } from './useShop';
 export { default as useAuth } from './useAuth';
