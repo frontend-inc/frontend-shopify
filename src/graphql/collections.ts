@@ -38,7 +38,7 @@ export const QUERY_COLLECTION_BY_HANDLE = gql`
 		$handle: String!
 		$first: Int!
 		$filters: [ProductFilter!]
-		$sortKey: ProductSortKey
+		$sortKey: ProductCollectionSortKeys
 		$reverse: Boolean
 		$after: String
 	) {
