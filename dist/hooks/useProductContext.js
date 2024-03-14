@@ -20,7 +20,7 @@ var useProductContext = function () {
     var _d = (0, react_1.useState)(), price = _d[0], setPrice = _d[1];
     var _e = (0, react_1.useState)(), compareAtPrice = _e[0], setCompareAtPrice = _e[1];
     var _f = (0, react_1.useContext)(context_1.ProductContext), product = _f.product, setProduct = _f.setProduct, variant = _f.variant, setVariant = _f.setVariant, collection = _f.collection, setCollection = _f.setCollection, selectedOptions = _f.selectedOptions, setSelectedOptions = _f.setSelectedOptions;
-    var handleImageTypeClick = function (image) {
+    var handleImageClick = function (image) {
         setImageType(image);
     };
     var handleOptionChange = function (name, value) {
@@ -87,7 +87,7 @@ var useProductContext = function () {
         setImageType: setImageType,
         images: images,
         setImageTypes: setImageTypes,
-        handleImageTypeClick: handleImageTypeClick,
+        handleImageClick: handleImageClick,
         product: product,
         setProduct: setProduct,
         variant: variant,

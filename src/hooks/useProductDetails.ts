@@ -17,7 +17,7 @@ const useProductDetails = (props: useProductDetailsProps) => {
 	const [price, setPrice] = useState<number | null>()
 	const [compareAtPrice, setCompareAtPrice] = useState<number | null>()
 	
-  const handleImageTypeClick = (image) => {
+  const handleImageClick = (image) => {
 		setImageType(image)
 	}
 
@@ -87,7 +87,7 @@ const useProductDetails = (props: useProductDetailsProps) => {
     price,
     compareAtPrice,		
     sellingPlans,
-    handleImageTypeClick,
+    handleImageClick,
     selectedOptions,
     handleOptionChange,
     product,        

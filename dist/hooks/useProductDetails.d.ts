@@ -8,7 +8,7 @@ declare const useProductDetails: (props: useProductDetailsProps) => {
     price: any;
     compareAtPrice: any;
     sellingPlans: any;
-    handleImageTypeClick: (image: any) => void;
+    handleImageClick: (image: any) => void;
     selectedOptions: any;
     handleOptionChange: (name: any, value: any) => void;
     product: ProductType;

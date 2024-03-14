@@ -7,7 +7,7 @@ declare const useProductContext: () => {
     setImageType: any;
     images: any;
     setImageTypes: any;
-    handleImageTypeClick: (image: any) => void;
+    handleImageClick: (image: any) => void;
     product: any;
     setProduct: any;
     variant: any;

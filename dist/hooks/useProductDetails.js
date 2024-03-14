@@ -21,7 +21,7 @@ var useProductDetails = function (props) {
     var _e = (0, react_1.useState)(null), sellingPlans = _e[0], setSellingPlans = _e[1];
     var _f = (0, react_1.useState)(), price = _f[0], setPrice = _f[1];
     var _g = (0, react_1.useState)(), compareAtPrice = _g[0], setCompareAtPrice = _g[1];
-    var handleImageTypeClick = function (image) {
+    var handleImageClick = function (image) {
         setImageType(image);
     };
     var handleOptionChange = function (name, value) {
@@ -88,7 +88,7 @@ var useProductDetails = function (props) {
         price: price,
         compareAtPrice: compareAtPrice,
         sellingPlans: sellingPlans,
-        handleImageTypeClick: handleImageTypeClick,
+        handleImageClick: handleImageClick,
         selectedOptions: selectedOptions,
         handleOptionChange: handleOptionChange,
         product: product,

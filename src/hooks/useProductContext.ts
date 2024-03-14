@@ -21,7 +21,7 @@ const useProductContext = () => {
 		setSelectedOptions,
 	} = useContext(ProductContext)
 
-	const handleImageTypeClick = (image) => {
+	const handleImageClick = (image) => {
 		setImageType(image)
 	}
 
@@ -91,7 +91,7 @@ const useProductContext = () => {
 		setImageType,
 		images,
 		setImageTypes,
-		handleImageTypeClick,
+		handleImageClick,
 
 		product,
 		setProduct,
