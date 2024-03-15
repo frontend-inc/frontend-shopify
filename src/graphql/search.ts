@@ -10,6 +10,17 @@ export const QUERY_SEARCH = gql`
 			reverse: false
 			sortKey: RELEVANCE
 		) {
+      filters {
+        id
+        label
+        type
+        values {
+          id
+          label
+          count
+          input
+        }
+      }
 			pageInfo {
 				startCursor
 				endCursor
