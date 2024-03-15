@@ -51,6 +51,17 @@ export const QUERY_COLLECTION_BY_HANDLE = gql`
 				reverse: $reverse
 				after: $after
 			) {
+        filters {
+          id
+          label
+          type
+          values {
+            id
+            label
+            count
+            input
+          }
+        }
 				pageInfo {
 					startCursor
 					endCursor
