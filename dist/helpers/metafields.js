@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getArrayFromString = exports.getMetafieldReferences = exports.getMetafieldReference = exports.getMetafieldImageType = exports.getMetafieldType = exports.getMetafieldValue = exports.getMetafield = void 0;
+exports.getArrayFromString = exports.getMetafieldReferences = exports.getMetafieldReference = exports.getMetafieldImage = exports.getMetafieldType = exports.getMetafieldValue = exports.getMetafield = void 0;
 // Metafield helpers
 var getMetafield = function (object, key) {
     var _a;
@@ -17,12 +17,12 @@ var getMetafieldType = function (object, key) {
     return field === null || field === void 0 ? void 0 : field.type;
 };
 exports.getMetafieldType = getMetafieldType;
-var getMetafieldImageType = function (object, key) {
+var getMetafieldImage = function (object, key) {
     var _a, _b;
     var field = (0, exports.getMetafield)(object, key);
     return (_b = (_a = field === null || field === void 0 ? void 0 : field.reference) === null || _a === void 0 ? void 0 : _a.image) === null || _b === void 0 ? void 0 : _b.url;
 };
-exports.getMetafieldImageType = getMetafieldImageType;
+exports.getMetafieldImage = getMetafieldImage;
 var getMetafieldReference = function (object, key) {
     var field = (0, exports.getMetafield)(object, key);
     return field === null || field === void 0 ? void 0 : field.reference;

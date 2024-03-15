@@ -13,7 +13,7 @@ export const getMetafieldType = (object, key) => {
 	return field?.type
 }
 
-export const getMetafieldImageType = (object, key) => {
+export const getMetafieldImage = (object, key) => {
 	let field = getMetafield(object, key)
 	return field?.reference?.image?.url
 }
