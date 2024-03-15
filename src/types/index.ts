@@ -1,7 +1,13 @@
 export type SearchFilterType = {
   name: 'tag' |  'product_type' | 'vendor' | 'variant_option' | 'price' | 'available',
   value: string  
-} 
+}
+
+export type SearchFilterOptionType = {
+  name: string,
+  value: string[]
+}
+
 
 export type ProductSortKeyType =
 	| 'BEST_SELLING'
