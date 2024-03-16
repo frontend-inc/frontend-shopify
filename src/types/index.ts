@@ -6,15 +6,18 @@ export type SearchFilterVariantType =
   'price' | 
   'available'
 
+
+export type PriceOptionType = { 
+  min: number
+  max: number | null 
+}
+
 export type SearchFilterType = {
   name: SearchFilterVariantType
   value: 
     string | 
     number | 
-    {
-      min: number
-      max: number | null
-    }  
+    PriceOptionType
 }
 
 export type SearchFilterOptionType = {
@@ -24,10 +27,7 @@ export type SearchFilterOptionType = {
 
 export type SearchPriceOptionType = {
   name: SearchFilterVariantType
-  value: { 
-    min: number
-    max: number | null 
-  }
+  value: PriceOptionType 
 }
 
 export type ProductSortKeyType =
