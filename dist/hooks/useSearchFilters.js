@@ -44,7 +44,13 @@ var useSearchFilters = function () {
         // Build query for each group and join with AND
         var queryParts = Object.keys(groupedFilters).map(function (name) {
             var values = groupedFilters[name];
-            var queryPart = values.map(function (value) { return name + ":" + value; }).join(' OR ');
+            var queryPart = '';
+            if (name == 'price') {
+                queryPart = values.map(function (value) { return "(price:>" + value.min + " AND price:<" + value.max + ")"; }).join(' OR ');
+            }
+            else {
+                queryPart = values.map(function (value) { return name + ":" + value; }).join(' OR ');
+            }
             return "(" + queryPart + ")";
         });
         return queryParts.join(' AND ');

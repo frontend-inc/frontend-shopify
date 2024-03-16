@@ -38,10 +38,15 @@ const useSearchFilters = () => {
      // Build query for each group and join with AND
      const queryParts = Object.keys(groupedFilters).map(name => {
          const values = groupedFilters[name];
-         const queryPart = values.map(value => `${name}:${value}`).join(' OR ');
+         let queryPart = '';
+         if(name == 'price'){
+            queryPart = values.map(value => `(price:>${value.min} AND price:<${value.max})`).join(' OR ');
+         }else{
+          queryPart = values.map(value => `${name}:${value}`).join(' OR ');
+         }         
          return `(${queryPart})`;
      });
- 
+          
      return queryParts.join(' AND ');
    }
  
