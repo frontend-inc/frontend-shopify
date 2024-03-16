@@ -1,11 +1,21 @@
 export declare type SearchFilterVariantType = 'tag' | 'product_type' | 'vendor' | 'variant_option' | 'price' | 'available';
 export declare type SearchFilterType = {
     name: SearchFilterVariantType;
-    value: string;
+    value: string | number | {
+        min: number;
+        max: number | null;
+    };
 };
 export declare type SearchFilterOptionType = {
     name: SearchFilterVariantType;
     value: string[];
+};
+export declare type SearchPriceOptionType = {
+    name: SearchFilterVariantType;
+    value: {
+        min: number;
+        max: number | null;
+    };
 };
 export declare type ProductSortKeyType = 'BEST_SELLING' | 'COLLECTION_DEFAULT' | 'CREATED' | 'ID' | 'MANUAL' | 'PRICE' | 'RELEVANCE' | 'TITLE';
 export declare type QueryParamsType = {
