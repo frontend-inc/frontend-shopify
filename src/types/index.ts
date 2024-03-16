@@ -12,7 +12,7 @@ export type SearchFilterType = {
 }
 
 export type SearchFilterOptionType = {
-  name: SearchFilterVariantType,
+  name: SearchFilterVariantType
   value: string[]
 }
 
