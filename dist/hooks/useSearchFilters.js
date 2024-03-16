@@ -67,7 +67,7 @@ var useSearchFilters = function () {
         });
         return query;
     }
-    var formatQuerySyntax = function (filters) {
+    var formatQueryFilters = function (filters) {
         // Group filters by name
         var groupedFilters = filters.reduce(function (groups, filter) {
             if (!groups[filter.name]) {
@@ -96,7 +96,7 @@ var useSearchFilters = function () {
         handleFilter: handleFilter,
         handleFilterArray: handleFilterArray,
         formatProductFilters: formatProductFilters,
-        formatQuerySyntax: formatQuerySyntax
+        formatQueryFilters: formatQueryFilters
     };
 };
 exports.default = useSearchFilters;

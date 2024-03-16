@@ -62,7 +62,7 @@ const useSearchFilters = () => {
     return query;
   }
 
-   const formatQuerySyntax = (filters) => {
+   const formatQueryFilters = (filters) => {
      // Group filters by name
      const groupedFilters = filters.reduce((groups, filter) => {
        if (!groups[filter.name]) {
@@ -93,7 +93,7 @@ const useSearchFilters = () => {
     handleFilter,
     handleFilterArray,
     formatProductFilters,
-    formatQuerySyntax
+    formatQueryFilters
 	}
 }
 

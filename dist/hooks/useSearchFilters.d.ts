@@ -5,6 +5,6 @@ declare const useSearchFilters: () => {
     handleFilter: (filter: SearchFilterType) => void;
     handleFilterArray: (filter: SearchFilterType) => void;
     formatProductFilters: (filters: any) => any[];
-    formatQuerySyntax: (filters: any) => string;
+    formatQueryFilters: (filters: any) => string;
 };
 export default useSearchFilters;
