@@ -32,7 +32,42 @@ var useSearchFilters = function () {
             setFilters(__spreadArray(__spreadArray([], filters, true), [filter], false));
         }
     };
-    var buildFilterQuery = function (filters) {
+    function formatProductFilters(filters) {
+        var query = [];
+        filters.forEach(function (filter) {
+            var queryFilter = {};
+            switch (filter.name) {
+                case 'tag':
+                    queryFilter['tag'] = filter.value;
+                    break;
+                case 'product_type':
+                    queryFilter['productType'] = filter.value;
+                    break;
+                case 'vendor':
+                    queryFilter['vendor'] = filter.value;
+                    break;
+                case 'available':
+                    queryFilter['vendor'] = filter.value === 'true';
+                    break;
+                case 'price':
+                    queryFilter['price'] = {
+                        min: parseFloat(filter.value.min || 0),
+                        max: parseFloat(filter.value.max || 0)
+                    };
+                    break;
+                default:
+                    queryFilter = {
+                        variantOption: {
+                            name: filter.name,
+                            value: filter.value
+                        }
+                    };
+            }
+            query.push(queryFilter);
+        });
+        return query;
+    }
+    var formatQuerySyntax = function (filters) {
         // Group filters by name
         var groupedFilters = filters.reduce(function (groups, filter) {
             if (!groups[filter.name]) {
@@ -60,7 +95,8 @@ var useSearchFilters = function () {
         setFilters: setFilters,
         handleFilter: handleFilter,
         handleFilterArray: handleFilterArray,
-        buildFilterQuery: buildFilterQuery
+        formatProductFilters: formatProductFilters,
+        formatQuerySyntax: formatQuerySyntax
     };
 };
 exports.default = useSearchFilters;

@@ -25,7 +25,44 @@ const useSearchFilters = () => {
      }    
    }
  
-   const buildFilterQuery = (filters) => {
+  function formatProductFilters(filters) {
+    const query = [];        
+    filters.forEach(filter => {
+      let queryFilter = {}
+      switch (filter.name) {
+        case 'tag':
+          queryFilter['tag'] = filter.value;          
+        break;
+      case 'product_type':
+        queryFilter['productType'] = filter.value;                  
+        break;
+      case 'vendor':
+        queryFilter['vendor'] = filter.value;                  
+        break;
+      case 'available':
+        queryFilter['vendor'] = filter.value === 'true';                          
+        break;
+      case 'price':
+        queryFilter['price'] = { 
+          min: parseFloat(filter.value.min || 0),
+          max: parseFloat(filter.value.max || 0)
+        }                        
+        break;    
+      default:
+        queryFilter = {
+          variantOption: {
+            name: filter.name,
+            value: filter.value
+          }
+        }
+      }
+      query.push(queryFilter)
+    });
+
+    return query;
+  }
+
+   const formatQuerySyntax = (filters) => {
      // Group filters by name
      const groupedFilters = filters.reduce((groups, filter) => {
        if (!groups[filter.name]) {
@@ -55,7 +92,8 @@ const useSearchFilters = () => {
 		setFilters,
     handleFilter,
     handleFilterArray,
-    buildFilterQuery
+    formatProductFilters,
+    formatQuerySyntax
 	}
 }
 

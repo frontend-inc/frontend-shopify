@@ -4,6 +4,7 @@ declare const useSearchFilters: () => {
     setFilters: any;
     handleFilter: (filter: SearchFilterType) => void;
     handleFilterArray: (filter: SearchFilterType) => void;
-    buildFilterQuery: (filters: any) => string;
+    formatProductFilters: (filters: any) => any[];
+    formatQuerySyntax: (filters: any) => string;
 };
 export default useSearchFilters;
