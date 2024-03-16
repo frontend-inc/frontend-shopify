@@ -115,18 +115,19 @@ var useProducts = function () {
         });
     }); };
     var searchProducts = function (searchParams) { return __awaiter(void 0, void 0, void 0, function () {
-        var query, first, after, resp, results;
+        var query, first, after, productFilters, resp, results;
         var _a, _b;
         return __generator(this, function (_c) {
             switch (_c.label) {
                 case 0:
-                    query = searchParams.query, first = searchParams.first, after = searchParams.after;
+                    query = searchParams.query, first = searchParams.first, after = searchParams.after, productFilters = searchParams.productFilters;
                     return [4 /*yield*/, loadingWrapper(function () {
                             return shopifyClient.searchProducts({
                                 first: first,
                                 query: query,
                                 sortKey: 'RELEVANCE',
                                 reverse: false,
+                                productFilters: productFilters,
                                 after: after,
                             });
                         })];
