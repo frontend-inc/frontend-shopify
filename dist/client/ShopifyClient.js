@@ -633,7 +633,7 @@ var ShopifyClient = /** @class */ (function () {
     ShopifyClient.prototype.searchProducts = function (params) {
         var _a, _b, _c, _d;
         return __awaiter(this, void 0, void 0, function () {
-            var productFilters, searchQuery, response;
+            var searchQuery, response;
             return __generator(this, function (_e) {
                 switch (_e.label) {
                     case 0:
@@ -641,13 +641,13 @@ var ShopifyClient = /** @class */ (function () {
                         this._sortKey = (params === null || params === void 0 ? void 0 : params.sortKey) || this._sortKey || 'RELEVANCE';
                         this._first = (params === null || params === void 0 ? void 0 : params.first) || this._first || 48;
                         this._after = (params === null || params === void 0 ? void 0 : params.after) || this._after;
-                        productFilters = params === null || params === void 0 ? void 0 : params.productFilters;
+                        this._filters = (params === null || params === void 0 ? void 0 : params.filters) || this._filters || [];
                         searchQuery = {
                             first: this._first,
                             sortKey: this._sortKey,
                             reverse: false,
                             after: this._after,
-                            productFilters: productFilters,
+                            productFilters: this._filters,
                         };
                         return [4 /*yield*/, this.executeQuery(graphql_1.QUERY_SEARCH, {
                                 query: this._query,

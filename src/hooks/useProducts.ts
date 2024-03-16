@@ -55,7 +55,7 @@ const useProducts = () => {
 	}
 
 	const searchProducts = async (searchParams) => {
-		const { query, first, after, productFilters } = searchParams
+		const { query, first, after, filters } = searchParams
 
 		const resp = await loadingWrapper(() =>
 			shopifyClient.searchProducts({
@@ -63,7 +63,7 @@ const useProducts = () => {
 				query,
 				sortKey: 'RELEVANCE',
 				reverse: false,
-        productFilters,
+        filters,
 				after,
 			})
 		)

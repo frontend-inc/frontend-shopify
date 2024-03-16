@@ -6,6 +6,7 @@ export declare class ShopifyClient {
     private _reverse?;
     private _after?;
     private _query?;
+    private _productFilters?;
     private _accessToken?;
     private _fetchAccessToken?;
     private apollo;

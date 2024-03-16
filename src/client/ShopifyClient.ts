@@ -62,6 +62,7 @@ export class ShopifyClient {
 	private _reverse?: boolean
 	private _after?: string
 	private _query?: string
+  private _productFilters?: SearchFilterType[]
 	private _accessToken?: string
 	private _fetchAccessToken?: () => string
 	private apollo: any
@@ -485,14 +486,14 @@ export class ShopifyClient {
 		this._sortKey = params?.sortKey || this._sortKey || 'RELEVANCE'
 		this._first = params?.first || this._first || 48
 		this._after = params?.after || this._after
-    let productFilters = params?.productFilters 
+    this._filters = params?.filters || this._filters || []
 
 		const searchQuery = {
 			first: this._first,
 			sortKey: this._sortKey,
 			reverse: false,
 			after: this._after,
-      productFilters,
+      productFilters: this._filters,
 		}
 
 		const response = await this.executeQuery(QUERY_SEARCH, {

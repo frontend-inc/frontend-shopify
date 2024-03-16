@@ -46,7 +46,7 @@ export type QueryParamsType = {
 	sortKey?: ProductSortKeyType
 	reverse?: boolean
 	after?: string
-  productFilters?: SearchFilterType[]
+  filters?: SearchFilterType[]
 }
 
 export type QueryResponseType = {
