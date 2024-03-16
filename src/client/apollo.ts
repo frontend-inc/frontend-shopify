@@ -8,7 +8,7 @@ let apolloClient
 export function createApolloClient(
 	domain: string,
 	storefrontAccessToken: string,
-	apiVersion: string = '2023-10'
+	apiVersion: string = '2024-04'
 ) {
 	const httpLink = createHttpLink({
 		uri: `https://${domain}/api/${apiVersion}/graphql.json`,

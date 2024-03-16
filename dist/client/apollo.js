@@ -7,7 +7,7 @@ var apollo_link_http_1 = require("apollo-link-http");
 var apollo_link_context_1 = require("apollo-link-context");
 var apolloClient;
 function createApolloClient(domain, storefrontAccessToken, apiVersion) {
-    if (apiVersion === void 0) { apiVersion = '2023-10'; }
+    if (apiVersion === void 0) { apiVersion = '2024-04'; }
     var httpLink = (0, apollo_link_http_1.createHttpLink)({
         uri: "https://" + domain + "/api/" + apiVersion + "/graphql.json",
     });

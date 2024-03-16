@@ -61,7 +61,7 @@ var apollo_1 = require("./apollo");
 var graphql_1 = require("../graphql");
 var ShopifyClient = /** @class */ (function () {
     function ShopifyClient(domain, storefrontAccessToken, fetchAccessToken, apiVersion) {
-        if (apiVersion === void 0) { apiVersion = '2023-10'; }
+        if (apiVersion === void 0) { apiVersion = '2024-04'; }
         this._fetchAccessToken = fetchAccessToken;
         this.apollo = (0, apollo_1.initApollo)(domain, storefrontAccessToken, apiVersion);
         this.init();

@@ -71,7 +71,7 @@ export class ShopifyClient {
 		domain: string,
 		storefrontAccessToken: string,
 		fetchAccessToken?: () => string,
-		apiVersion: string = '2023-10'
+		apiVersion: string = '2024-04'
 	) {
 		this._fetchAccessToken = fetchAccessToken
 		this.apollo = initApollo(domain, storefrontAccessToken, apiVersion)

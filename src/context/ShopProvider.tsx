@@ -21,7 +21,7 @@ const ShopProvider = (props: ShopProviderProps) => {
 		domain,
 		shopUrl,
 		storefrontAccessToken,
-		apiVersion = '2023-10',
+		apiVersion = '2024-04',
 	} = props
 
   let authCookie = `${domain}-shopify-access-token`
