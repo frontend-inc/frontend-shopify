@@ -9,9 +9,12 @@ const useSearchFilters = () => {
 	const [filters, setFilters] = useState<any | SearchFilterType[]>([])
 	const handleFilter = (filter: SearchFilterType) => {
     const { name } = filter 
-    if(filters?.find(f => f.name == name)) {
-      let newFilters = filters.filter(f => f.name != name)
-       setFilters([...newFilters, filter])
+    if(filters?.find(f => f.name == name && f.value == filter.value)) {
+      let newFilters = filters.filter(f => f.name != name)      
+       setFilters(newFilters)
+    }else if(filters?.find(f => f.name == name)){
+      let newFilters = filters.filter(f => f.name != name)      
+      setFilters([...newFilters, filter])
     }else{
        setFilters([...filters, filter])
     }

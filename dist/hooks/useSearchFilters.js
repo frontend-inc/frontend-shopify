@@ -16,7 +16,11 @@ var useSearchFilters = function () {
     var _a = (0, react_1.useState)([]), filters = _a[0], setFilters = _a[1];
     var handleFilter = function (filter) {
         var name = filter.name;
-        if (filters === null || filters === void 0 ? void 0 : filters.find(function (f) { return f.name == name; })) {
+        if (filters === null || filters === void 0 ? void 0 : filters.find(function (f) { return f.name == name && f.value == filter.value; })) {
+            var newFilters = filters.filter(function (f) { return f.name != name; });
+            setFilters(newFilters);
+        }
+        else if (filters === null || filters === void 0 ? void 0 : filters.find(function (f) { return f.name == name; })) {
             var newFilters = filters.filter(function (f) { return f.name != name; });
             setFilters(__spreadArray(__spreadArray([], newFilters, true), [filter], false));
         }
