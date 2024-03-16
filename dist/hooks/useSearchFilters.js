@@ -17,7 +17,8 @@ var useSearchFilters = function () {
     var handleFilter = function (filter) {
         var name = filter.name;
         if (filters === null || filters === void 0 ? void 0 : filters.find(function (f) { return f.name == name; })) {
-            setFilters(filters.filter(function (f) { return f.name != name; }));
+            var newFilters = filters.filter(function (f) { return f.name != name; });
+            setFilters(__spreadArray(__spreadArray([], newFilters, true), [filter], false));
         }
         else {
             setFilters(__spreadArray(__spreadArray([], filters, true), [filter], false));

@@ -10,7 +10,8 @@ const useSearchFilters = () => {
 	const handleFilter = (filter: SearchFilterType) => {
     const { name } = filter 
     if(filters?.find(f => f.name == name)) {
-       setFilters(filters.filter(f => f.name != name))
+      let newFilters = filters.filter(f => f.name != name)
+       setFilters([...newFilters, filter])
     }else{
        setFilters([...filters, filter])
     }
