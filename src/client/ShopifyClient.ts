@@ -485,12 +485,14 @@ export class ShopifyClient {
 		this._sortKey = params?.sortKey || this._sortKey || 'RELEVANCE'
 		this._first = params?.first || this._first || 48
 		this._after = params?.after || this._after
+    let productFilters = params?.productFilters 
 
 		const searchQuery = {
 			first: this._first,
 			sortKey: this._sortKey,
 			reverse: false,
 			after: this._after,
+      productFilters,
 		}
 
 		const response = await this.executeQuery(QUERY_SEARCH, {

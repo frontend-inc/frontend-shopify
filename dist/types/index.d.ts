@@ -22,6 +22,7 @@ export declare type QueryParamsType = {
     sortKey?: ProductSortKeyType;
     reverse?: boolean;
     after?: string;
+    productFilters?: SearchFilterType[];
 };
 export declare type QueryResponseType = {
     meta?: {
