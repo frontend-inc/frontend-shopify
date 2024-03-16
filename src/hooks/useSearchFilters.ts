@@ -40,9 +40,9 @@ const useSearchFilters = () => {
          const values = groupedFilters[name];
          let queryPart = '';
          if(name == 'price'){
-            queryPart = values.map(value => `(price:>${value.min} AND price:<${value.max})`).join(' OR ');
+            queryPart = values.map(value => `price:>${value.min} AND price:<${value.max}`).join(' OR ');
          }else{
-          queryPart = values.map(value => `${name}:${value}`).join(' OR ');
+            queryPart = values.map(value => `${name}:${value}`).join(' OR ');
          }         
          return `(${queryPart})`;
      });

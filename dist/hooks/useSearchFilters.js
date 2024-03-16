@@ -46,7 +46,7 @@ var useSearchFilters = function () {
             var values = groupedFilters[name];
             var queryPart = '';
             if (name == 'price') {
-                queryPart = values.map(function (value) { return "(price:>" + value.min + " AND price:<" + value.max + ")"; }).join(' OR ');
+                queryPart = values.map(function (value) { return "price:>" + value.min + " AND price:<" + value.max; }).join(' OR ');
             }
             else {
                 queryPart = values.map(function (value) { return name + ":" + value; }).join(' OR ');
