@@ -1,10 +1,18 @@
+export type SearchFilterVariantType = 
+  'tag' |  
+  'product_type' |
+  'vendor' | 
+  'variant_option' | 
+  'price' | 
+  'available'
+
 export type SearchFilterType = {
-  name: 'tag' |  'product_type' | 'vendor' | 'variant_option' | 'price' | 'available',
+  name: SearchFilterVariantType
   value: string  
 }
 
 export type SearchFilterOptionType = {
-  name: string,
+  name: SearchFilterVariantType,
   value: string[]
 }
 

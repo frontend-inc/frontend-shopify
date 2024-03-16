@@ -1,9 +1,10 @@
+export declare type SearchFilterVariantType = 'tag' | 'product_type' | 'vendor' | 'variant_option' | 'price' | 'available';
 export declare type SearchFilterType = {
-    name: 'tag' | 'product_type' | 'vendor' | 'variant_option' | 'price' | 'available';
+    name: SearchFilterVariantType;
     value: string;
 };
 export declare type SearchFilterOptionType = {
-    name: string;
+    name: SearchFilterVariantType;
     value: string[];
 };
 export declare type ProductSortKeyType = 'BEST_SELLING' | 'COLLECTION_DEFAULT' | 'CREATED' | 'ID' | 'MANUAL' | 'PRICE' | 'RELEVANCE' | 'TITLE';
