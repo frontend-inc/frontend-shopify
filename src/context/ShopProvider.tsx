@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { ApolloProvider } from '@apollo/client'
 import ShopContext from './ShopContext'
 import { CheckoutType, CustomerType, CartType } from '../types'
@@ -28,13 +28,8 @@ const ShopProvider = (props: ShopProviderProps) => {
 	const fetchAccessToken = () => String(getCookie(authCookie))
 
 	const apolloClient = useApollo(domain, storefrontAccessToken, apiVersion)
-	const shopifyClient = createClient(
-		domain,
-		storefrontAccessToken,
-		fetchAccessToken,
-		apiVersion
-	)
-
+	
+  const [shopifyClient, setShopifyClient] = useState()
 	const [accessToken, setAccessToken] = useState()
 	const [alert, setAlert] = useState()
 
@@ -56,6 +51,23 @@ const ShopProvider = (props: ShopProviderProps) => {
 	const toggleCart = () => setCartOpen(!cartOpen)
 	const toggleMenu = () => setMenuOpen(!menuOpen)
 	const toggleSearch = () => setSearchOpen(!searchOpen)
+
+  useEffect(() => {
+    if(!domain || !storefrontAccessToken) return;
+    let client = createClient(
+      domain,
+      storefrontAccessToken,
+      fetchAccessToken,
+      apiVersion
+    )
+    setShopifyClient(client)
+  },[
+    domain, 
+    storefrontAccessToken, 
+    fetchAccessToken, 
+    apiVersion
+    ]
+  )
 
 	const value = {
     domain,
