@@ -32,35 +32,24 @@ var ShopProvider = function (props) {
     var authCookie = domain + "-shopify-access-token";
     var fetchAccessToken = function () { return String((0, cookies_next_1.getCookie)(authCookie)); };
     var apolloClient = (0, client_2.useApollo)(domain, storefrontAccessToken, apiVersion);
-    var _b = (0, react_1.useState)(), shopifyClient = _b[0], setShopifyClient = _b[1];
-    var _c = (0, react_1.useState)(), accessToken = _c[0], setAccessToken = _c[1];
-    var _d = (0, react_1.useState)(), alert = _d[0], setAlert = _d[1];
-    var _e = (0, react_1.useState)(null), cart = _e[0], setCart = _e[1];
-    var _f = (0, react_1.useState)(null), checkout = _f[0], setCheckout = _f[1];
-    var _g = (0, react_1.useState)({}), customer = _g[0], setCustomer = _g[1];
-    var _h = (0, react_1.useState)(), expiresAt = _h[0], setExpiresAt = _h[1];
-    var _j = (0, react_1.useState)(false), loading = _j[0], setLoading = _j[1];
-    var _k = (0, react_1.useState)(0), lineItemTotal = _k[0], setLineItemTotal = _k[1];
-    var _l = (0, react_1.useState)(), shop = _l[0], setShop = _l[1];
-    var _m = (0, react_1.useState)(false), authOpen = _m[0], setAuthOpen = _m[1];
-    var _o = (0, react_1.useState)(false), cartOpen = _o[0], setCartOpen = _o[1];
-    var _p = (0, react_1.useState)(false), menuOpen = _p[0], setMenuOpen = _p[1];
-    var _q = (0, react_1.useState)(false), searchOpen = _q[0], setSearchOpen = _q[1];
+    var shopifyClient = (0, client_2.createClient)(domain, storefrontAccessToken, fetchAccessToken, apiVersion);
+    var _b = (0, react_1.useState)(), accessToken = _b[0], setAccessToken = _b[1];
+    var _c = (0, react_1.useState)(), alert = _c[0], setAlert = _c[1];
+    var _d = (0, react_1.useState)(null), cart = _d[0], setCart = _d[1];
+    var _e = (0, react_1.useState)(null), checkout = _e[0], setCheckout = _e[1];
+    var _f = (0, react_1.useState)({}), customer = _f[0], setCustomer = _f[1];
+    var _g = (0, react_1.useState)(), expiresAt = _g[0], setExpiresAt = _g[1];
+    var _h = (0, react_1.useState)(false), loading = _h[0], setLoading = _h[1];
+    var _j = (0, react_1.useState)(0), lineItemTotal = _j[0], setLineItemTotal = _j[1];
+    var _k = (0, react_1.useState)(), shop = _k[0], setShop = _k[1];
+    var _l = (0, react_1.useState)(false), authOpen = _l[0], setAuthOpen = _l[1];
+    var _m = (0, react_1.useState)(false), cartOpen = _m[0], setCartOpen = _m[1];
+    var _o = (0, react_1.useState)(false), menuOpen = _o[0], setMenuOpen = _o[1];
+    var _p = (0, react_1.useState)(false), searchOpen = _p[0], setSearchOpen = _p[1];
     var toggleAuth = function () { return setAuthOpen(!authOpen); };
     var toggleCart = function () { return setCartOpen(!cartOpen); };
     var toggleMenu = function () { return setMenuOpen(!menuOpen); };
     var toggleSearch = function () { return setSearchOpen(!searchOpen); };
-    (0, react_1.useEffect)(function () {
-        if (!domain || !storefrontAccessToken)
-            return;
-        var client = (0, client_2.createClient)(domain, storefrontAccessToken, fetchAccessToken, apiVersion);
-        setShopifyClient(client);
-    }, [
-        domain,
-        storefrontAccessToken,
-        fetchAccessToken,
-        apiVersion
-    ]);
     var value = {
         domain: domain,
         shopifyClient: shopifyClient,

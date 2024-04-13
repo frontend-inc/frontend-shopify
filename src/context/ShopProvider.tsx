@@ -27,9 +27,14 @@ const ShopProvider = (props: ShopProviderProps) => {
   let authCookie = `${domain}-shopify-access-token`
 	const fetchAccessToken = () => String(getCookie(authCookie))
 
-	const apolloClient = useApollo(domain, storefrontAccessToken, apiVersion)
-	
-  const [shopifyClient, setShopifyClient] = useState()
+	const apolloClient = useApollo(domain, storefrontAccessToken, apiVersion)	
+  const shopifyClient = createClient(
+    domain,
+    storefrontAccessToken,
+    fetchAccessToken,
+    apiVersion
+  )
+
 	const [accessToken, setAccessToken] = useState()
 	const [alert, setAlert] = useState()
 
@@ -51,23 +56,6 @@ const ShopProvider = (props: ShopProviderProps) => {
 	const toggleCart = () => setCartOpen(!cartOpen)
 	const toggleMenu = () => setMenuOpen(!menuOpen)
 	const toggleSearch = () => setSearchOpen(!searchOpen)
-
-  useEffect(() => {
-    if(!domain || !storefrontAccessToken) return;
-    let client = createClient(
-      domain,
-      storefrontAccessToken,
-      fetchAccessToken,
-      apiVersion
-    )
-    setShopifyClient(client)
-  },[
-    domain, 
-    storefrontAccessToken, 
-    fetchAccessToken, 
-    apiVersion
-    ]
-  )
 
 	const value = {
     domain,
