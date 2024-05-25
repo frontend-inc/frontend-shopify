@@ -6,6 +6,7 @@ declare type ShopProviderProps = {
     logo?: string;
     shopUrl: string;
     apiVersion?: string;
+    customerPortalUrl?: string;
 };
 declare const ShopProvider: (props: ShopProviderProps) => any;
 export default ShopProvider;

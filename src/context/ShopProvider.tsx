@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { ApolloProvider } from '@apollo/client'
 import ShopContext from './ShopContext'
 import { CheckoutType, CustomerType, CartType } from '../types'
@@ -12,6 +12,7 @@ type ShopProviderProps = {
 	logo?: string
 	shopUrl: string
 	apiVersion?: string
+  customerPortalUrl?: string
 }
 
 const ShopProvider = (props: ShopProviderProps) => {
@@ -21,6 +22,7 @@ const ShopProvider = (props: ShopProviderProps) => {
 		domain,
 		shopUrl,
 		storefrontAccessToken,
+    customerPortalUrl,
 		apiVersion = '2024-04',
 	} = props
 
@@ -75,6 +77,7 @@ const ShopProvider = (props: ShopProviderProps) => {
 
 		customer,
 		setCustomer,
+    customerPortalUrl,
 
 		shopUrl,
 
