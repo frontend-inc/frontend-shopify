@@ -1,10 +1,10 @@
 import React, { useState, useContext } from 'react'
 import { CustomerType } from '../types'
 import { useLoadingWrapper } from '../hooks'
-import { ShopContext } from '../context'
+import { ShopifyContext } from '../context'
 
 const useCustomers = () => {
-	const { shopifyClient } = useContext(ShopContext)
+	const { shopifyClient } = useContext(ShopifyContext)
 	const { errors, loading, loadingWrapper } = useLoadingWrapper()
 
 	const [customer, setCustomer] = useState<CustomerType>(null)

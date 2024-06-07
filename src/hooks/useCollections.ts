@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { ShopContext } from '../context'
+import { ShopifyContext } from '../context'
 import { useLoadingWrapper } from '../hooks'
 import {
 	ImageType,
@@ -10,7 +10,7 @@ import {
 const PER_PAGE = 20
 
 const useCollections = () => {
-	const { shopifyClient } = useContext(ShopContext)
+	const { shopifyClient } = useContext(ShopifyContext)
 
 	const { errors, loading, loadingWrapper } = useLoadingWrapper()
 

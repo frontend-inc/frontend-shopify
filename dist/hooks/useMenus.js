@@ -40,7 +40,7 @@ var react_1 = require("react");
 var context_1 = require("../context");
 var hooks_1 = require("../hooks");
 var useMenus = function () {
-    var shopifyClient = (0, react_1.useContext)(context_1.ShopContext).shopifyClient;
+    var shopifyClient = (0, react_1.useContext)(context_1.ShopifyContext).shopifyClient;
     var _a = (0, hooks_1.useLoadingWrapper)(), loading = _a.loading, errors = _a.errors, loadingWrapper = _a.loadingWrapper;
     var _b = (0, react_1.useState)(), menu = _b[0], setMenu = _b[1];
     var fetchMenu = function (handle) { return __awaiter(void 0, void 0, void 0, function () {

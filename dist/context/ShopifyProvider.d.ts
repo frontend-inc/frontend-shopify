@@ -1,5 +1,5 @@
 import React from 'react';
-declare type ShopProviderProps = {
+declare type ShopifyProviderProps = {
     domain: string;
     storefrontAccessToken: string;
     children: React.ReactNode;
@@ -8,5 +8,5 @@ declare type ShopProviderProps = {
     apiVersion?: string;
     customerPortalUrl?: string;
 };
-declare const ShopProvider: (props: ShopProviderProps) => any;
-export default ShopProvider;
+declare const ShopifyProvider: (props: ShopifyProviderProps) => any;
+export default ShopifyProvider;

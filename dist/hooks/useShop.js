@@ -40,7 +40,7 @@ var react_1 = require("react");
 var context_1 = require("../context");
 var hooks_1 = require("../hooks");
 var useShop = function () {
-    var _a = (0, react_1.useContext)(context_1.ShopContext), shopifyClient = _a.shopifyClient, shop = _a.shop, setShop = _a.setShop;
+    var _a = (0, react_1.useContext)(context_1.ShopifyContext), shopifyClient = _a.shopifyClient, shop = _a.shop, setShop = _a.setShop;
     var _b = (0, hooks_1.useLoadingWrapper)(), errors = _b.errors, loading = _b.loading, loadingWrapper = _b.loadingWrapper;
     var findShop = function () { return __awaiter(void 0, void 0, void 0, function () {
         var response;

@@ -13,7 +13,7 @@ var react_1 = require("react");
 var cookies_next_1 = require("cookies-next");
 var context_1 = require("../context");
 var useRecentlyViewed = function () {
-    var domain = (0, react_1.useContext)(context_1.ShopContext).domain;
+    var domain = (0, react_1.useContext)(context_1.ShopifyContext).domain;
     var cookie = domain + "-recently-viewed";
     var _a = (0, react_1.useState)([]), products = _a[0], setProducts = _a[1];
     var viewProduct = function (product) {

@@ -40,7 +40,7 @@ var react_1 = require("react");
 var context_1 = require("../context");
 var hooks_1 = require("../hooks");
 var useOrders = function () {
-    var shopifyClient = (0, react_1.useContext)(context_1.ShopContext).shopifyClient;
+    var shopifyClient = (0, react_1.useContext)(context_1.ShopifyContext).shopifyClient;
     var _a = (0, hooks_1.useLoadingWrapper)(), loading = _a.loading, errors = _a.errors, loadingWrapper = _a.loadingWrapper;
     var _b = (0, react_1.useState)({}), order = _b[0], setOrder = _b[1];
     var _c = (0, react_1.useState)(null), orders = _c[0], setOrders = _c[1];

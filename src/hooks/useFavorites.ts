@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { CookieValueTypes, getCookie, setCookie } from 'cookies-next'
-import { ShopContext } from '../context'
+import { ShopifyContext } from '../context'
 import { ProductType } from '../types'
 
 type FavoritesProps = {
@@ -11,7 +11,7 @@ type FavoritesProps = {
 const useFavorites = (props?: FavoritesProps) => {
 
   const { product } = props || {}
-  const { domain } = useContext(ShopContext)
+  const { domain } = useContext(ShopifyContext)
   let cookie = `${domain}-favorites`
 
   const [favorites, setFavorites] = useState<ProductType[]>([])

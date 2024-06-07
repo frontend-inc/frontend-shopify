@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { ApolloProvider } from '@apollo/client'
-import ShopContext from './ShopContext'
+import ShopifyContext from './ShopifyContext'
 import { CheckoutType, CustomerType, CartType } from '../types'
 import { createClient, useApollo } from '../client'
 import { getCookie } from 'cookies-next'
 
-type ShopProviderProps = {
+type ShopifyProviderProps = {
 	domain: string
 	storefrontAccessToken: string
 	children: React.ReactNode
@@ -15,7 +15,7 @@ type ShopProviderProps = {
   customerPortalUrl?: string
 }
 
-const ShopProvider = (props: ShopProviderProps) => {
+const ShopifyProvider = (props: ShopifyProviderProps) => {
 	const {
 		children,
 		logo,
@@ -61,7 +61,8 @@ const ShopProvider = (props: ShopProviderProps) => {
 
 	const value = {
     domain,
-		shopifyClient,
+    storefrontAccessToken,
+		shopifyClient,    
 
 		accessToken,
 		setAccessToken,
@@ -112,10 +113,10 @@ const ShopProvider = (props: ShopProviderProps) => {
 	}
 
 	return (
-		<ShopContext.Provider value={value}>
+		<ShopifyContext.Provider value={value}>
 			<ApolloProvider client={apolloClient}>{children}</ApolloProvider>
-		</ShopContext.Provider>
+		</ShopifyContext.Provider>
 	)
 }
 
-export default ShopProvider
+export default ShopifyProvider

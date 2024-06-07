@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { ShopContext } from '../context'
+import { ShopifyContext } from '../context'
 import { getCookie, setCookie } from 'cookies-next'
 import { CartLineType } from '../types'
 import { useLoadingWrapper } from '../hooks'
 
 const useCart = () => {
-	const { domain, shopifyClient, cart, setCart } = useContext(ShopContext)
+	const { domain, shopifyClient, cart, setCart } = useContext(ShopifyContext)
 	const { errors, loading, loadingWrapper } = useLoadingWrapper()  
   let cookie = `${domain}-cart-id`
 

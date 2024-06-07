@@ -52,7 +52,7 @@ var context_1 = require("../context");
 var hooks_1 = require("../hooks");
 var cookies_next_1 = require("cookies-next");
 var useAuth = function () {
-    var _a = (0, react_1.useContext)(context_1.ShopContext), authCookie = _a.authCookie, shopifyClient = _a.shopifyClient, customer = _a.customer, setCustomer = _a.setCustomer, accessToken = _a.accessToken, setAccessToken = _a.setAccessToken, expiresAt = _a.expiresAt, setExpiresAt = _a.setExpiresAt;
+    var _a = (0, react_1.useContext)(context_1.ShopifyContext), authCookie = _a.authCookie, shopifyClient = _a.shopifyClient, customer = _a.customer, setCustomer = _a.setCustomer, accessToken = _a.accessToken, setAccessToken = _a.setAccessToken, expiresAt = _a.expiresAt, setExpiresAt = _a.setExpiresAt;
     var _b = (0, hooks_1.useLoadingWrapper)(), errors = _b.errors, loading = _b.loading, loadingWrapper = _b.loadingWrapper;
     var login = function (_a) {
         var email = _a.email, password = _a.password;

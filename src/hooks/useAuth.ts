@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { ShopContext } from '../context'
+import { ShopifyContext } from '../context'
 import { useLoadingWrapper } from '../hooks'
 import { deleteCookie, setCookie } from 'cookies-next'
 
@@ -13,7 +13,7 @@ const useAuth = () => {
 		setAccessToken,
 		expiresAt,
 		setExpiresAt,
-	} = useContext(ShopContext)
+	} = useContext(ShopifyContext)
 
 	const { errors, loading, loadingWrapper } = useLoadingWrapper()
 

@@ -41,7 +41,7 @@ var context_1 = require("../context");
 var cookies_next_1 = require("cookies-next");
 var hooks_1 = require("../hooks");
 var useCart = function () {
-    var _a = (0, react_1.useContext)(context_1.ShopContext), domain = _a.domain, shopifyClient = _a.shopifyClient, cart = _a.cart, setCart = _a.setCart;
+    var _a = (0, react_1.useContext)(context_1.ShopifyContext), domain = _a.domain, shopifyClient = _a.shopifyClient, cart = _a.cart, setCart = _a.setCart;
     var _b = (0, hooks_1.useLoadingWrapper)(), errors = _b.errors, loading = _b.loading, loadingWrapper = _b.loadingWrapper;
     var cookie = domain + "-cart-id";
     var cartBuyerIdentityUpdate = function (customerAccessToken, email) { return __awaiter(void 0, void 0, void 0, function () {

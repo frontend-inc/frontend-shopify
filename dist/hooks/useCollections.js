@@ -50,7 +50,7 @@ var context_1 = require("../context");
 var hooks_1 = require("../hooks");
 var PER_PAGE = 20;
 var useCollections = function () {
-    var shopifyClient = (0, react_1.useContext)(context_1.ShopContext).shopifyClient;
+    var shopifyClient = (0, react_1.useContext)(context_1.ShopifyContext).shopifyClient;
     var _a = (0, hooks_1.useLoadingWrapper)(), errors = _a.errors, loading = _a.loading, loadingWrapper = _a.loadingWrapper;
     var _b = (0, react_1.useState)(null), image = _b[0], setImageType = _b[1];
     var _c = (0, react_1.useState)(null), cursor = _c[0], setCursor = _c[1];

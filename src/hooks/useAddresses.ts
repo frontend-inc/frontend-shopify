@@ -1,11 +1,11 @@
 import React, { useState, useContext } from 'react'
-import { ShopContext } from '../context'
+import { ShopifyContext } from '../context'
 import { getShopifyIdFromGid } from '../helpers/utils'
 import { useLoadingWrapper } from '../hooks'
 import { AddressType } from '../types'
 
 const useAddresses = () => {
-	const { shopifyClient } = useContext(ShopContext)
+	const { shopifyClient } = useContext(ShopifyContext)
 
 	const { loading, errors, loadingWrapper } = useLoadingWrapper()
 

@@ -1,9 +1,9 @@
 import React, { useState, useContext } from 'react'
-import { ShopContext } from '../context'
+import { ShopifyContext } from '../context'
 import { useLoadingWrapper } from '../hooks'
 
 const useBlogs = () => {
-	const { shopifyClient } = useContext(ShopContext)
+	const { shopifyClient } = useContext(ShopifyContext)
 
 	const { loading, errors, loadingWrapper } = useLoadingWrapper()
 

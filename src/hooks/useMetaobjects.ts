@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react'
-import { ShopContext } from '../context'
+import { ShopifyContext } from '../context'
 import { useLoadingWrapper } from '../hooks'
 
 const useMetaobjects = () => {
-	const { shopifyClient } = useContext(ShopContext)
+	const { shopifyClient } = useContext(ShopifyContext)
 	const { loading, errors, loadingWrapper } = useLoadingWrapper()
 
 	const [metaobject, setMetaobject] = useState()

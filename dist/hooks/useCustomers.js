@@ -40,7 +40,7 @@ var react_1 = require("react");
 var hooks_1 = require("../hooks");
 var context_1 = require("../context");
 var useCustomers = function () {
-    var shopifyClient = (0, react_1.useContext)(context_1.ShopContext).shopifyClient;
+    var shopifyClient = (0, react_1.useContext)(context_1.ShopifyContext).shopifyClient;
     var _a = (0, hooks_1.useLoadingWrapper)(), errors = _a.errors, loading = _a.loading, loadingWrapper = _a.loadingWrapper;
     var _b = (0, react_1.useState)(null), customer = _b[0], setCustomer = _b[1];
     var findCustomer = function (customerAccessToken) { return __awaiter(void 0, void 0, void 0, function () {

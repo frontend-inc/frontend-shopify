@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react'
-import { ShopContext } from '../context'
+import { ShopifyContext } from '../context'
 import { MetafieldIdentifierType, ProductType } from '../types'
 import { useLoadingWrapper } from '../hooks'
 
 const useProducts = () => {
-	const { shopifyClient } = useContext(ShopContext)
+	const { shopifyClient } = useContext(ShopifyContext)
 
 	const { loading, errors, loadingWrapper } = useLoadingWrapper()
 

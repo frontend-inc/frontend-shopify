@@ -24,10 +24,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = __importStar(require("react"));
 var client_1 = require("@apollo/client");
-var ShopContext_1 = __importDefault(require("./ShopContext"));
+var ShopifyContext_1 = __importDefault(require("./ShopifyContext"));
 var client_2 = require("../client");
 var cookies_next_1 = require("cookies-next");
-var ShopProvider = function (props) {
+var ShopifyProvider = function (props) {
     var children = props.children, logo = props.logo, domain = props.domain, shopUrl = props.shopUrl, storefrontAccessToken = props.storefrontAccessToken, customerPortalUrl = props.customerPortalUrl, _a = props.apiVersion, apiVersion = _a === void 0 ? '2024-04' : _a;
     var authCookie = domain + "-shopify-access-token";
     var fetchAccessToken = function () { return String((0, cookies_next_1.getCookie)(authCookie)); };
@@ -52,6 +52,7 @@ var ShopProvider = function (props) {
     var toggleSearch = function () { return setSearchOpen(!searchOpen); };
     var value = {
         domain: domain,
+        storefrontAccessToken: storefrontAccessToken,
         shopifyClient: shopifyClient,
         accessToken: accessToken,
         setAccessToken: setAccessToken,
@@ -87,7 +88,7 @@ var ShopProvider = function (props) {
         lineItemTotal: lineItemTotal,
         setLineItemTotal: setLineItemTotal,
     };
-    return (react_1.default.createElement(ShopContext_1.default.Provider, { value: value },
+    return (react_1.default.createElement(ShopifyContext_1.default.Provider, { value: value },
         react_1.default.createElement(client_1.ApolloProvider, { client: apolloClient }, children)));
 };
-exports.default = ShopProvider;
+exports.default = ShopifyProvider;

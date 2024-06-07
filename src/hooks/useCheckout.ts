@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { ShopContext } from '../context'
+import { ShopifyContext } from '../context'
 import { setCookie, getCookie } from 'cookies-next'
 import { useLoadingWrapper } from '../hooks'
 
 const useCheckout = () => {
 	
   const { domain, shopifyClient, checkout, setCheckout } =
-		useContext(ShopContext)
+		useContext(ShopifyContext)
 
   let cookie = `${domain}-checkout-id`
 

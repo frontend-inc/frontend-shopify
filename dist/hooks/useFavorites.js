@@ -14,7 +14,7 @@ var cookies_next_1 = require("cookies-next");
 var context_1 = require("../context");
 var useFavorites = function (props) {
     var product = (props || {}).product;
-    var domain = (0, react_1.useContext)(context_1.ShopContext).domain;
+    var domain = (0, react_1.useContext)(context_1.ShopifyContext).domain;
     var cookie = domain + "-favorites";
     var _a = (0, react_1.useState)([]), favorites = _a[0], setFavorites = _a[1];
     var _b = (0, react_1.useState)(false), isFavorite = _b[0], setIsFavorite = _b[1];

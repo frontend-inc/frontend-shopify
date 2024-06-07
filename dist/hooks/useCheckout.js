@@ -41,7 +41,7 @@ var context_1 = require("../context");
 var cookies_next_1 = require("cookies-next");
 var hooks_1 = require("../hooks");
 var useCheckout = function () {
-    var _a = (0, react_1.useContext)(context_1.ShopContext), domain = _a.domain, shopifyClient = _a.shopifyClient, checkout = _a.checkout, setCheckout = _a.setCheckout;
+    var _a = (0, react_1.useContext)(context_1.ShopifyContext), domain = _a.domain, shopifyClient = _a.shopifyClient, checkout = _a.checkout, setCheckout = _a.setCheckout;
     var cookie = domain + "-checkout-id";
     var _b = (0, hooks_1.useLoadingWrapper)(), loading = _b.loading, errors = _b.errors, loadingWrapper = _b.loadingWrapper;
     var _c = (0, react_1.useState)([]), discountCodes = _c[0], setDiscountCodes = _c[1];
