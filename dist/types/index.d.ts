@@ -115,6 +115,13 @@ export declare type MetafieldIdentifierType = {
     namespace: string;
     key: string;
 };
+export declare type ShopifyMetafieldType = {
+    label?: string;
+    name: string;
+    variant: string;
+    namespace?: string;
+    key?: string;
+};
 export declare type MetafieldType = {
     id: string;
     key: string;

@@ -155,6 +155,15 @@ export type MetafieldIdentifierType = {
   key: string 
 }
 
+
+export type ShopifyMetafieldType = {
+  label?: string
+  name: string // Format is namespace.key
+  variant: string
+  namespace?: string
+  key?: string
+}
+
 export type MetafieldType = {
 	id: string
 	key: string
