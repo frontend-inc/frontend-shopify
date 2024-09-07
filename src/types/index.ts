@@ -256,7 +256,7 @@ export type CartLineType = {
     }[]
     sellingPlan: SellingPlanType
   }
-	merchandise: ProductVariantType 
+	merchandise?: ProductVariantType 
 }
 
 export type CartType = {

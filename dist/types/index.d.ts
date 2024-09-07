@@ -209,7 +209,7 @@ export declare type CartLineType = {
         }[];
         sellingPlan: SellingPlanType;
     };
-    merchandise: ProductVariantType;
+    merchandise?: ProductVariantType;
 };
 export declare type CartType = {
     id: string;
