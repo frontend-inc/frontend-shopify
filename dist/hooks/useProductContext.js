@@ -19,7 +19,7 @@ var useProductContext = function () {
     var _c = (0, react_1.useState)(null), sellingPlans = _c[0], setSellingPlans = _c[1];
     var _d = (0, react_1.useState)(), price = _d[0], setPrice = _d[1];
     var _e = (0, react_1.useState)(), compareAtPrice = _e[0], setCompareAtPrice = _e[1];
-    var _f = (0, react_1.useContext)(context_1.ProductContext), product = _f.product, setProduct = _f.setProduct, variant = _f.variant, setVariant = _f.setVariant, collection = _f.collection, setCollection = _f.setCollection, selectedOptions = _f.selectedOptions, setSelectedOptions = _f.setSelectedOptions;
+    var _f = (0, react_1.useContext)(context_1.ShopifyProductContext), product = _f.product, setProduct = _f.setProduct, variant = _f.variant, setVariant = _f.setVariant, collection = _f.collection, setCollection = _f.setCollection, selectedOptions = _f.selectedOptions, setSelectedOptions = _f.setSelectedOptions;
     var handleImageClick = function (image) {
         setImageType(image);
     };

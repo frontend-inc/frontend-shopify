@@ -167,6 +167,7 @@ export declare type ProductVariantType = {
     weight?: number;
     weightUnit?: string;
     presentmentPrices?: MoneyV2Type[];
+    product?: ProductType;
 };
 export declare type SEO = {
     title?: string;
@@ -208,7 +209,7 @@ export declare type CartLineType = {
         }[];
         sellingPlan: SellingPlanType;
     };
-    merchandise?: ProductVariantType;
+    merchandise: ProductVariantType;
 };
 export declare type CartType = {
     id: string;

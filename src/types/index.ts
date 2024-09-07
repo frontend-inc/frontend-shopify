@@ -211,6 +211,7 @@ export type ProductVariantType = {
 	weight?: number
 	weightUnit?: string
 	presentmentPrices?: MoneyV2Type[]
+  product?: ProductType
 }
 
 export type SEO = {
@@ -255,7 +256,7 @@ export type CartLineType = {
     }[]
     sellingPlan: SellingPlanType
   }
-	merchandise?: ProductVariantType 
+	merchandise: ProductVariantType 
 }
 
 export type CartType = {

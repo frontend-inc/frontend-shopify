@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { ProductContext } from '../context'
+import { ShopifyProductContext } from '../context'
 import { ImageType } from '../types'
 
 const useProductContext = () => {
@@ -19,7 +19,7 @@ const useProductContext = () => {
 		setCollection,
 		selectedOptions,
 		setSelectedOptions,
-	} = useContext(ProductContext)
+	} = useContext(ShopifyProductContext)
 
 	const handleImageClick = (image) => {
 		setImageType(image)

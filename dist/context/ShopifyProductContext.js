@@ -1,5 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = require("react");
-var ShopifyContext = (0, react_1.createContext)({});
-exports.default = ShopifyContext;
+var ShopifyProductContext = (0, react_1.createContext)({});
+exports.default = ShopifyProductContext;

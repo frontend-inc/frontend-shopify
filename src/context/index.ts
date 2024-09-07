@@ -1,7 +1,6 @@
-// Common
 export { default as ShopifyContext } from './ShopifyContext'
 export { default as ShopifyProvider } from './ShopifyProvider'
-export { default as ProductContext } from './ProductContext'
-export { default as ProductProvider } from './ProductProvider'
-export { default as CollectionContext } from './CollectionContext'
-export { default as CollectionProvider } from './CollectionProvider'
+export { default as ShopifyProductContext } from './ShopifyProductContext'
+export { default as ShopifyProductProvider } from './ShopifyProductProvider'
+export { default as ShopifyCollectionContext } from './ShopifyCollectionContext'
+export { default as ShopifyCollectionProvider } from './ShopifyCollectionProvider'

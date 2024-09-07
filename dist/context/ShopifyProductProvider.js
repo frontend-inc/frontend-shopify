@@ -23,20 +23,31 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = __importStar(require("react"));
-var CollectionContext_1 = __importDefault(require("./CollectionContext"));
-var CollectionProvider = function (props) {
+var ShopifyProductContext_1 = __importDefault(require("./ShopifyProductContext"));
+var ShopifyProductProvider = function (props) {
     var children = props.children;
-    var _a = (0, react_1.useState)(null), collection = _a[0], setCollection = _a[1];
-    var _b = (0, react_1.useState)(null), products = _b[0], setProducts = _b[1];
-    var _c = (0, react_1.useState)({}), query = _c[0], setQuery = _c[1];
+    var _a = (0, react_1.useState)(null), product = _a[0], setProduct = _a[1];
+    var _b = (0, react_1.useState)(null), variant = _b[0], setVariant = _b[1];
+    var _c = (0, react_1.useState)(null), collection = _c[0], setCollection = _c[1];
+    var _d = (0, react_1.useState)({}), selectedOptions = _d[0], setSelectedOptions = _d[1];
+    var _e = (0, react_1.useState)(true), availableForSale = _e[0], setAvailableForSale = _e[1];
+    (0, react_1.useEffect)(function () {
+        if (product) {
+            setAvailableForSale(product.availableForSale);
+        }
+    }, [product]);
     var value = {
-        query: query,
-        setQuery: setQuery,
+        availableForSale: availableForSale,
+        setAvailableForSale: setAvailableForSale,
+        product: product,
+        setProduct: setProduct,
+        variant: variant,
+        setVariant: setVariant,
         collection: collection,
         setCollection: setCollection,
-        products: products,
-        setProducts: setProducts,
+        selectedOptions: selectedOptions,
+        setSelectedOptions: setSelectedOptions,
     };
-    return (react_1.default.createElement(CollectionContext_1.default.Provider, { value: value }, children));
+    return (react_1.default.createElement(ShopifyProductContext_1.default.Provider, { value: value }, children));
 };
-exports.default = CollectionProvider;
+exports.default = ShopifyProductProvider;

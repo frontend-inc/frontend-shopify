@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react'
-import ProductContext from './ProductContext'
+import ShopifyProductContext from './ShopifyProductContext'
 import {
 	ProductVariantType,
 	ProductType,
 	CollectionType,
 } from '../types'
 
-type ProductProviderProps = {
+type ShopifyProductProviderProps = {
 	children: React.ReactNode
 }
 
-const ProductProvider = (props: ProductProviderProps) => {
+const ShopifyProductProvider = (props: ShopifyProductProviderProps) => {
 	const { children } = props
 	const [product, setProduct] = useState<ProductType>(null)
 	const [variant, setVariant] = useState<ProductVariantType>(null)
@@ -40,8 +40,8 @@ const ProductProvider = (props: ProductProviderProps) => {
 	}
 
 	return (
-		<ProductContext.Provider value={value}>{children}</ProductContext.Provider>
+		<ShopifyProductContext.Provider value={value}>{children}</ShopifyProductContext.Provider>
 	)
 }
 
-export default ProductProvider
+export default ShopifyProductProvider

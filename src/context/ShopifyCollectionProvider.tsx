@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import CollectionContext from './CollectionContext'
+import ShopifyCollectionContext from './ShopifyCollectionContext'
 import { ProductType, CollectionType } from '../types'
 
-type CollectionProviderProps = {
+type ShopifyCollectionProviderProps = {
 	children: React.ReactNode
 }
 
-const CollectionProvider = (props: CollectionProviderProps) => {
+const ShopifyCollectionProvider = (props: ShopifyCollectionProviderProps) => {
 	const { children } = props
 	const [collection, setCollection] = useState<CollectionType>(null)
 	const [products, setProducts] = useState<ProductType[]>(null)
@@ -22,10 +22,10 @@ const CollectionProvider = (props: CollectionProviderProps) => {
 	}
 
 	return (
-		<CollectionContext.Provider value={value}>
+		<ShopifyCollectionContext.Provider value={value}>
 			{children}
-		</CollectionContext.Provider>
+		</ShopifyCollectionContext.Provider>
 	)
 }
 
-export default CollectionProvider
+export default ShopifyCollectionProvider
