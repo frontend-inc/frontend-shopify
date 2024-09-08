@@ -36,7 +36,7 @@ export declare type MoneyV2Type = {
     amount: string;
     currencyCode: string;
 };
-export declare type ImageType = {
+export declare type ShopifyImageType = {
     id: string;
     altText: string;
     url: string;
@@ -58,7 +58,7 @@ export declare type VariantType = {
     availableForSale: boolean;
     compareAtPrice?: MoneyV2Type;
     id: string;
-    image?: ImageType;
+    image?: ShopifyImageType;
     price: MoneyV2Type;
     requiresShipping: boolean;
     selectedOptions: SelectedOptionType[];
@@ -90,8 +90,8 @@ export declare type MetafieldReferenceVariantType = {
     sku: string;
     availableForSale: boolean;
 };
-export declare type MetafieldReferenceImageType = {
-    image: ImageType;
+export declare type MetafieldReferenceShopifyImageType = {
+    image: ShopifyImageType;
 };
 export declare type MetafieldReferenceType = {
     id: string;
@@ -128,7 +128,7 @@ export declare type MetafieldType = {
     value: string;
     namespace: string;
     description: string;
-    reference?: MetafieldReferenceVariantType | MetafieldReferenceImageType;
+    reference?: MetafieldReferenceVariantType | MetafieldReferenceShopifyImageType;
     references: MetafieldReferenceType[];
 };
 export declare type ShopifyProductType = {
@@ -139,7 +139,7 @@ export declare type ShopifyProductType = {
     descriptionHtml: string;
     handle: string;
     id: string;
-    images: ImageType[];
+    images: ShopifyImageType[];
     metafields: MetafieldType[];
     onlineStoreUrl: string;
     options: ProductOptionType[];
@@ -157,7 +157,7 @@ export declare type ProductVariantType = {
     id: string;
     title: string;
     price: MoneyV2Type;
-    image?: ImageType;
+    image?: ShopifyImageType;
     compareAtPriceV2?: MoneyV2Type;
     availableForSale: boolean;
     sku?: string;
@@ -173,14 +173,14 @@ export declare type SEO = {
     title?: string;
     description?: string;
 };
-export declare type CollectionType = {
+export declare type ShopifyCollectionType = {
     id: string;
     title: string;
     description: string;
     descriptionHtml: string;
     updatedAt: string;
     handle: string;
-    image?: ImageType;
+    image?: ShopifyImageType;
     seo: SEO;
     products: ShopifyProductType[];
 };
@@ -211,7 +211,7 @@ export declare type CartLineType = {
     };
     merchandise?: ProductVariantType;
 };
-export declare type CartType = {
+export declare type ShopifyCartType = {
     id: string;
     attribute: {
         key: string;
@@ -261,7 +261,7 @@ export declare type ShippingRateType = {
     title: string;
     price: MoneyV2Type;
 };
-export declare type CheckoutType = {
+export declare type ShopifyCheckoutType = {
     id: string;
     webUrl: string;
     totalPriceV2: MoneyV2Type;
@@ -272,11 +272,11 @@ export declare type CheckoutType = {
     updatedAt: string;
     email: string | null;
     note: string | null;
-    shippingAddress: AddressType | null;
+    shippingAddress: ShopifyAddressType | null;
     shippingLine: ShippingRateType | null;
     lineItems: CheckoutLineItemType[];
 };
-export declare type AddressType = {
+export declare type ShopifyAddressType = {
     id?: string;
     phone?: string;
     firstName: string;
@@ -288,10 +288,10 @@ export declare type AddressType = {
     country: string;
     zip: string;
 };
-export declare type DefaultAddressType = AddressType & {
+export declare type DefaultShopifyAddressType = ShopifyAddressType & {
     name: string;
 };
-export declare type CustomerType = {
+export declare type ShopifyCustomerType = {
     id: string;
     displayName: string;
     email: string;
@@ -301,8 +301,8 @@ export declare type CustomerType = {
     createdAt: string;
     updatedAt: string;
     acceptsMarketing: boolean;
-    addresses: AddressType[];
-    defaultAddress?: DefaultAddressType;
+    addresses: ShopifyAddressType[];
+    defaultAddress?: DefaultShopifyAddressType;
     lastIncompleteCheckout?: {
         id: string;
         createdAt: string;
@@ -312,7 +312,7 @@ export declare type CustomerType = {
     password?: string;
     passwordConfirmation?: string;
 };
-export declare type MailingAddressType = {
+export declare type MailingShopifyAddressType = {
     address1: string;
     address2?: string;
     city: string;
@@ -331,7 +331,7 @@ export declare type OrderLineItemType = {
     price?: MoneyV2Type;
     variant?: VariantType;
 };
-export declare type ShippingAddressType = {
+export declare type ShopifyShippingAddressType = {
     firstName: string;
     lastName: string;
     address1: string;
@@ -343,7 +343,7 @@ export declare type ShippingAddressType = {
     phone?: string;
     company?: string;
 };
-export declare type OrderType = {
+export declare type ShopifyOrderType = {
     id: string;
     name: string;
     statusUrl: string;
@@ -354,5 +354,5 @@ export declare type OrderType = {
     totalRefunded: MoneyV2Type;
     totalShippingPrice: MoneyV2Type;
     lineItems: OrderLineItemType[];
-    shippingAddress?: ShippingAddressType;
+    shippingAddress?: ShopifyShippingAddressType;
 };

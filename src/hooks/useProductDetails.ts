@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { ShopifyProductType, ProductVariantType, ImageType } from '../types'
+import { ShopifyProductType, ProductVariantType, ShopifyImageType } from '../types'
 
 type useProductDetailsProps = {
   product: ShopifyProductType 
@@ -10,8 +10,8 @@ const useProductDetails = (props: useProductDetailsProps) => {
   const { product } = props
 
   const [variant, setVariant] = useState<ProductVariantType>(null)
-  const [images, setImages] = useState<ImageType[]>()
-  const [image, setImage] = useState<ImageType>(null)
+  const [images, setImages] = useState<ShopifyImageType[]>()
+  const [image, setImage] = useState<ShopifyImageType>(null)
   const [selectedOptions, setSelectedOptions] = useState({})
   const [sellingPlans, setSellingPlans] = useState(null)
 	const [price, setPrice] = useState<number | null>()

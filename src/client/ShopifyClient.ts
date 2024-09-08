@@ -1,7 +1,7 @@
 import { initApollo } from './apollo'
 import {
-	AddressType,
-	CustomerType,
+	ShopifyAddressType,
+	ShopifyCustomerType,
 	QueryResponseType,  
 	QueryParamsType,
 	SearchFilterType,
@@ -573,7 +573,7 @@ export class ShopifyClient {
 		}
 	}
 
-	async signup(customer: CustomerType): Promise<QueryResponseType> {
+	async signup(customer: ShopifyCustomerType): Promise<QueryResponseType> {
 		const response = await this.executeMutation(MUTATION_CUSTOMER_CREATE, {
 			input: customer,
 		})
@@ -651,7 +651,7 @@ export class ShopifyClient {
 		}
 	}
 
-	async updateCustomer(customer: CustomerType): Promise<QueryResponseType> {
+	async updateCustomer(customer: ShopifyCustomerType): Promise<QueryResponseType> {
 		const customerAccessToken = this._accessToken || this._fetchAccessToken()
 		const response = await this.executeMutation(MUTATION_CUSTOMER_UPDATE, {
 			customerAccessToken,
@@ -697,7 +697,7 @@ export class ShopifyClient {
 		}
 	}
 
-	async updateCustomerAddress(address: AddressType): Promise<QueryResponseType> {
+	async updateCustomerAddress(address: ShopifyAddressType): Promise<QueryResponseType> {
 		const customerAccessToken = this._accessToken || this._fetchAccessToken()
 		const response = await this.executeMutation(
 			MUTATION_CUSTOMER_ADDRESS_UPDATE,

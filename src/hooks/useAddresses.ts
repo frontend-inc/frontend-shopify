@@ -2,15 +2,15 @@ import React, { useState, useContext } from 'react'
 import { ShopifyContext } from '../context'
 import { getShopifyIdFromGid } from '../helpers/utils'
 import { useLoadingWrapper } from '../hooks'
-import { AddressType } from '../types'
+import { ShopifyAddressType } from '../types'
 
 const useAddresses = () => {
 	const { shopifyClient } = useContext(ShopifyContext)
 
 	const { loading, errors, loadingWrapper } = useLoadingWrapper()
 
-	const [address, setAddress] = useState<any | AddressType>({})
-	const [addresses, setAddresses] = useState<AddressType[]>(null)
+	const [address, setAddress] = useState<any | ShopifyAddressType>({})
+	const [addresses, setAddresses] = useState<ShopifyAddressType[]>(null)
 
 	const findCustomerAddress = async (addressId) => {
 		const response = await loadingWrapper(() =>

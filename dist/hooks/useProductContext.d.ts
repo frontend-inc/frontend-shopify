@@ -4,9 +4,9 @@ declare const useProductContext: () => {
     compareAtPrice: any;
     setCompareAtPrice: any;
     image: any;
-    setImageType: any;
+    setShopifyImageType: any;
     images: any;
-    setImageTypes: any;
+    setShopifyImageTypes: any;
     handleImageClick: (image: any) => void;
     product: any;
     setProduct: any;

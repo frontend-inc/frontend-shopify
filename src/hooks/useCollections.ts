@@ -2,8 +2,8 @@ import React, { useContext, useState } from 'react'
 import { ShopifyContext } from '../context'
 import { useLoadingWrapper } from '../hooks'
 import {
-	ImageType,
-	CollectionType,
+	ShopifyImageType,
+	ShopifyCollectionType,
 	ShopifyProductType,
 } from '../types'
 
@@ -14,12 +14,12 @@ const useCollections = () => {
 
 	const { errors, loading, loadingWrapper } = useLoadingWrapper()
 
-	const [image, setImageType] = useState<ImageType>(null)
+	const [image, setShopifyImageType] = useState<ShopifyImageType>(null)
 	const [cursor, setCursor] = useState<string>(null)
 	const [hasNextPage, setHasNextPage] = useState(false)
 	const [products, setProducts] = useState<ShopifyProductType[]>(null)
-	const [collection, setCollection] = useState<CollectionType>(null)
-	const [collections, setCollections] = useState<CollectionType[]>(null)
+	const [collection, setCollection] = useState<ShopifyCollectionType>(null)
+	const [collections, setCollections] = useState<ShopifyCollectionType[]>(null)
 
 	const findCollection = async (handle, query?: any) => {
 		const {
@@ -48,7 +48,7 @@ const useCollections = () => {
 		} else {
 			setProducts(collectionProducts)
 		}
-		setImageType(resp?.data?.image?.url)
+		setShopifyImageType(resp?.data?.image?.url)
 	}
 
 	const findCollections = async (perPage = PER_PAGE) => {

@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { ShopifyProductContext } from '../context'
-import { ImageType } from '../types'
+import { ShopifyImageType } from '../types'
 
 const useProductContext = () => {
-	const [image, setImageType] = useState<ImageType>(null)
-	const [images, setImageTypes] = useState<ImageType[]>(null)
+	const [image, setShopifyImageType] = useState<ShopifyImageType>(null)
+	const [images, setShopifyImageTypes] = useState<ShopifyImageType[]>(null)
 
   const [sellingPlans, setSellingPlans] = useState(null)
 	const [price, setPrice] = useState<number | null>()
@@ -22,7 +22,7 @@ const useProductContext = () => {
 	} = useContext(ShopifyProductContext)
 
 	const handleImageClick = (image) => {
-		setImageType(image)
+		setShopifyImageType(image)
 	}
 
 	const handleOptionChange = (name, value) => {
@@ -50,8 +50,8 @@ const useProductContext = () => {
 	useEffect(() => {
 		if (product) {
 			setSelectedOptions({})
-			setImageTypes(product?.images?.edges.map((e) => e.node))
-			setImageType(product?.images?.edges[0]?.node)
+			setShopifyImageTypes(product?.images?.edges.map((e) => e.node))
+			setShopifyImageType(product?.images?.edges[0]?.node)
 		}
 		if (product?.variants?.edges?.length == 1) {
 			selectVariant(product, {})
@@ -60,11 +60,11 @@ const useProductContext = () => {
 
 	useEffect(() => {
 		if (variant) {
-			setImageType(variant?.image)
+			setShopifyImageType(variant?.image)
 			setPrice(variant?.price?.amount)
 			setCompareAtPrice(variant?.compareAtPrice?.amount)
 		} else if (product) {
-			setImageType(product?.images?.edges[0]?.node)
+			setShopifyImageType(product?.images?.edges[0]?.node)
 			setPrice(product?.priceRange?.minVariantPrice?.amount)
 			setCompareAtPrice(null)
 		}
@@ -88,9 +88,9 @@ const useProductContext = () => {
 		setCompareAtPrice,
 
 		image,
-		setImageType,
+		setShopifyImageType,
 		images,
-		setImageTypes,
+		setShopifyImageTypes,
 		handleImageClick,
 
 		product,

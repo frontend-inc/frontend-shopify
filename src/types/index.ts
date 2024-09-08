@@ -64,7 +64,7 @@ export type MoneyV2Type = {
 	currencyCode: string
 }
 
-export type ImageType = {
+export type ShopifyImageType = {
 	id: string
 	altText: string
 	url: string
@@ -90,7 +90,7 @@ export type VariantType = {
 	availableForSale: boolean
 	compareAtPrice?: MoneyV2Type
 	id: string
-	image?: ImageType
+	image?: ShopifyImageType
 	price: MoneyV2Type
 	requiresShipping: boolean
 	selectedOptions: SelectedOptionType[]
@@ -127,8 +127,8 @@ export type MetafieldReferenceVariantType = {
 	availableForSale: boolean
 }
 
-export type MetafieldReferenceImageType = {
-	image: ImageType
+export type MetafieldReferenceShopifyImageType = {
+	image: ShopifyImageType
 }
 
 export type MetafieldReferenceType = {
@@ -170,7 +170,7 @@ export type MetafieldType = {
 	value: string
 	namespace: string
 	description: string
-	reference?: MetafieldReferenceVariantType | MetafieldReferenceImageType
+	reference?: MetafieldReferenceVariantType | MetafieldReferenceShopifyImageType
 	references: MetafieldReferenceType[]
 }
 
@@ -182,7 +182,7 @@ export type ShopifyProductType = {
 	descriptionHtml: string
 	handle: string
 	id: string
-	images: ImageType[]
+	images: ShopifyImageType[]
 	metafields: MetafieldType[]
 	onlineStoreUrl: string
 	options: ProductOptionType[]
@@ -201,7 +201,7 @@ export type ProductVariantType = {
 	id: string
 	title: string
 	price: MoneyV2Type
-	image?: ImageType
+	image?: ShopifyImageType
 	compareAtPriceV2?: MoneyV2Type
 	availableForSale: boolean
 	sku?: string
@@ -219,14 +219,14 @@ export type SEO = {
 	description?: string
 }
 
-export type CollectionType = {
+export type ShopifyCollectionType = {
 	id: string
 	title: string
 	description: string
 	descriptionHtml: string
 	updatedAt: string
 	handle: string
-	image?: ImageType
+	image?: ShopifyImageType
 	seo: SEO
 	products: ShopifyProductType[]
 }
@@ -259,7 +259,7 @@ export type CartLineType = {
 	merchandise?: ProductVariantType 
 }
 
-export type CartType = {
+export type ShopifyCartType = {
 	id: string
   attribute: {
     key: string
@@ -312,7 +312,7 @@ export type ShippingRateType = {
 	price: MoneyV2Type
 }
 
-export type CheckoutType = {
+export type ShopifyCheckoutType = {
 	id: string
 	webUrl: string
 	totalPriceV2: MoneyV2Type
@@ -323,12 +323,12 @@ export type CheckoutType = {
 	updatedAt: string
 	email: string | null
 	note: string | null
-	shippingAddress: AddressType | null
+	shippingAddress: ShopifyAddressType | null
 	shippingLine: ShippingRateType | null
 	lineItems: CheckoutLineItemType[]
 }
 
-export type AddressType = {
+export type ShopifyAddressType = {
 	id?: string
 	phone?: string
 	firstName: string
@@ -341,11 +341,11 @@ export type AddressType = {
 	zip: string
 }
 
-export type DefaultAddressType = AddressType & {
+export type DefaultShopifyAddressType = ShopifyAddressType & {
 	name: string
 }
 
-export type CustomerType = {
+export type ShopifyCustomerType = {
 	id: string
 	displayName: string
 	email: string
@@ -355,8 +355,8 @@ export type CustomerType = {
 	createdAt: string
 	updatedAt: string
 	acceptsMarketing: boolean
-	addresses: AddressType[]
-	defaultAddress?: DefaultAddressType
+	addresses: ShopifyAddressType[]
+	defaultAddress?: DefaultShopifyAddressType
 	lastIncompleteCheckout?: {
 		id: string
 		createdAt: string
@@ -367,7 +367,7 @@ export type CustomerType = {
 	passwordConfirmation?: string
 }
 
-export type MailingAddressType = {
+export type MailingShopifyAddressType = {
 	address1: string
 	address2?: string
 	city: string
@@ -388,7 +388,7 @@ export type OrderLineItemType = {
 	variant?: VariantType
 }
 
-export type ShippingAddressType = {
+export type ShopifyShippingAddressType = {
 	firstName: string
 	lastName: string
 	address1: string
@@ -401,7 +401,7 @@ export type ShippingAddressType = {
 	company?: string
 }
 
-export type OrderType = {
+export type ShopifyOrderType = {
 	id: string
 	name: string
 	statusUrl: string
@@ -412,5 +412,5 @@ export type OrderType = {
 	totalRefunded: MoneyV2Type
 	totalShippingPrice: MoneyV2Type
 	lineItems: OrderLineItemType[]
-	shippingAddress?: ShippingAddressType
+	shippingAddress?: ShopifyShippingAddressType
 }

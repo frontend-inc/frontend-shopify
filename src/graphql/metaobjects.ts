@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client'
 import { ProductFragment } from './products'
 import { CollectionFragment } from './collections'
-import { ImageTypeFragment } from './media'
+import { ShopifyImageTypeFragment } from './media'
 
 const MetaobjectFragment = gql`
 	fragment MetaobjectFragment on Metaobject {
@@ -19,7 +19,7 @@ const MetaobjectFragment = gql`
 				}
 				... on MediaImage {
 					image {
-						...ImageTypeFragment
+						...ShopifyImageTypeFragment
 					}
 				}
 				... on Metaobject {
@@ -37,7 +37,7 @@ const MetaobjectFragment = gql`
 							}
 							... on MediaImage {
 								image {
-									...ImageTypeFragment
+									...ShopifyImageTypeFragment
 								}
 							}
 							... on Metaobject {
@@ -50,7 +50,7 @@ const MetaobjectFragment = gql`
 									reference {
 										... on MediaImage {
 											image {
-												...ImageTypeFragment
+												...ShopifyImageTypeFragment
 											}
 										}
 									}
@@ -71,7 +71,7 @@ const MetaobjectFragment = gql`
 						}
 						... on MediaImage {
 							image {
-								...ImageTypeFragment
+								...ShopifyImageTypeFragment
 							}
 						}
 						... on Metaobject {
@@ -84,7 +84,7 @@ const MetaobjectFragment = gql`
 								reference {
 									... on MediaImage {
 										image {
-											...ImageTypeFragment
+											...ShopifyImageTypeFragment
 										}
 									}
 								}
@@ -97,7 +97,7 @@ const MetaobjectFragment = gql`
 	}
 	${CollectionFragment}
 	${ProductFragment}
-	${ImageTypeFragment}
+	${ShopifyImageTypeFragment}
 `
 
 export const QUERY_METAOBJECT_BY_HANDLE = gql`
@@ -122,7 +122,7 @@ export const QUERY_METAOBJECTS = gql`
 						reference {
 							... on MediaImage {
 								image {
-									...ImageTypeFragment
+									...ShopifyImageTypeFragment
 								}
 							}
 							... on Product {
@@ -145,6 +145,6 @@ export const QUERY_METAOBJECTS = gql`
 			}
 		}
 	}
-	${ImageTypeFragment}
+	${ShopifyImageTypeFragment}
 	${ProductFragment}
 `

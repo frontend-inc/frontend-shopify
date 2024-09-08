@@ -52,7 +52,7 @@ var PER_PAGE = 20;
 var useCollections = function () {
     var shopifyClient = (0, react_1.useContext)(context_1.ShopifyContext).shopifyClient;
     var _a = (0, hooks_1.useLoadingWrapper)(), errors = _a.errors, loading = _a.loading, loadingWrapper = _a.loadingWrapper;
-    var _b = (0, react_1.useState)(null), image = _b[0], setImageType = _b[1];
+    var _b = (0, react_1.useState)(null), image = _b[0], setShopifyImageType = _b[1];
     var _c = (0, react_1.useState)(null), cursor = _c[0], setCursor = _c[1];
     var _d = (0, react_1.useState)(false), hasNextPage = _d[0], setHasNextPage = _d[1];
     var _e = (0, react_1.useState)(null), products = _e[0], setProducts = _e[1];
@@ -86,7 +86,7 @@ var useCollections = function () {
                     else {
                         setProducts(collectionProducts);
                     }
-                    setImageType((_j = (_h = resp === null || resp === void 0 ? void 0 : resp.data) === null || _h === void 0 ? void 0 : _h.image) === null || _j === void 0 ? void 0 : _j.url);
+                    setShopifyImageType((_j = (_h = resp === null || resp === void 0 ? void 0 : resp.data) === null || _h === void 0 ? void 0 : _h.image) === null || _j === void 0 ? void 0 : _j.url);
                     return [2 /*return*/];
             }
         });

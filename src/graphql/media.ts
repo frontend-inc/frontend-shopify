@@ -36,8 +36,8 @@ export const FieldsForMediaTypes = gql`
   }
 `
 
-export const ImageTypeFragment = gql`
-	fragment ImageTypeFragment on ImageType {
+export const ShopifyImageTypeFragment = gql`
+	fragment ShopifyImageTypeFragment on ShopifyImageType {
 		id
 		altText
 		url

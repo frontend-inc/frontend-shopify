@@ -1,4 +1,4 @@
-import { AddressType, CustomerType, QueryResponseType, QueryParamsType, SearchFilterType, ProductSortKeyType, MetafieldIdentifierType } from '../types';
+import { ShopifyAddressType, ShopifyCustomerType, QueryResponseType, QueryParamsType, SearchFilterType, ProductSortKeyType, MetafieldIdentifierType } from '../types';
 export declare class ShopifyClient {
     private _first?;
     private _filters?;
@@ -55,18 +55,18 @@ export declare class ShopifyClient {
     findCollection(handle: string, query: any): Promise<QueryResponseType>;
     findCollections(first?: number): Promise<QueryResponseType>;
     login(email: string, password: string): Promise<QueryResponseType>;
-    signup(customer: CustomerType): Promise<QueryResponseType>;
+    signup(customer: ShopifyCustomerType): Promise<QueryResponseType>;
     forgotPassword(email: string): Promise<QueryResponseType>;
     resetPassword(resetToken: string, password: string): Promise<QueryResponseType>;
     refreshCustomerAccessToken(): Promise<QueryResponseType>;
     logout(): Promise<QueryResponseType>;
     findCustomer(): Promise<QueryResponseType>;
-    updateCustomer(customer: CustomerType): Promise<QueryResponseType>;
+    updateCustomer(customer: ShopifyCustomerType): Promise<QueryResponseType>;
     updateCustomerPassword({ password }: {
         password: any;
     }): Promise<QueryResponseType>;
     findCustomerAddresses(first?: number, cursor?: string): Promise<QueryResponseType>;
-    updateCustomerAddress(address: AddressType): Promise<QueryResponseType>;
+    updateCustomerAddress(address: ShopifyAddressType): Promise<QueryResponseType>;
     createCustomerAddress(address: any): Promise<QueryResponseType>;
     deleteCustomerAddress(id: string): Promise<QueryResponseType>;
     findCustomerOrders(orderParams: any): Promise<QueryResponseType>;

@@ -14,14 +14,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = require("react");
 var context_1 = require("../context");
 var useProductContext = function () {
-    var _a = (0, react_1.useState)(null), image = _a[0], setImageType = _a[1];
-    var _b = (0, react_1.useState)(null), images = _b[0], setImageTypes = _b[1];
+    var _a = (0, react_1.useState)(null), image = _a[0], setShopifyImageType = _a[1];
+    var _b = (0, react_1.useState)(null), images = _b[0], setShopifyImageTypes = _b[1];
     var _c = (0, react_1.useState)(null), sellingPlans = _c[0], setSellingPlans = _c[1];
     var _d = (0, react_1.useState)(), price = _d[0], setPrice = _d[1];
     var _e = (0, react_1.useState)(), compareAtPrice = _e[0], setCompareAtPrice = _e[1];
     var _f = (0, react_1.useContext)(context_1.ShopifyProductContext), product = _f.product, setProduct = _f.setProduct, variant = _f.variant, setVariant = _f.setVariant, collection = _f.collection, setCollection = _f.setCollection, selectedOptions = _f.selectedOptions, setSelectedOptions = _f.setSelectedOptions;
     var handleImageClick = function (image) {
-        setImageType(image);
+        setShopifyImageType(image);
     };
     var handleOptionChange = function (name, value) {
         var _a;
@@ -49,8 +49,8 @@ var useProductContext = function () {
         var _a, _b, _c, _d, _e;
         if (product) {
             setSelectedOptions({});
-            setImageTypes((_a = product === null || product === void 0 ? void 0 : product.images) === null || _a === void 0 ? void 0 : _a.edges.map(function (e) { return e.node; }));
-            setImageType((_c = (_b = product === null || product === void 0 ? void 0 : product.images) === null || _b === void 0 ? void 0 : _b.edges[0]) === null || _c === void 0 ? void 0 : _c.node);
+            setShopifyImageTypes((_a = product === null || product === void 0 ? void 0 : product.images) === null || _a === void 0 ? void 0 : _a.edges.map(function (e) { return e.node; }));
+            setShopifyImageType((_c = (_b = product === null || product === void 0 ? void 0 : product.images) === null || _b === void 0 ? void 0 : _b.edges[0]) === null || _c === void 0 ? void 0 : _c.node);
         }
         if (((_e = (_d = product === null || product === void 0 ? void 0 : product.variants) === null || _d === void 0 ? void 0 : _d.edges) === null || _e === void 0 ? void 0 : _e.length) == 1) {
             selectVariant(product, {});
@@ -59,12 +59,12 @@ var useProductContext = function () {
     (0, react_1.useEffect)(function () {
         var _a, _b, _c, _d, _e, _f;
         if (variant) {
-            setImageType(variant === null || variant === void 0 ? void 0 : variant.image);
+            setShopifyImageType(variant === null || variant === void 0 ? void 0 : variant.image);
             setPrice((_a = variant === null || variant === void 0 ? void 0 : variant.price) === null || _a === void 0 ? void 0 : _a.amount);
             setCompareAtPrice((_b = variant === null || variant === void 0 ? void 0 : variant.compareAtPrice) === null || _b === void 0 ? void 0 : _b.amount);
         }
         else if (product) {
-            setImageType((_d = (_c = product === null || product === void 0 ? void 0 : product.images) === null || _c === void 0 ? void 0 : _c.edges[0]) === null || _d === void 0 ? void 0 : _d.node);
+            setShopifyImageType((_d = (_c = product === null || product === void 0 ? void 0 : product.images) === null || _c === void 0 ? void 0 : _c.edges[0]) === null || _d === void 0 ? void 0 : _d.node);
             setPrice((_f = (_e = product === null || product === void 0 ? void 0 : product.priceRange) === null || _e === void 0 ? void 0 : _e.minVariantPrice) === null || _f === void 0 ? void 0 : _f.amount);
             setCompareAtPrice(null);
         }
@@ -84,9 +84,9 @@ var useProductContext = function () {
         compareAtPrice: compareAtPrice,
         setCompareAtPrice: setCompareAtPrice,
         image: image,
-        setImageType: setImageType,
+        setShopifyImageType: setShopifyImageType,
         images: images,
-        setImageTypes: setImageTypes,
+        setShopifyImageTypes: setShopifyImageTypes,
         handleImageClick: handleImageClick,
         product: product,
         setProduct: setProduct,

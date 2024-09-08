@@ -84,7 +84,7 @@ export const renderLineItemCompareAtPrice = (line) => {
 	}
 }
 
-// NextJS ImageType has trouble rendering SVG icons if file ext does not end in .svg
+// NextJS ShopifyImageType has trouble rendering SVG icons if file ext does not end in .svg
 // such as ?variant=1234567890 so a fix here is to strip params from url
 export function stripParams(src) {
 	return src?.split('?')[0]

@@ -87,7 +87,7 @@ var useMetaobjects = function () {
         var field = getField(metaobject, key);
         return field === null || field === void 0 ? void 0 : field.value;
     };
-    var getImageType = function (metaobject, key) {
+    var getShopifyImageType = function (metaobject, key) {
         var _a, _b;
         var field = getField(metaobject, key);
         return (_b = (_a = field === null || field === void 0 ? void 0 : field.reference) === null || _a === void 0 ? void 0 : _a.image) === null || _b === void 0 ? void 0 : _b.url;
@@ -104,7 +104,7 @@ var useMetaobjects = function () {
     return {
         getField: getField,
         getValue: getValue,
-        getImageType: getImageType,
+        getShopifyImageType: getShopifyImageType,
         getReference: getReference,
         getReferences: getReferences,
         metaobject: metaobject,

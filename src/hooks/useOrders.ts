@@ -1,14 +1,14 @@
 import React, { useContext, useState } from 'react'
 import { ShopifyContext } from '../context'
 import { useLoadingWrapper } from '../hooks'
-import { OrderType, QueryParamsType } from '../types'
+import { ShopifyOrderType, QueryParamsType } from '../types'
 
 const useOrders = () => {
 	const { shopifyClient } = useContext(ShopifyContext)
 	const { loading, errors, loadingWrapper } = useLoadingWrapper()
 
-	const [order, setOrder] = useState<any | OrderType>({})
-	const [orders, setOrders] = useState<OrderType[]>(null)
+	const [order, setOrder] = useState<any | ShopifyOrderType>({})
+	const [orders, setOrders] = useState<ShopifyOrderType[]>(null)
 
 	const findCustomerOrder = async (orderId) => {
 		const response = await loadingWrapper(() =>
