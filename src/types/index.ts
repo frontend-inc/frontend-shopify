@@ -174,7 +174,7 @@ export type MetafieldType = {
 	references: MetafieldReferenceType[]
 }
 
-export type ProductType = {
+export type ShopifyProductType = {
 	availableForSale: boolean
 	createdAt: string
 	updatedAt: string
@@ -211,7 +211,7 @@ export type ProductVariantType = {
 	weight?: number
 	weightUnit?: string
 	presentmentPrices?: MoneyV2Type[]
-  product?: ProductType
+  product?: ShopifyProductType
 }
 
 export type SEO = {
@@ -228,7 +228,7 @@ export type CollectionType = {
 	handle: string
 	image?: ImageType
 	seo: SEO
-	products: ProductType[]
+	products: ShopifyProductType[]
 }
 
 export type CartLineType = {

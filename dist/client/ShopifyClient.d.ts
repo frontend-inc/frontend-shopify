@@ -20,7 +20,7 @@ export declare class ShopifyClient {
     filters(filters: SearchFilterType): ShopifyClient;
     filterInStock(): ShopifyClient;
     filterOutOfStock(): ShopifyClient;
-    filterProductType(productType: string): ShopifyClient;
+    filterShopifyProductType(productType: string): ShopifyClient;
     filterVendor(productVendor: string): ShopifyClient;
     filterVariantOption(name: string, value: string): ShopifyClient;
     filterMetafield(namespace: string, key: string, value: string): ShopifyClient;

@@ -1,6 +1,6 @@
-import { ProductType } from '../types';
+import { ShopifyProductType } from '../types';
 declare type useProductDetailsProps = {
-    product: ProductType;
+    product: ShopifyProductType;
 };
 declare const useProductDetails: (props: useProductDetailsProps) => {
     image: any;
@@ -11,7 +11,7 @@ declare const useProductDetails: (props: useProductDetailsProps) => {
     handleImageClick: (image: any) => void;
     selectedOptions: any;
     handleOptionChange: (name: any, value: any) => void;
-    product: ProductType;
+    product: ShopifyProductType;
     variant: any;
     selectVariant: (product: any, selectedOptions?: {}) => void;
 };

@@ -115,7 +115,7 @@ var ShopifyClient = /** @class */ (function () {
         ], false);
         return this;
     };
-    ShopifyClient.prototype.filterProductType = function (productType) {
+    ShopifyClient.prototype.filterShopifyProductType = function (productType) {
         this._filters = __spreadArray(__spreadArray([], this._filters, true), [
             {
                 productType: productType,

@@ -11,7 +11,7 @@ export const findAvailableFilter = (filters) => {
 	)?.available
 }
 
-export const findProductTypeFilters = (filters) => {
+export const findShopifyProductTypeFilters = (filters) => {
 	return filters
 		.filter((filter) => filter?.productType)
 		.map((filter) => filter?.productType)

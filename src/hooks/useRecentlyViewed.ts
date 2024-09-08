@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { CookieValueTypes, getCookie, setCookie } from 'cookies-next'
-import { ProductType } from '../types'
+import { ShopifyProductType } from '../types'
 import { ShopifyContext } from '../context'
 
 
@@ -9,7 +9,7 @@ const useRecentlyViewed = () => {
   const { domain } = useContext(ShopifyContext)
   let cookie = `${domain}-recently-viewed`
   
-  const [products, setProducts] = useState<ProductType[]>([])  
+  const [products, setProducts] = useState<ShopifyProductType[]>([])  
 
   const viewProduct = (product) => {
     let newProduct = {

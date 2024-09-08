@@ -4,7 +4,7 @@ import { useLoadingWrapper } from '../hooks'
 import {
 	ImageType,
 	CollectionType,
-	ProductType,
+	ShopifyProductType,
 } from '../types'
 
 const PER_PAGE = 20
@@ -17,7 +17,7 @@ const useCollections = () => {
 	const [image, setImageType] = useState<ImageType>(null)
 	const [cursor, setCursor] = useState<string>(null)
 	const [hasNextPage, setHasNextPage] = useState(false)
-	const [products, setProducts] = useState<ProductType[]>(null)
+	const [products, setProducts] = useState<ShopifyProductType[]>(null)
 	const [collection, setCollection] = useState<CollectionType>(null)
 	const [collections, setCollections] = useState<CollectionType[]>(null)
 

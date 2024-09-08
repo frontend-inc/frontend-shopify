@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { ShopifyContext } from '../context'
-import { MetafieldIdentifierType, ProductType } from '../types'
+import { MetafieldIdentifierType, ShopifyProductType } from '../types'
 import { useLoadingWrapper } from '../hooks'
 
 const useProducts = () => {
@@ -10,8 +10,8 @@ const useProducts = () => {
 
 	const [cursor, setCursor] = useState()
 	const [hasNextPage, setHasNextPage] = useState(false)
-  const [product, setProduct] = useState<ProductType>()
-	const [products, setProducts] = useState<ProductType[]>()
+  const [product, setProduct] = useState<ShopifyProductType>()
+	const [products, setProducts] = useState<ShopifyProductType[]>()
 
 	const findProduct = async (handle: string, metafields?: MetafieldIdentifierType[]) => {    
 		setProduct(null)

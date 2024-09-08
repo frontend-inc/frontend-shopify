@@ -1,6 +1,6 @@
 export declare const findPriceFilter: (filters: any) => any;
 export declare const findAvailableFilter: (filters: any) => any;
-export declare const findProductTypeFilters: (filters: any) => any;
+export declare const findShopifyProductTypeFilters: (filters: any) => any;
 export declare const findVendorFilters: (filters: any) => any;
 export declare const findColorFilters: (filters: any) => any;
 export declare const findSizeFilters: (filters: any) => any;

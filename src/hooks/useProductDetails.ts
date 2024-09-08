@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { ProductType, ProductVariantType, ImageType } from '../types'
+import { ShopifyProductType, ProductVariantType, ImageType } from '../types'
 
 type useProductDetailsProps = {
-  product: ProductType 
+  product: ShopifyProductType 
 }
 
 const useProductDetails = (props: useProductDetailsProps) => {

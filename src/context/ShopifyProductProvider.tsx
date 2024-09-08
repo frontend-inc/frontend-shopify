@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import ShopifyProductContext from './ShopifyProductContext'
 import {
 	ProductVariantType,
-	ProductType,
+	ShopifyProductType,
 	CollectionType,
 } from '../types'
 
@@ -12,7 +12,7 @@ type ShopifyProductProviderProps = {
 
 const ShopifyProductProvider = (props: ShopifyProductProviderProps) => {
 	const { children } = props
-	const [product, setProduct] = useState<ProductType>(null)
+	const [product, setProduct] = useState<ShopifyProductType>(null)
 	const [variant, setVariant] = useState<ProductVariantType>(null)
 	const [collection, setCollection] = useState<CollectionType>(null)
 	const [selectedOptions, setSelectedOptions] = useState<Record<any, string>>(

@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.findVariantFilters = exports.findTagFilters = exports.findStyleFilters = exports.findMaterialFilters = exports.findSizeFilters = exports.findColorFilters = exports.findVendorFilters = exports.findProductTypeFilters = exports.findAvailableFilter = exports.findPriceFilter = void 0;
+exports.findVariantFilters = exports.findTagFilters = exports.findStyleFilters = exports.findMaterialFilters = exports.findSizeFilters = exports.findColorFilters = exports.findVendorFilters = exports.findShopifyProductTypeFilters = exports.findAvailableFilter = exports.findPriceFilter = void 0;
 var findPriceFilter = function (filters) {
     return filters
         .filter(function (filter) { return filter === null || filter === void 0 ? void 0 : filter.priceRange; })
@@ -12,12 +12,12 @@ var findAvailableFilter = function (filters) {
     return (_a = filters.find(function (filter) { return (filter === null || filter === void 0 ? void 0 : filter.available) === true || (filter === null || filter === void 0 ? void 0 : filter.available) === false; })) === null || _a === void 0 ? void 0 : _a.available;
 };
 exports.findAvailableFilter = findAvailableFilter;
-var findProductTypeFilters = function (filters) {
+var findShopifyProductTypeFilters = function (filters) {
     return filters
         .filter(function (filter) { return filter === null || filter === void 0 ? void 0 : filter.productType; })
         .map(function (filter) { return filter === null || filter === void 0 ? void 0 : filter.productType; });
 };
-exports.findProductTypeFilters = findProductTypeFilters;
+exports.findShopifyProductTypeFilters = findShopifyProductTypeFilters;
 var findVendorFilters = function (filters) {
     return filters
         .filter(function (filter) { return filter === null || filter === void 0 ? void 0 : filter.productVendor; })

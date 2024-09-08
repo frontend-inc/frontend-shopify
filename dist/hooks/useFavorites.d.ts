@@ -1,7 +1,7 @@
 import { CookieValueTypes } from 'cookies-next';
-import { ProductType } from '../types';
+import { ShopifyProductType } from '../types';
 declare type FavoritesProps = {
-    product?: ProductType;
+    product?: ShopifyProductType;
     cookie?: CookieValueTypes | string;
 };
 declare const useFavorites: (props?: FavoritesProps) => {

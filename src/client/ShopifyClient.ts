@@ -138,7 +138,7 @@ export class ShopifyClient {
 		return this
 	}
 
-	filterProductType(productType: string): ShopifyClient {
+	filterShopifyProductType(productType: string): ShopifyClient {
 		this._filters = [
 			...this._filters,
 			{
