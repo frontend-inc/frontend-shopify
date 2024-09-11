@@ -28,7 +28,13 @@ var ShopifyContext_1 = __importDefault(require("./ShopifyContext"));
 var client_2 = require("../client");
 var cookies_next_1 = require("cookies-next");
 var ShopifyProvider = function (props) {
-    var children = props.children, logo = props.logo, domain = props.domain, shopUrl = props.shopUrl, storefrontAccessToken = props.storefrontAccessToken, customerPortalUrl = props.customerPortalUrl, _a = props.apiVersion, apiVersion = _a === void 0 ? '2024-04' : _a;
+    var children = props.children, enableShopify = props.enableShopify, logo = props.logo, domain = props.domain, shopUrl = props.shopUrl, storefrontAccessToken = props.storefrontAccessToken, customerPortalUrl = props.customerPortalUrl, _a = props.apiVersion, apiVersion = _a === void 0 ? '2024-04' : _a;
+    if (!enableShopify) {
+        var value_1 = {
+            enableShopify: false
+        };
+        return (react_1.default.createElement(ShopifyContext_1.default.Provider, { value: value_1 }, children));
+    }
     var authCookie = domain + "-shopify-access-token";
     var fetchAccessToken = function () { return String((0, cookies_next_1.getCookie)(authCookie)); };
     var apolloClient = (0, client_2.useApollo)(domain, storefrontAccessToken, apiVersion);
@@ -51,6 +57,7 @@ var ShopifyProvider = function (props) {
     var toggleMenu = function () { return setMenuOpen(!menuOpen); };
     var toggleSearch = function () { return setSearchOpen(!searchOpen); };
     var value = {
+        enableShopify: enableShopify,
         domain: domain,
         storefrontAccessToken: storefrontAccessToken,
         shopifyClient: shopifyClient,

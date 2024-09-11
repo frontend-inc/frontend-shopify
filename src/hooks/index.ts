@@ -1,3 +1,4 @@
+export { default as useAuth } from './useAuth'
 export { default as useAddresses } from './useAddresses'
 export { default as useArticles } from './useArticles'
 export { default as useBlogs } from './useBlogs'
@@ -16,4 +17,5 @@ export { default as useProductContext } from './useProductContext'
 export { default as useRecentlyViewed } from './useRecentlyViewed'
 export { default as useSearchFilters } from './useSearchFilters'
 export { default as useShop } from './useShop'
-export { default as useAuth } from './useAuth'
+export { default as useShopify } from './useShopify'
+

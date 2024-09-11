@@ -6,6 +6,7 @@ import { createClient, useApollo } from '../client'
 import { getCookie } from 'cookies-next'
 
 type ShopifyProviderProps = {
+  enableShopify?: boolean
 	domain: string
 	storefrontAccessToken: string
 	children: React.ReactNode
@@ -18,6 +19,7 @@ type ShopifyProviderProps = {
 const ShopifyProvider = (props: ShopifyProviderProps) => {
 	const {
 		children,
+    enableShopify,
 		logo,
 		domain,
 		shopUrl,
@@ -25,6 +27,17 @@ const ShopifyProvider = (props: ShopifyProviderProps) => {
     customerPortalUrl,
 		apiVersion = '2024-04',
 	} = props
+
+  if(!enableShopify) {
+    const value = {
+      enableShopify: false 
+    }
+    return(
+      <ShopifyContext.Provider value={value}>
+        {children}
+      </ShopifyContext.Provider>
+    )
+  }
 
   let authCookie = `${domain}-shopify-access-token`
 	const fetchAccessToken = () => String(getCookie(authCookie))
@@ -60,6 +73,8 @@ const ShopifyProvider = (props: ShopifyProviderProps) => {
 	const toggleSearch = () => setSearchOpen(!searchOpen)
 
 	const value = {
+    enableShopify,
+    
     domain,
     storefrontAccessToken,
 		shopifyClient,    

@@ -3,7 +3,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.useAuth = exports.useShop = exports.useSearchFilters = exports.useRecentlyViewed = exports.useProductContext = exports.useOrders = exports.useMetaobjects = exports.useMenus = exports.useProductDetails = exports.useProducts = exports.useLoadingWrapper = exports.useFavorites = exports.useCollections = exports.useCustomers = exports.useCheckout = exports.useCart = exports.useBlogs = exports.useArticles = exports.useAddresses = void 0;
+exports.useShopify = exports.useShop = exports.useSearchFilters = exports.useRecentlyViewed = exports.useProductContext = exports.useOrders = exports.useMetaobjects = exports.useMenus = exports.useProductDetails = exports.useProducts = exports.useLoadingWrapper = exports.useFavorites = exports.useCollections = exports.useCustomers = exports.useCheckout = exports.useCart = exports.useBlogs = exports.useArticles = exports.useAddresses = exports.useAuth = void 0;
+var useAuth_1 = require("./useAuth");
+Object.defineProperty(exports, "useAuth", { enumerable: true, get: function () { return __importDefault(useAuth_1).default; } });
 var useAddresses_1 = require("./useAddresses");
 Object.defineProperty(exports, "useAddresses", { enumerable: true, get: function () { return __importDefault(useAddresses_1).default; } });
 var useArticles_1 = require("./useArticles");
@@ -40,5 +42,5 @@ var useSearchFilters_1 = require("./useSearchFilters");
 Object.defineProperty(exports, "useSearchFilters", { enumerable: true, get: function () { return __importDefault(useSearchFilters_1).default; } });
 var useShop_1 = require("./useShop");
 Object.defineProperty(exports, "useShop", { enumerable: true, get: function () { return __importDefault(useShop_1).default; } });
-var useAuth_1 = require("./useAuth");
-Object.defineProperty(exports, "useAuth", { enumerable: true, get: function () { return __importDefault(useAuth_1).default; } });
+var useShopify_1 = require("./useShopify");
+Object.defineProperty(exports, "useShopify", { enumerable: true, get: function () { return __importDefault(useShopify_1).default; } });

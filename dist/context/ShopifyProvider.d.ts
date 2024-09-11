@@ -1,5 +1,6 @@
 import React from 'react';
 declare type ShopifyProviderProps = {
+    enableShopify?: boolean;
     domain: string;
     storefrontAccessToken: string;
     children: React.ReactNode;
