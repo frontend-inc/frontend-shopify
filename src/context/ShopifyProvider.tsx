@@ -6,7 +6,6 @@ import { createClient, useApollo } from '../client'
 import { getCookie } from 'cookies-next'
 
 type ShopifyProviderProps = {
-  enableShopify?: boolean
 	domain: string
 	storefrontAccessToken: string
 	children: React.ReactNode
@@ -19,7 +18,6 @@ type ShopifyProviderProps = {
 const ShopifyProvider = (props: ShopifyProviderProps) => {
 	const {
 		children,
-    enableShopify,
 		logo,
 		domain,
 		shopUrl,
@@ -27,8 +25,18 @@ const ShopifyProvider = (props: ShopifyProviderProps) => {
     customerPortalUrl,
 		apiVersion = '2024-04',
 	} = props
-  
-  
+
+  let authCookie = `${domain}-shopify-access-token`
+	const fetchAccessToken = () => String(getCookie(authCookie))
+
+	const apolloClient = useApollo(domain, storefrontAccessToken, apiVersion)	
+  const shopifyClient = createClient(
+    domain,
+    storefrontAccessToken,
+    fetchAccessToken,
+    apiVersion
+  )
+
 	const [accessToken, setAccessToken] = useState()
 	const [alert, setAlert] = useState()
 
@@ -51,70 +59,58 @@ const ShopifyProvider = (props: ShopifyProviderProps) => {
 	const toggleMenu = () => setMenuOpen(!menuOpen)
 	const toggleSearch = () => setSearchOpen(!searchOpen)
 
-	let value = {
-    enableShopify,    
+	const value = {    
     domain,
     storefrontAccessToken,
+		shopifyClient,    
+
 		accessToken,
 		setAccessToken,
+
 		alert,
 		setAlert,
+
 		expiresAt,
 		setExpiresAt,
+
 		cart,
 		setCart,
+
 		customer,
 		setCustomer,
     customerPortalUrl,
+
 		shopUrl,
+
 		logo,
+
 		loading,
 		setLoading,
+
 		shop,
 		setShop,
+
 		authOpen,
 		setAuthOpen,
 		toggleAuth,
+
 		cartOpen,
 		setCartOpen,
 		toggleCart,
+
 		searchOpen,
 		setSearchOpen,
 		toggleSearch,
+
 		menuOpen,
 		setMenuOpen,
 		toggleMenu,
+
 		checkout,
 		setCheckout,
 		lineItemTotal,
 		setLineItemTotal,
-    shopifyClient: null,
 	}
-
-  if(!enableShopify) {
-    return(
-      <ShopifyContext.Provider value={value}>
-        {children}
-      </ShopifyContext.Provider>
-    )
-  }
-
-
-  let authCookie = `${domain}-shopify-access-token`
-	const fetchAccessToken = () => String(getCookie(authCookie))
-
-	const apolloClient = useApollo(domain, storefrontAccessToken, apiVersion)	
-  const shopifyClient = createClient(
-    domain,
-    storefrontAccessToken,
-    fetchAccessToken,
-    apiVersion
-  )
-
-  value = {
-    ...value,
-    shopifyClient,
-  }
 
 	return (
 		<ShopifyContext.Provider value={value}>

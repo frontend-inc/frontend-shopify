@@ -4,7 +4,6 @@ import { ShopifyContext } from '../context'
 const useShopify = () => {
 
   const {   
-    enableShopify,
     logo,
     domain,
     shopUrl,
@@ -14,7 +13,6 @@ const useShopify = () => {
   } = useContext(ShopifyContext)
 
   return {
-    enableShopify,
     logo,
     domain,
     shopUrl,

@@ -1,5 +1,4 @@
 declare const useShopify: () => {
-    enableShopify: any;
     logo: any;
     domain: any;
     shopUrl: any;
