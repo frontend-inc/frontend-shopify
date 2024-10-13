@@ -5,8 +5,12 @@ import { useLoadingWrapper } from '../hooks'
 
 const useCheckout = () => {
 	
-  const { domain, shopifyClient, checkout, setCheckout } =
-		useContext(ShopifyContext)
+  const { 
+    domain, 
+    shopifyClient, 
+    checkout, 
+    setCheckout 
+  } = useContext(ShopifyContext)
 
   let cookie = `${domain}-checkout-id`
 

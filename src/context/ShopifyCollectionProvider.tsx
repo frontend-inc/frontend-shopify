@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState } from 'react'
 import ShopifyCollectionContext from './ShopifyCollectionContext'
 import { ShopifyProductType, ShopifyCollectionType } from '../types'

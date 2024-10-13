@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState, useEffect } from 'react'
 import ShopifyProductContext from './ShopifyProductContext'
 import {
