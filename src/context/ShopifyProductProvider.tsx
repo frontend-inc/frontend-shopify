@@ -10,7 +10,7 @@ import {
 
 type ShopifyProductProviderProps = {
 	children: React.ReactNode
-  product: ShopifyProductType
+  product?: ShopifyProductType
 }
 
 const ShopifyProductProvider = (props: ShopifyProductProviderProps) => {
