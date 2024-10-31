@@ -3,7 +3,11 @@
 import React, { useState } from 'react'
 import { ApolloProvider } from '@apollo/client'
 import ShopifyContext from './ShopifyContext'
-import { ShopifyCheckoutType, ShopifyCustomerType, ShopifyCartType } from '../types'
+import { 
+  ShopifyCheckoutType, 
+  ShopifyCustomerType, 
+  ShopifyCartType 
+} from '../types'
 import { createClient, useApollo } from '../client'
 import { getCookie } from 'cookies-next'
 

@@ -26,7 +26,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = __importStar(require("react"));
 var ShopifyProductContext_1 = __importDefault(require("./ShopifyProductContext"));
 var ShopifyProductProvider = function (props) {
-    var children = props.children;
+    var children = props.children, _product = props.product;
     var _a = (0, react_1.useState)(null), product = _a[0], setProduct = _a[1];
     var _b = (0, react_1.useState)(null), variant = _b[0], setVariant = _b[1];
     var _c = (0, react_1.useState)(null), collection = _c[0], setCollection = _c[1];
@@ -37,6 +37,11 @@ var ShopifyProductProvider = function (props) {
             setAvailableForSale(product.availableForSale);
         }
     }, [product]);
+    (0, react_1.useEffect)(function () {
+        if (_product) {
+            setProduct(_product);
+        }
+    }, [_product]);
     var value = {
         availableForSale: availableForSale,
         setAvailableForSale: setAvailableForSale,

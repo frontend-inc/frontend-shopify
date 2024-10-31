@@ -10,10 +10,11 @@ import {
 
 type ShopifyProductProviderProps = {
 	children: React.ReactNode
+  product: ShopifyProductType
 }
 
 const ShopifyProductProvider = (props: ShopifyProductProviderProps) => {
-	const { children } = props
+	const { children, product: _product } = props
 	const [product, setProduct] = useState<ShopifyProductType>(null)
 	const [variant, setVariant] = useState<ProductVariantType>(null)
 	const [collection, setCollection] = useState<ShopifyCollectionType>(null)
@@ -27,6 +28,12 @@ const ShopifyProductProvider = (props: ShopifyProductProviderProps) => {
 			setAvailableForSale(product.availableForSale)
 		}
 	}, [product])
+  
+  useEffect(() => {
+		if (_product) {
+			setProduct(_product)
+		}
+	}, [_product])
 
 	const value = {
 		availableForSale,
