@@ -16,7 +16,7 @@ type ShopifyProviderProps = {
 	storefrontAccessToken: string
 	children: React.ReactNode
 	logo?: string
-	shopUrl: string
+	shopUrl?: string
 	apiVersion?: string
   customerPortalUrl?: string
 }
