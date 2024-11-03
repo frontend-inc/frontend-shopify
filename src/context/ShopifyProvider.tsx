@@ -35,13 +35,17 @@ const ShopifyProvider = (props: ShopifyProviderProps) => {
   let authCookie = `${domain}-shopify-access-token`
 	const fetchAccessToken = () => String(getCookie(authCookie))
 
-	const apolloClient = useApollo(domain, storefrontAccessToken, apiVersion)	
-  const shopifyClient = createClient(
-    domain,
-    storefrontAccessToken,
-    fetchAccessToken,
-    apiVersion
-  )
+  let apolloClient, shopifyClient 
+
+  if(domain && storefrontAccessToken) {
+    apolloClient = useApollo(domain, storefrontAccessToken, apiVersion)	
+    shopifyClient = createClient(
+      domain,
+      storefrontAccessToken,
+      fetchAccessToken,
+      apiVersion
+    )
+  }
 
 	const [accessToken, setAccessToken] = useState()
 	const [alert, setAlert] = useState()
@@ -120,7 +124,13 @@ const ShopifyProvider = (props: ShopifyProviderProps) => {
 
 	return (
 		<ShopifyContext.Provider value={value}>
-			<ApolloProvider client={apolloClient}>{children}</ApolloProvider>
+      {(domain && storefrontAccessToken) ? (
+        <ApolloProvider client={apolloClient}>
+          {children}
+        </ApolloProvider>
+      ):(
+        children 
+      )}
 		</ShopifyContext.Provider>
 	)
 }
