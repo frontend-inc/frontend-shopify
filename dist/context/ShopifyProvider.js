@@ -92,6 +92,7 @@ var ShopifyProvider = function (props) {
         lineItemTotal: lineItemTotal,
         setLineItemTotal: setLineItemTotal,
     };
-    return (react_1.default.createElement(ShopifyContext_1.default.Provider, { value: value }, (domain && storefrontAccessToken) ? (react_1.default.createElement(client_1.ApolloProvider, { client: apolloClient }, children)) : (children)));
+    return (react_1.default.createElement(ShopifyContext_1.default.Provider, { value: value },
+        react_1.default.createElement(client_1.ApolloProvider, { client: apolloClient }, children)));
 };
 exports.default = ShopifyProvider;

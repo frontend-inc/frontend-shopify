@@ -124,13 +124,9 @@ const ShopifyProvider = (props: ShopifyProviderProps) => {
 
 	return (
 		<ShopifyContext.Provider value={value}>
-      {(domain && storefrontAccessToken) ? (
-        <ApolloProvider client={apolloClient}>
-          {children}
-        </ApolloProvider>
-      ):(
-        children 
-      )}
+      <ApolloProvider client={apolloClient}>
+        {children}
+      </ApolloProvider>
 		</ShopifyContext.Provider>
 	)
 }
