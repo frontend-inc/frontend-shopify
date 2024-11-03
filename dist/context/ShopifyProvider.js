@@ -32,11 +32,8 @@ var ShopifyProvider = function (props) {
     var children = props.children, logo = props.logo, domain = props.domain, shopUrl = props.shopUrl, storefrontAccessToken = props.storefrontAccessToken, customerPortalUrl = props.customerPortalUrl, _a = props.apiVersion, apiVersion = _a === void 0 ? '2024-04' : _a;
     var authCookie = domain + "-shopify-access-token";
     var fetchAccessToken = function () { return String((0, cookies_next_1.getCookie)(authCookie)); };
-    var apolloClient, shopifyClient;
-    if (domain && storefrontAccessToken) {
-        apolloClient = (0, client_2.useApollo)(domain, storefrontAccessToken, apiVersion);
-        shopifyClient = (0, client_2.createClient)(domain, storefrontAccessToken, fetchAccessToken, apiVersion);
-    }
+    var apolloClient = (0, client_2.useApollo)(domain, storefrontAccessToken, apiVersion);
+    var shopifyClient = (0, client_2.createClient)(domain, storefrontAccessToken, fetchAccessToken, apiVersion);
     var _b = (0, react_1.useState)(), accessToken = _b[0], setAccessToken = _b[1];
     var _c = (0, react_1.useState)(), alert = _c[0], setAlert = _c[1];
     var _d = (0, react_1.useState)(null), cart = _d[0], setCart = _d[1];
@@ -54,7 +51,9 @@ var ShopifyProvider = function (props) {
     var toggleCart = function () { return setCartOpen(!cartOpen); };
     var toggleMenu = function () { return setMenuOpen(!menuOpen); };
     var toggleSearch = function () { return setSearchOpen(!searchOpen); };
+    var isEnabled = domain && storefrontAccessToken;
     var value = {
+        enabled: isEnabled,
         domain: domain,
         storefrontAccessToken: storefrontAccessToken,
         shopifyClient: shopifyClient,
