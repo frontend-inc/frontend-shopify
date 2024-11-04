@@ -46,15 +46,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
-    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
-        if (ar || !(i in from)) {
-            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
-            ar[i] = from[i];
-        }
-    }
-    return to.concat(ar || Array.prototype.slice.call(from));
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createClient = exports.ShopifyClient = void 0;
 var apollo_1 = require("./apollo");
@@ -67,95 +58,10 @@ var ShopifyClient = /** @class */ (function () {
         this.init();
     }
     ShopifyClient.prototype.init = function () {
-        this._first = 20;
-        this._filters = [];
-        this._sortKey = 'COLLECTION_DEFAULT';
-        this._reverse = false;
-        this._query = null;
-        return this;
-    };
-    ShopifyClient.prototype.first = function (first) {
-        this._first = first;
-        return this;
-    };
-    ShopifyClient.prototype.after = function (after) {
-        this._after = after;
-        return this;
-    };
-    ShopifyClient.prototype.sort = function (sortKey) {
-        this._sortKey = sortKey;
         return this;
     };
     ShopifyClient.prototype.accessToken = function (token) {
         this._accessToken = token;
-        return this;
-    };
-    ShopifyClient.prototype.reverse = function (reverse) {
-        this._reverse = reverse;
-        return this;
-    };
-    ShopifyClient.prototype.filters = function (filters) {
-        //@ts-ignore
-        this._filters = filters;
-        return this;
-    };
-    ShopifyClient.prototype.filterInStock = function () {
-        this._filters = __spreadArray(__spreadArray([], this._filters, true), [
-            {
-                available: true,
-            },
-        ], false);
-        return this;
-    };
-    ShopifyClient.prototype.filterOutOfStock = function () {
-        this._filters = __spreadArray(__spreadArray([], this._filters, true), [
-            {
-                available: false,
-            },
-        ], false);
-        return this;
-    };
-    ShopifyClient.prototype.filterShopifyProductType = function (productType) {
-        this._filters = __spreadArray(__spreadArray([], this._filters, true), [
-            {
-                productType: productType,
-            },
-        ], false);
-        return this;
-    };
-    ShopifyClient.prototype.filterVendor = function (productVendor) {
-        this._filters = __spreadArray(__spreadArray([], this._filters, true), [
-            {
-                productVendor: productVendor,
-            },
-        ], false);
-        return this;
-    };
-    ShopifyClient.prototype.filterVariantOption = function (name, value) {
-        this._filters = __spreadArray(__spreadArray([], this._filters, true), [
-            {
-                variantOption: {
-                    name: name,
-                    value: value,
-                },
-            },
-        ], false);
-        return this;
-    };
-    ShopifyClient.prototype.filterMetafield = function (namespace, key, value) {
-        this._filters = __spreadArray(__spreadArray([], this._filters, true), [
-            {
-                productMetafield: {
-                    namespace: namespace,
-                    key: key,
-                    value: value,
-                },
-            },
-        ], false);
-        return this;
-    };
-    ShopifyClient.prototype.query = function (query) {
-        this._query = query;
         return this;
     };
     // Articles
@@ -187,8 +93,8 @@ var ShopifyClient = /** @class */ (function () {
                     case 0:
                         _e = params || {}, _f = _e.first, first = _f === void 0 ? 20 : _f, query = _e.query;
                         return [4 /*yield*/, this.executeQuery(graphql_1.QUERY_ARTICLES, {
-                                first: first || this._first,
-                                query: query || this._query,
+                                first: first,
+                                query: query,
                             })];
                     case 1:
                         response = _g.sent();
@@ -229,8 +135,8 @@ var ShopifyClient = /** @class */ (function () {
                     case 0:
                         _e = params || {}, _f = _e.first, first = _f === void 0 ? 20 : _f, query = _e.query;
                         return [4 /*yield*/, this.executeQuery(graphql_1.QUERY_BLOGS, {
-                                first: first || this._first,
-                                query: query || this._query,
+                                first: first,
+                                query: query,
                             })];
                     case 1:
                         response = _g.sent();
@@ -560,14 +466,14 @@ var ShopifyClient = /** @class */ (function () {
         });
     };
     // Products
-    ShopifyClient.prototype.findProduct = function (handle, metafields) {
+    ShopifyClient.prototype.findProduct = function (handle) {
         var _a;
         return __awaiter(this, void 0, void 0, function () {
             var gql, response;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
-                        gql = (0, graphql_1.QUERY_PRODUCT_BY_HANDLE_FN)(metafields);
+                        gql = graphql_1.QUERY_PRODUCT_BY_HANDLE;
                         return [4 /*yield*/, this.executeQuery(gql, {
                                 handle: handle
                             })];
@@ -601,26 +507,22 @@ var ShopifyClient = /** @class */ (function () {
     ShopifyClient.prototype.findProducts = function (params) {
         var _a, _b, _c, _d;
         return __awaiter(this, void 0, void 0, function () {
-            var productQuery, response;
-            return __generator(this, function (_e) {
-                switch (_e.label) {
+            var _e, query, _f, sortKey, _g, first, reverse, after, productQuery, response;
+            return __generator(this, function (_h) {
+                switch (_h.label) {
                     case 0:
-                        this._query = (params === null || params === void 0 ? void 0 : params.query) || this._query;
-                        //this._first = params?.first || this._first || 48
-                        this._sortKey = (params === null || params === void 0 ? void 0 : params.sortKey) || this._sortKey;
-                        this._reverse = (params === null || params === void 0 ? void 0 : params.reverse) || this._reverse;
-                        this._after = (params === null || params === void 0 ? void 0 : params.after) || this._after;
+                        _e = params || {}, query = _e.query, _f = _e.sortKey, sortKey = _f === void 0 ? 'RELEVANCE' : _f, _g = _e.first, first = _g === void 0 ? 24 : _g, reverse = _e.reverse, after = _e.after;
                         productQuery = {
-                            query: this._query,
-                            sortKey: this._sortKey,
-                            reverse: this._reverse,
-                            after: this._after,
+                            query: query,
+                            sortKey: sortKey,
+                            reverse: reverse,
+                            after: after,
                         };
                         return [4 /*yield*/, this.executeQuery(graphql_1.QUERY_PRODUCTS, {
                                 variables: productQuery,
                             })];
                     case 1:
-                        response = _e.sent();
+                        response = _h.sent();
                         return [2 /*return*/, {
                                 meta: (_b = (_a = response === null || response === void 0 ? void 0 : response.data) === null || _a === void 0 ? void 0 : _a.products) === null || _b === void 0 ? void 0 : _b.pageInfo,
                                 data: (_d = (_c = response === null || response === void 0 ? void 0 : response.data) === null || _c === void 0 ? void 0 : _c.products) === null || _d === void 0 ? void 0 : _d.edges.map(function (e) { return e.node; }),
@@ -633,28 +535,24 @@ var ShopifyClient = /** @class */ (function () {
     ShopifyClient.prototype.searchProducts = function (params) {
         var _a, _b, _c, _d;
         return __awaiter(this, void 0, void 0, function () {
-            var searchQuery, response;
-            return __generator(this, function (_e) {
-                switch (_e.label) {
+            var _e, query, _f, sortKey, _g, first, reverse, after, filters, searchQuery, response;
+            return __generator(this, function (_h) {
+                switch (_h.label) {
                     case 0:
-                        this._query = (params === null || params === void 0 ? void 0 : params.query) || this._query;
-                        this._sortKey = (params === null || params === void 0 ? void 0 : params.sortKey) || this._sortKey || 'RELEVANCE';
-                        this._first = (params === null || params === void 0 ? void 0 : params.first) || this._first || 48;
-                        this._after = (params === null || params === void 0 ? void 0 : params.after) || this._after;
-                        this._filters = (params === null || params === void 0 ? void 0 : params.filters) || this._filters || [];
+                        _e = params || {}, query = _e.query, _f = _e.sortKey, sortKey = _f === void 0 ? 'RELEVANCE' : _f, _g = _e.first, first = _g === void 0 ? 24 : _g, reverse = _e.reverse, after = _e.after, filters = _e.filters;
                         searchQuery = {
-                            first: this._first,
-                            sortKey: this._sortKey,
-                            reverse: false,
-                            after: this._after,
-                            productFilters: this._filters,
+                            first: first,
+                            sortKey: sortKey,
+                            reverse: reverse,
+                            after: after,
+                            productFilters: filters,
                         };
                         return [4 /*yield*/, this.executeQuery(graphql_1.QUERY_SEARCH, {
-                                query: this._query,
+                                query: query,
                                 variables: searchQuery,
                             })];
                     case 1:
-                        response = _e.sent();
+                        response = _h.sent();
                         return [2 /*return*/, {
                                 meta: (_b = (_a = response === null || response === void 0 ? void 0 : response.data) === null || _a === void 0 ? void 0 : _a.search) === null || _b === void 0 ? void 0 : _b.pageInfo,
                                 data: (_d = (_c = response === null || response === void 0 ? void 0 : response.data) === null || _c === void 0 ? void 0 : _c.search) === null || _d === void 0 ? void 0 : _d.edges.map(function (e) { return e.node; }),
@@ -694,11 +592,11 @@ var ShopifyClient = /** @class */ (function () {
                         _e = query || {}, _f = _e.first, first = _f === void 0 ? 20 : _f, filters = _e.filters, _g = _e.reverse, reverse = _g === void 0 ? false : _g, _h = _e.sortKey, sortKey = _h === void 0 ? 'COLLECTION_DEFAULT' : _h, after = _e.after;
                         return [4 /*yield*/, this.executeQuery(graphql_1.QUERY_COLLECTION_BY_HANDLE, {
                                 handle: handle,
-                                first: first || this._first,
-                                filters: filters || this._filters,
-                                reverse: reverse || this._reverse,
-                                sortKey: sortKey || this._sortKey,
-                                after: after || this._after,
+                                first: first,
+                                filters: filters,
+                                reverse: reverse,
+                                sortKey: sortKey,
+                                after: after,
                             })];
                     case 1:
                         response = _j.sent();
@@ -717,11 +615,9 @@ var ShopifyClient = /** @class */ (function () {
             var response;
             return __generator(this, function (_g) {
                 switch (_g.label) {
-                    case 0:
-                        this._first = first || this._first;
-                        return [4 /*yield*/, this.executeQuery(graphql_1.QUERY_COLLECTIONS, {
-                                first: this._first,
-                            })];
+                    case 0: return [4 /*yield*/, this.executeQuery(graphql_1.QUERY_COLLECTIONS, {
+                            first: first || 24,
+                        })];
                     case 1:
                         response = _g.sent();
                         return [2 /*return*/, {
@@ -1103,10 +999,10 @@ var ShopifyClient = /** @class */ (function () {
             return __generator(this, function (_g) {
                 switch (_g.label) {
                     case 0:
-                        _e = params || {}, _f = _e.first, first = _f === void 0 ? 20 : _f, query = _e.query;
+                        _e = params || {}, _f = _e.first, first = _f === void 0 ? 24 : _f, query = _e.query;
                         return [4 /*yield*/, this.executeQuery(graphql_1.QUERY_PAGES, {
-                                first: first || this._first,
-                                query: query || this._query,
+                                first: first,
+                                query: query,
                             })];
                     case 1:
                         response = _g.sent();
@@ -1166,7 +1062,7 @@ var ShopifyClient = /** @class */ (function () {
                     case 0:
                         _e = params || {}, _f = _e.first, first = _f === void 0 ? 20 : _f, type = _e.type;
                         return [4 /*yield*/, this.executeQuery(graphql_1.QUERY_METAOBJECTS, {
-                                first: first || this._first,
+                                first: first,
                                 type: type,
                             })];
                     case 1:

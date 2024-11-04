@@ -6,8 +6,10 @@ import {
 // Product filtering:
 // https://shopify.dev/docs/custom-storefronts/building-with-the-storefront-api/products-collections/filter-products
 const useSearchFilters = () => {
-	const [filters, setFilters] = useState<any | SearchFilterType[]>([])
-	const handleFilter = (filter: SearchFilterType) => {
+	
+  const [filters, setFilters] = useState<any | SearchFilterType[]>([])
+	
+  const handleFilter = (filter: SearchFilterType) => {
     const { name } = filter 
     if(filters?.find(f => f.name == name && f.value == filter.value)) {
       let newFilters = filters.filter(f => f.name != name)      

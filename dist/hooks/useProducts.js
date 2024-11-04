@@ -55,6 +55,56 @@ var useProducts = function () {
     var _c = (0, react_1.useState)(false), hasNextPage = _c[0], setHasNextPage = _c[1];
     var _d = (0, react_1.useState)(), product = _d[0], setProduct = _d[1];
     var _e = (0, react_1.useState)(), products = _e[0], setProducts = _e[1];
+    var _f = (0, react_1.useState)([]), filters = _f[0], setFilters = _f[1];
+    var filterInStock = function () {
+        setFilters(__spreadArray(__spreadArray([], filters, true), [
+            {
+                available: true,
+            }
+        ], false));
+    };
+    var filterOutOfStock = function () {
+        setFilters(__spreadArray(__spreadArray([], filters, true), [
+            {
+                available: false,
+            },
+        ], false));
+    };
+    var filterShopifyProductType = function (productType) {
+        setFilters(__spreadArray(__spreadArray([], filters, true), [
+            {
+                productType: productType,
+            },
+        ], false));
+    };
+    var filterVendor = function (productVendor) {
+        setFilters(__spreadArray(__spreadArray([], filters, true), [
+            {
+                productVendor: productVendor,
+            },
+        ], false));
+    };
+    var filterVariantOption = function (name, value) {
+        setFilters(__spreadArray(__spreadArray([], filters, true), [
+            {
+                variantOption: {
+                    name: name,
+                    value: value,
+                },
+            },
+        ], false));
+    };
+    var filterMetafield = function (namespace, key, value) {
+        setFilters(__spreadArray(__spreadArray([], filters, true), [
+            {
+                productMetafield: {
+                    namespace: namespace,
+                    key: key,
+                    value: value,
+                },
+            },
+        ], false));
+    };
     var findProduct = function (handle, metafields) { return __awaiter(void 0, void 0, void 0, function () {
         var resp;
         return __generator(this, function (_a) {
@@ -115,26 +165,26 @@ var useProducts = function () {
         });
     }); };
     var searchProducts = function (searchParams) { return __awaiter(void 0, void 0, void 0, function () {
-        var query, first, after, filters, resp, results;
-        var _a, _b;
-        return __generator(this, function (_c) {
-            switch (_c.label) {
+        var query, first, after, _a, reverse, filters, _b, sortKey, resp, results;
+        var _c, _d;
+        return __generator(this, function (_e) {
+            switch (_e.label) {
                 case 0:
-                    query = searchParams.query, first = searchParams.first, after = searchParams.after, filters = searchParams.filters;
+                    query = searchParams.query, first = searchParams.first, after = searchParams.after, _a = searchParams.reverse, reverse = _a === void 0 ? false : _a, filters = searchParams.filters, _b = searchParams.sortKey, sortKey = _b === void 0 ? 'RELEVANCE' : _b;
                     return [4 /*yield*/, loadingWrapper(function () {
                             return shopifyClient.searchProducts({
                                 first: first,
                                 query: query,
-                                sortKey: 'RELEVANCE',
-                                reverse: false,
+                                sortKey: sortKey,
+                                reverse: reverse,
                                 filters: filters,
                                 after: after,
                             });
                         })];
                 case 1:
-                    resp = _c.sent();
-                    setHasNextPage((_a = resp === null || resp === void 0 ? void 0 : resp.meta) === null || _a === void 0 ? void 0 : _a.hasNextPage);
-                    setCursor((_b = resp === null || resp === void 0 ? void 0 : resp.meta) === null || _b === void 0 ? void 0 : _b.endCursor);
+                    resp = _e.sent();
+                    setHasNextPage((_c = resp === null || resp === void 0 ? void 0 : resp.meta) === null || _c === void 0 ? void 0 : _c.hasNextPage);
+                    setCursor((_d = resp === null || resp === void 0 ? void 0 : resp.meta) === null || _d === void 0 ? void 0 : _d.endCursor);
                     results = resp === null || resp === void 0 ? void 0 : resp.data;
                     if (after) {
                         setProducts(__spreadArray(__spreadArray([], products, true), results, true));

@@ -12,6 +12,72 @@ const useProducts = () => {
 	const [hasNextPage, setHasNextPage] = useState(false)
   const [product, setProduct] = useState<ShopifyProductType>()
 	const [products, setProducts] = useState<ShopifyProductType[]>()
+  const [filters, setFilters] = useState([])
+
+  const filterInStock = () => {
+		setFilters([
+			...filters,
+			{
+				available: true,
+			}
+		])		
+	}
+
+	const filterOutOfStock = () => {
+		setFilters([
+			...filters,
+			{
+				available: false,
+			},
+		])		
+	}
+
+	const filterShopifyProductType = (productType: string) =>{
+		setFilters([
+			...filters,
+			{
+				productType: productType,
+			},
+		])		
+	}
+
+	const filterVendor = (productVendor: string) => {
+		setFilters([
+			...filters,
+			{
+				productVendor: productVendor,
+			},
+		])		
+	}
+
+	const filterVariantOption = (name: string, value: string) => {
+		setFilters([
+			...filters,
+			{
+				variantOption: {
+					name: name,
+					value: value,
+				},
+			},
+		])		
+	}
+
+	const filterMetafield = (
+		namespace: string,
+		key: string,
+		value: string
+	) => {
+		setFilters([
+			...filters,
+			{
+				productMetafield: {
+					namespace: namespace,
+					key: key,
+					value: value,
+				},
+			},
+		])		
+	}
 
 	const findProduct = async (handle: string, metafields?: MetafieldIdentifierType[]) => {    
 		setProduct(null)
@@ -26,7 +92,8 @@ const useProducts = () => {
 	}
 
 	const findProducts = async (productsQuery) => {
-		const {
+		
+    const {
 			first,
 			reverse,
 			sortKey = 'RELEVANCE',
@@ -55,14 +122,14 @@ const useProducts = () => {
 	}
 
 	const searchProducts = async (searchParams) => {
-		const { query, first, after, filters } = searchParams
+		const { query, first, after, reverse=false, filters, sortKey='RELEVANCE' } = searchParams
 
 		const resp = await loadingWrapper(() =>
 			shopifyClient.searchProducts({
 				first,
 				query,
-				sortKey: 'RELEVANCE',
-				reverse: false,
+				sortKey,
+				reverse,
         filters,
 				after,
 			})

@@ -4,13 +4,10 @@ import {
 	ShopifyCustomerType,
 	QueryResponseType,  
 	QueryParamsType,
-	SearchFilterType,
-	ProductSortKeyType,
-  MetafieldIdentifierType,
 } from '../types'
 import {	
 	QUERY_PRODUCTS,
-  QUERY_PRODUCT_BY_HANDLE_FN,
+  QUERY_PRODUCT_BY_HANDLE,
 	QUERY_PRODUCT_RECOMMENDATIONS,
 	QUERY_PRODUCT_BY_ID,
 	QUERY_COLLECTION_BY_HANDLE,
@@ -56,13 +53,6 @@ import {
 } from '../graphql'
 
 export class ShopifyClient {
-	private _first?: number
-	private _filters?: any[] & SearchFilterType[]
-	private _sortKey?: ProductSortKeyType
-	private _reverse?: boolean
-	private _after?: string
-	private _query?: string
-  private _productFilters?: SearchFilterType[]
 	private _accessToken?: string
 	private _fetchAccessToken?: () => string
 	private apollo: any
@@ -79,121 +69,14 @@ export class ShopifyClient {
 	}
 
 	init(): ShopifyClient {
-		this._first = 20
-		this._filters = []
-		this._sortKey = 'COLLECTION_DEFAULT'
-		this._reverse = false
-		this._query = null
 		return this
 	}
 
-	first(first: number): ShopifyClient {
-		this._first = first
-		return this
-	}
-
-	after(after: string): ShopifyClient {
-		this._after = after
-		return this
-	}
-
-	sort(sortKey: ProductSortKeyType): ShopifyClient {
-		this._sortKey = sortKey
-		return this
-	}
 
 	accessToken(token: string): ShopifyClient {
 		this._accessToken = token
 		return this
 	}
-
-	reverse(reverse: boolean): ShopifyClient {
-		this._reverse = reverse
-		return this
-	}
-
-	filters(filters: SearchFilterType): ShopifyClient {
-		//@ts-ignore
-		this._filters = filters
-		return this
-	}
-
-	filterInStock(): ShopifyClient {
-		this._filters = [
-			...this._filters,
-			{
-				available: true,
-			},
-		]
-		return this
-	}
-
-	filterOutOfStock(): ShopifyClient {
-		this._filters = [
-			...this._filters,
-			{
-				available: false,
-			},
-		]
-		return this
-	}
-
-	filterShopifyProductType(productType: string): ShopifyClient {
-		this._filters = [
-			...this._filters,
-			{
-				productType: productType,
-			},
-		]
-		return this
-	}
-
-	filterVendor(productVendor: string): ShopifyClient {
-		this._filters = [
-			...this._filters,
-			{
-				productVendor: productVendor,
-			},
-		]
-		return this
-	}
-
-	filterVariantOption(name: string, value: string): ShopifyClient {
-		this._filters = [
-			...this._filters,
-			{
-				variantOption: {
-					name: name,
-					value: value,
-				},
-			},
-		]
-		return this
-	}
-
-	filterMetafield(
-		namespace: string,
-		key: string,
-		value: string
-	): ShopifyClient {
-		this._filters = [
-			...this._filters,
-			{
-				productMetafield: {
-					namespace: namespace,
-					key: key,
-					value: value,
-				},
-			},
-		]
-		return this
-	}
-
-	query(query: string): ShopifyClient {
-		this._query = query
-		return this
-	}
-
 	// Articles
 	async findArticle(handle: string): Promise<QueryResponseType> {
 		const response = await this.executeQuery(QUERY_ARTICLE_BY_HANDLE, {
@@ -208,8 +91,8 @@ export class ShopifyClient {
 	async findArticles(params: any): Promise<QueryResponseType> {
 		const { first = 20, query } = params || {}
 		const response = await this.executeQuery(QUERY_ARTICLES, {
-			first: first || this._first,
-			query: query || this._query,
+			first: first,
+			query: query,
 		})
 		return {
 			meta: response?.data?.articles?.pageInfo,
@@ -236,8 +119,8 @@ export class ShopifyClient {
 	async findBlogs(params: any): Promise<QueryResponseType> {
 		const { first = 20, query } = params || {}
 		const response = await this.executeQuery(QUERY_BLOGS, {
-			first: first || this._first,
-			query: query || this._query,
+			first: first,
+			query: query,
 		})
 		return {
 			meta: response?.data?.blogs?.pageInfo,
@@ -438,8 +321,8 @@ export class ShopifyClient {
 	}
 
 	// Products
-	async findProduct(handle: string, metafields?: MetafieldIdentifierType[]): Promise<QueryResponseType> {
-    const gql = QUERY_PRODUCT_BY_HANDLE_FN(metafields)
+	async findProduct(handle: string): Promise<QueryResponseType> {
+    const gql = QUERY_PRODUCT_BY_HANDLE
 		const response = await this.executeQuery(gql, {
 			handle      
 		})
@@ -458,17 +341,14 @@ export class ShopifyClient {
 	}
 
 	async findProducts(params: QueryParamsType): Promise<QueryResponseType> {
-		this._query = params?.query || this._query
-		//this._first = params?.first || this._first || 48
-		this._sortKey = params?.sortKey || this._sortKey
-		this._reverse = params?.reverse || this._reverse
-		this._after = params?.after || this._after
+		
+    const { query, sortKey = 'RELEVANCE', first = 24, reverse, after } = params || {}
 
 		const productQuery = {
-			query: this._query,
-			sortKey: this._sortKey,
-			reverse: this._reverse,
-			after: this._after,
+			query: query,
+			sortKey: sortKey,
+			reverse: reverse,
+			after: after,
 		}
 
 		const response = await this.executeQuery(QUERY_PRODUCTS, {
@@ -482,22 +362,26 @@ export class ShopifyClient {
 	}
 
 	async searchProducts(params: QueryParamsType): Promise<QueryResponseType> {
-		this._query = params?.query || this._query
-		this._sortKey = params?.sortKey || this._sortKey || 'RELEVANCE'
-		this._first = params?.first || this._first || 48
-		this._after = params?.after || this._after
-    this._filters = params?.filters || this._filters || []
+		
+    const { 
+      query, 
+      sortKey = 'RELEVANCE', 
+      first = 24, 
+      reverse, 
+      after,
+      filters, 
+    } = params || {}
 
 		const searchQuery = {
-			first: this._first,
-			sortKey: this._sortKey,
-			reverse: false,
-			after: this._after,
-      productFilters: this._filters,
+			first: first,
+			sortKey: sortKey,
+			reverse: reverse,
+			after: after,
+      productFilters: filters,
 		}
 
 		const response = await this.executeQuery(QUERY_SEARCH, {
-			query: this._query,
+			query: query,
 			variables: searchQuery,
 		})
 		return {
@@ -529,11 +413,11 @@ export class ShopifyClient {
 
 		const response = await this.executeQuery(QUERY_COLLECTION_BY_HANDLE, {
 			handle,
-			first: first || this._first,
-			filters: filters || this._filters,
-			reverse: reverse || this._reverse,
-			sortKey: sortKey || this._sortKey,
-			after: after || this._after,
+			first,
+			filters,
+			reverse,
+			sortKey,
+			after,
 		})
 
 		const data = {
@@ -549,9 +433,8 @@ export class ShopifyClient {
 	}
 
 	async findCollections(first?: number): Promise<QueryResponseType> {
-		this._first = first || this._first
 		const response = await this.executeQuery(QUERY_COLLECTIONS, {
-			first: this._first,
+			first: first || 24,
 		})
 		return {
 			meta: response?.data?.collections?.pageInfo,
@@ -803,10 +686,10 @@ export class ShopifyClient {
 	}
 
 	async findPages(params: any): Promise<QueryResponseType> {
-		const { first = 20, query } = params || {}
+		const { first = 24, query } = params || {}
 		const response = await this.executeQuery(QUERY_PAGES, {
-			first: first || this._first,
-			query: query || this._query,
+			first: first,
+			query: query,
 		})
 		return {
 			meta: response?.data?.pages?.pageInfo,
@@ -838,8 +721,8 @@ export class ShopifyClient {
 	async findMetaobjects(params: any): Promise<QueryResponseType> {
 		const { first = 20, type } = params || {}
 		const response = await this.executeQuery(QUERY_METAOBJECTS, {
-			first: first || this._first,
-			type: type,
+			first,
+			type,
 		})
 		return {
 			meta: response?.data?.metaobjects?.pageInfo,
