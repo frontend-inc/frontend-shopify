@@ -507,20 +507,17 @@ var ShopifyClient = /** @class */ (function () {
     ShopifyClient.prototype.findProducts = function (params) {
         var _a, _b, _c, _d;
         return __awaiter(this, void 0, void 0, function () {
-            var _e, query, _f, sortKey, _g, first, reverse, after, productQuery, response;
+            var _e, query, _f, sortKey, _g, first, reverse, after, response;
             return __generator(this, function (_h) {
                 switch (_h.label) {
                     case 0:
                         _e = params || {}, query = _e.query, _f = _e.sortKey, sortKey = _f === void 0 ? 'RELEVANCE' : _f, _g = _e.first, first = _g === void 0 ? 24 : _g, reverse = _e.reverse, after = _e.after;
-                        productQuery = {
-                            query: query,
-                            first: first,
-                            sortKey: sortKey,
-                            reverse: reverse,
-                            after: after,
-                        };
                         return [4 /*yield*/, this.executeQuery(graphql_1.QUERY_PRODUCTS, {
-                                variables: productQuery,
+                                query: query,
+                                first: first,
+                                sortKey: sortKey,
+                                reverse: reverse,
+                                after: after,
                             })];
                     case 1:
                         response = _h.sent();
@@ -536,19 +533,16 @@ var ShopifyClient = /** @class */ (function () {
     ShopifyClient.prototype.searchProducts = function (params) {
         var _a, _b, _c, _d;
         return __awaiter(this, void 0, void 0, function () {
-            var _e, query, _f, first, after, filters, searchQuery, response;
+            var _e, query, _f, first, after, filters, response;
             return __generator(this, function (_g) {
                 switch (_g.label) {
                     case 0:
                         _e = params || {}, query = _e.query, _f = _e.first, first = _f === void 0 ? 24 : _f, after = _e.after, filters = _e.filters;
-                        searchQuery = {
-                            query: query,
-                            first: first,
-                            after: after,
-                            productFilters: filters,
-                        };
                         return [4 /*yield*/, this.executeQuery(graphql_1.QUERY_SEARCH, {
-                                variables: searchQuery,
+                                query: query,
+                                first: first,
+                                after: after,
+                                productFilters: filters,
                             })];
                     case 1:
                         response = _g.sent();

@@ -344,17 +344,14 @@ export class ShopifyClient {
 		
     const { query, sortKey = 'RELEVANCE', first = 24, reverse, after } = params || {}
 
-		const productQuery = {
+		const response = await this.executeQuery(QUERY_PRODUCTS, {
 			query,
       first,
 			sortKey,
 			reverse,
 			after,
-		}
-
-		const response = await this.executeQuery(QUERY_PRODUCTS, {
-			variables: productQuery,
 		})
+    
 		return {
 			meta: response?.data?.products?.pageInfo,
 			data: response?.data?.products?.edges.map((e) => e.node),
@@ -371,16 +368,13 @@ export class ShopifyClient {
       filters, 
     } = params || {}
 
-		const searchQuery = {
-      query,
+		const response = await this.executeQuery(QUERY_SEARCH, {
+			query,
 			first,
       after,
       productFilters: filters,
-		}
-
-		const response = await this.executeQuery(QUERY_SEARCH, {
-			variables: searchQuery,
 		})
+    
 		return {
 			meta: response?.data?.search?.pageInfo,
 			data: response?.data?.search?.edges.map((e) => e.node),
