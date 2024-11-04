@@ -2,9 +2,9 @@ import { gql } from '@apollo/client'
 import { ProductFragment } from './products'
 
 export const QUERY_SEARCH = gql`
-	query Search($query: String!, $after: String, $productFilters: [ProductFilter!]) {
+	query Search($query: String!, $first: Number!, $after: String, $productFilters: [ProductFilter!]) {
 		search(
-			first: 48
+			first: $first
 			after: $after
 			query: $query
 			reverse: false

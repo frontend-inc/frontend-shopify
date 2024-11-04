@@ -147,12 +147,13 @@ export const QUERY_PRODUCT_BY_HANDLE = gql`
 export const QUERY_PRODUCTS = gql`
 	query Products(
 		$query: String
+    $first: Number!
 		$reverse: Boolean
 		$sortKey: ProductSortKeys
 		$after: String    
 	) {
 		products(
-			first: 48
+			first: $first
 			after: $after
 			query: $query
 			reverse: $reverse
