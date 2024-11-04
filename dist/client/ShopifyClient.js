@@ -514,6 +514,7 @@ var ShopifyClient = /** @class */ (function () {
                         _e = params || {}, query = _e.query, _f = _e.sortKey, sortKey = _f === void 0 ? 'RELEVANCE' : _f, _g = _e.first, first = _g === void 0 ? 24 : _g, reverse = _e.reverse, after = _e.after;
                         productQuery = {
                             query: query,
+                            first: first,
                             sortKey: sortKey,
                             reverse: reverse,
                             after: after,
@@ -535,24 +536,22 @@ var ShopifyClient = /** @class */ (function () {
     ShopifyClient.prototype.searchProducts = function (params) {
         var _a, _b, _c, _d;
         return __awaiter(this, void 0, void 0, function () {
-            var _e, query, _f, sortKey, _g, first, reverse, after, filters, searchQuery, response;
-            return __generator(this, function (_h) {
-                switch (_h.label) {
+            var _e, query, _f, first, after, filters, searchQuery, response;
+            return __generator(this, function (_g) {
+                switch (_g.label) {
                     case 0:
-                        _e = params || {}, query = _e.query, _f = _e.sortKey, sortKey = _f === void 0 ? 'RELEVANCE' : _f, _g = _e.first, first = _g === void 0 ? 24 : _g, reverse = _e.reverse, after = _e.after, filters = _e.filters;
+                        _e = params || {}, query = _e.query, _f = _e.first, first = _f === void 0 ? 24 : _f, after = _e.after, filters = _e.filters;
                         searchQuery = {
+                            query: query,
                             first: first,
-                            sortKey: sortKey,
-                            reverse: reverse,
                             after: after,
                             productFilters: filters,
                         };
                         return [4 /*yield*/, this.executeQuery(graphql_1.QUERY_SEARCH, {
-                                query: query,
                                 variables: searchQuery,
                             })];
                     case 1:
-                        response = _h.sent();
+                        response = _g.sent();
                         return [2 /*return*/, {
                                 meta: (_b = (_a = response === null || response === void 0 ? void 0 : response.data) === null || _a === void 0 ? void 0 : _a.search) === null || _b === void 0 ? void 0 : _b.pageInfo,
                                 data: (_d = (_c = response === null || response === void 0 ? void 0 : response.data) === null || _c === void 0 ? void 0 : _c.search) === null || _d === void 0 ? void 0 : _d.edges.map(function (e) { return e.node; }),

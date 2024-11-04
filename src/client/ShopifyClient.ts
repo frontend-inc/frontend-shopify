@@ -345,10 +345,11 @@ export class ShopifyClient {
     const { query, sortKey = 'RELEVANCE', first = 24, reverse, after } = params || {}
 
 		const productQuery = {
-			query: query,
-			sortKey: sortKey,
-			reverse: reverse,
-			after: after,
+			query,
+      first,
+			sortKey,
+			reverse,
+			after,
 		}
 
 		const response = await this.executeQuery(QUERY_PRODUCTS, {
@@ -365,23 +366,19 @@ export class ShopifyClient {
 		
     const { 
       query, 
-      sortKey = 'RELEVANCE', 
       first = 24, 
-      reverse, 
       after,
       filters, 
     } = params || {}
 
 		const searchQuery = {
-			first: first,
-			sortKey: sortKey,
-			reverse: reverse,
-			after: after,
+      query,
+			first,
+      after,
       productFilters: filters,
 		}
 
 		const response = await this.executeQuery(QUERY_SEARCH, {
-			query: query,
 			variables: searchQuery,
 		})
 		return {
