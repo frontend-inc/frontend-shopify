@@ -164,6 +164,7 @@ var useProducts = function () {
             }
         });
     }); };
+    // https://shopify.dev/docs/api/storefront/2024-10/queries/search
     var searchProducts = function (searchParams) { return __awaiter(void 0, void 0, void 0, function () {
         var query, first, after, _a, reverse, filters, _b, sortKey, resp, results;
         var _c, _d;

@@ -121,6 +121,7 @@ const useProducts = () => {
 		return resp?.data
 	}
 
+  // https://shopify.dev/docs/api/storefront/2024-10/queries/search
 	const searchProducts = async (searchParams) => {
 		const { query, first, after, reverse=false, filters, sortKey='RELEVANCE' } = searchParams
 
