@@ -1108,7 +1108,8 @@ var ShopifyClient = /** @class */ (function () {
 }());
 exports.ShopifyClient = ShopifyClient;
 // Create the ShopifyClient
-var createClient = function (domain, storefrontAccessToken, fetchAccessToken, apiVersion) {
+var createClient = function (_a) {
+    var domain = _a.domain, storefrontAccessToken = _a.storefrontAccessToken, fetchAccessToken = _a.fetchAccessToken, apiVersion = _a.apiVersion;
     return new ShopifyClient(domain, storefrontAccessToken, fetchAccessToken, apiVersion);
 };
 exports.createClient = createClient;

@@ -62,4 +62,11 @@ export declare class ShopifyClient {
     executeQuery(query: any, variables: any): Promise<QueryResponseType>;
     executeMutation(mutation: any, variables: any): Promise<QueryResponseType>;
 }
-export declare const createClient: (domain: string, storefrontAccessToken: string, fetchAccessToken?: () => string, apiVersion?: string) => ShopifyClient;
+declare type ShopifyClientParamsType = {
+    domain: string;
+    storefrontAccessToken: string;
+    fetchAccessToken?: () => string;
+    apiVersion?: string;
+};
+export declare const createClient: ({ domain, storefrontAccessToken, fetchAccessToken, apiVersion }: ShopifyClientParamsType) => ShopifyClient;
+export {};

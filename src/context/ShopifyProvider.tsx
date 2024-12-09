@@ -36,12 +36,12 @@ const ShopifyProvider = (props: ShopifyProviderProps) => {
 	const fetchAccessToken = () => String(getCookie(authCookie))
 
   const apolloClient = useApollo(domain, storefrontAccessToken, apiVersion)	
-  const shopifyClient = createClient(
+  const shopifyClient = createClient({
     domain,
     storefrontAccessToken,
     fetchAccessToken,
     apiVersion
-  )
+  })
   
 
 	const [accessToken, setAccessToken] = useState()

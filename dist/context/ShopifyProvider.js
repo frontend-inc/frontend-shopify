@@ -33,7 +33,12 @@ var ShopifyProvider = function (props) {
     var authCookie = domain + "-shopify-access-token";
     var fetchAccessToken = function () { return String((0, cookies_next_1.getCookie)(authCookie)); };
     var apolloClient = (0, client_2.useApollo)(domain, storefrontAccessToken, apiVersion);
-    var shopifyClient = (0, client_2.createClient)(domain, storefrontAccessToken, fetchAccessToken, apiVersion);
+    var shopifyClient = (0, client_2.createClient)({
+        domain: domain,
+        storefrontAccessToken: storefrontAccessToken,
+        fetchAccessToken: fetchAccessToken,
+        apiVersion: apiVersion
+    });
     var _b = (0, react_1.useState)(), accessToken = _b[0], setAccessToken = _b[1];
     var _c = (0, react_1.useState)(), alert = _c[0], setAlert = _c[1];
     var _d = (0, react_1.useState)(null), cart = _d[0], setCart = _d[1];

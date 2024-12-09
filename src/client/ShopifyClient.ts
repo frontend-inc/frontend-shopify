@@ -748,13 +748,20 @@ export class ShopifyClient {
 	}
 }
 
+type ShopifyClientParamsType = {
+  domain: string 
+  storefrontAccessToken: string
+  fetchAccessToken?: () => string
+  apiVersion?: string
+}
+
 // Create the ShopifyClient
-export const createClient = (
-	domain: string,
-	storefrontAccessToken: string,
-	fetchAccessToken?: () => string,
-	apiVersion?: string
-): ShopifyClient => {
+export const createClient = ({
+  domain,
+  storefrontAccessToken,
+  fetchAccessToken,
+  apiVersion
+}: ShopifyClientParamsType): ShopifyClient => {
 	return new ShopifyClient(
 		domain,
 		storefrontAccessToken,
